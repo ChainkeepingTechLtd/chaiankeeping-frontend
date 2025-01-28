@@ -4,11 +4,11 @@ import PageWrapper from "@/pattern/accounts/templates/account-sidebar-wrapper";
 import { Topbar } from "@/pattern/common/templates/topbar";
 import { cn, SidebarProvider } from "@chainkeeping/ui";
 
-export default function MainLayout({
+const AccountLayout = ({
     children,
 }: {
-    children: React.ReactNode;
-}) {
+    children: any;
+}) => {
     return (
         <div
             className={cn(
@@ -27,3 +27,5 @@ export default function MainLayout({
         </div>
     );
 }
+
+export default AccountLayout

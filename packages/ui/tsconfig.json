@@ -2,7 +2,7 @@
   "extends": "@chainkeeping/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "module": "NodeNext",
     "paths": {
       "@/*": ["./src/*"]

@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 import { cn } from '@chainkeeping/ui'
 import { Topbar } from '@/pattern/common/templates/topbar';
 

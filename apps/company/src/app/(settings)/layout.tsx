@@ -2,13 +2,12 @@
 
 import { Topbar } from "@/pattern/common/templates/topbar";
 import PageWrapper from "@/pattern/settings/templates/settings-sidebar-wrapper";
-import { SidebarProvider } from "@chainkeeping/ui";
 
-export default function MainLayout({
+const SettingsLayout = ({
 	children,
 }: {
-	children: React.ReactNode;
-}) {
+	children: any;
+}) => {
 	return (
 		<div className='relative bg-accent w-screen min-h-screen h-auto flex flex-col font-dmsans'>
 			{/* Topbar */}
@@ -16,10 +15,10 @@ export default function MainLayout({
 
 			{/* Main Content Wrapper */}
 			<div className='flex w-full flex-1 overflow-hidden'>
-				<SidebarProvider>
-					<PageWrapper>{children}</PageWrapper>
-				</SidebarProvider>
+				<PageWrapper>{children}</PageWrapper>
 			</div>
 		</div>
 	);
 }
+
+export default SettingsLayout

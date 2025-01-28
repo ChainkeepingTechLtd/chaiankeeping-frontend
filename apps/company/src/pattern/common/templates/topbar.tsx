@@ -1,3 +1,6 @@
+"use client";
+
+import React from 'react';
 import Link from "next/link";
 import { APP_ROUTES } from "@/lib/routes";
 import { BrandLogo, NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@chainkeeping/ui";
