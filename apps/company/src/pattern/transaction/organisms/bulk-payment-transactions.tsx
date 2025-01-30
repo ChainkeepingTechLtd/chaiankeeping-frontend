@@ -248,7 +248,8 @@ const BulkPaymentTransactionTable: React.FC<
 				},
 			},
 			// eslint-disable-next-line react-hooks/exhaustive-deps
-		], [selectedRows]
+		],
+		[selectedRows]
 	);
 
 	const table = useReactTable({
@@ -290,17 +291,16 @@ const BulkPaymentTransactionTable: React.FC<
 									<th
 										key={header.id}
 										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
-											header.column.columnDef.headerClassName || ""
+											header.column.columnDef || ""
 										}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: (flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												) as React.ReactNode)
-											}
+														header.column.columnDef.header,
+														header.getContext()
+													) as React.ReactNode)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -320,7 +320,12 @@ const BulkPaymentTransactionTable: React.FC<
 										key={cell.id}
 										className='px-6 py-4 border-b border-gray-300 text-sm text-grey-600'
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext()) as React.ReactNode}
+										{
+											flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											) as React.ReactNode
+										}
 									</td>
 								))}
 							</tr>

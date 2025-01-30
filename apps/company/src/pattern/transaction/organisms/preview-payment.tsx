@@ -5,6 +5,7 @@ import {
 	getPaginationRowModel,
 	flexRender,
 	Table,
+	ColumnDef,
 } from "@tanstack/react-table";
 
 import SortIcon from "../atoms/sort-icon";
@@ -132,7 +133,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		}, 2000);
 	};
 
-	const columns: any = React.useMemo(
+	const columns = React.useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -144,7 +145,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
@@ -250,7 +251,8 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 				},
 			},
 			// eslint-disable-next-line react-hooks/exhaustive-deps
-		], [selectedRows]
+		],
+		[selectedRows]
 	);
 
 	const table = useReactTable({
@@ -292,16 +294,19 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={cn("text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold")}
+										className={cn(
+											"text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold"
+										)}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: (flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												) as React.ReactNode)}
-											{header.column.id !== "actions" && header.column.id !== "select" && <SortIcon />}
+														header.column.columnDef.header,
+														header.getContext()
+													) as React.ReactNode)}
+											{header.column.id !== "actions" &&
+												header.column.id !== "select" && <SortIcon />}
 										</div>
 									</th>
 								))}
@@ -319,7 +324,12 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 										key={cell.id}
 										className='px-6 py-4 border-b border-gray-300 text-sm text-grey-600'
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext()) as React.ReactNode}
+										{
+											flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											) as React.ReactNode
+										}
 									</td>
 								))}
 							</tr>
@@ -348,10 +358,11 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
-									? "bg-[#D82E2E] text-white"
-									: "bg-transparent text-gray-800"
-									}`}
+								className={`h-6 text-sm w-6 rounded-full ${
+									pageIndex === table.getState().pagination.pageIndex
+										? "bg-[#D82E2E] text-white"
+										: "bg-transparent text-gray-800"
+								}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

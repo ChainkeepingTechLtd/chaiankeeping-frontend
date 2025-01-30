@@ -5,6 +5,7 @@ import {
 	getPaginationRowModel,
 	flexRender,
 	Table,
+	ColumnDef,
 } from "@tanstack/react-table";
 
 import SortIcon from "../atoms/sort-icon";
@@ -125,7 +126,7 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 	}, [data, selectedYear, selectedType, search]);
 
 	// Define columns
-	const columns = React.useMemo(
+	const columns = React.useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -137,7 +138,7 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as any, table.getRowModel().rows);
 						}}
 					/>
 				),
@@ -238,10 +239,11 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 				accessorKey: "profitLoss",
 				cell: (info: any) => (
 					<div
-						className={`text-sm ${info.getValue().startsWith("-")
+						className={`text-sm ${
+							info.getValue().startsWith("-")
 								? "text-[#F14848]"
 								: "text-[#27AE60]"
-							}`}
+						}`}
 					>
 						{info.getValue()}
 					</div>
@@ -350,16 +352,17 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
+											header.column.columnDef || ""
+										}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												)}
+														header.column.columnDef.header,
+														header.getContext()
+													)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -408,10 +411,11 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${
+									pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-									}`}
+								}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}
