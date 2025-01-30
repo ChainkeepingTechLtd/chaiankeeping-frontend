@@ -52,19 +52,16 @@ const SinglePractitioner = () => {
 			<div className='flex flex-col  w-full '>
 				<div className='flex justify-between items-center mb-5'>
 					<div className='gap-2 flex items-center text-sm'>
-						<p className='text-[#94A3B8]'>Practitioner</p>
+						<p className='text-grey-300'>Practitioner</p>
 						<ArrowIcon />
-						<p className='text-[#94A3B8]'>P2B</p>
+						<p className='text-grey-300'>P2B</p>
 						<ArrowIcon />
 						<p>Adegboyega & Akinsanya LLC</p>
 					</div>
 				</div>
 				<div className='flex max-sm:flex-col items-start w-full gap-6'>
 					{practitionersData.map((practitioner, idx) => (
-						<div
-							key={idx}
-							className='bg-white shadow-lg rounded-lg  p-4'
-						>
+						<div key={idx} className='bg-white shadow-lg rounded-lg  p-4'>
 							<div className='flex gap-4 '>
 								<div className='h-[52px] w-[52px] relative'>
 									<div className=' w-[48px] h-[48px] rounded-md bg-[#F5F8FA] flex items-center justify-center font-medium text-grey-600'>
@@ -98,7 +95,7 @@ const SinglePractitioner = () => {
 									<span className='flex items-center gap-2'>
 										<span className='font-semibold text-base'>
 											{practitioner.rating}
-											<span className='text-sm text-[#94A3B8] font-normal'>
+											<span className='text-sm text-grey-300 font-normal'>
 												/5
 											</span>
 										</span>
@@ -135,7 +132,7 @@ const SinglePractitioner = () => {
 							<div className='bg-gray-100 rounded-md p-3 mt-4 text-grey-600'>
 								<div className='flex justify-between text-sm '>
 									<span>Account Management:</span>
-									<span className='text-[#94A3B8]'>
+									<span className='text-grey-300'>
 										NGN{" "}
 										<span className='font-bold text-base text-[#202B3C]'>
 											{practitioner.accountManagementPrice}
@@ -145,7 +142,7 @@ const SinglePractitioner = () => {
 								</div>
 								<div className='flex justify-between text-sm mt-2'>
 									<span>Report Signing only:</span>
-									<span className='text-[#94A3B8]'>
+									<span className='text-grey-300'>
 										NGN{" "}
 										<span className='font-bold text-base text-[#202B3C]'>
 											{practitioner.reportSigningPrice}

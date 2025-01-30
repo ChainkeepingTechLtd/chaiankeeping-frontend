@@ -47,28 +47,31 @@ const TaxesTabs = () => {
 				<div className='flex justify-between md:px-8 mx-auto px-4'>
 					<div className='flex'>
 						<button
-							className={`px-4 py-4 font-medium ${activeTab === "Taxes Due"
+							className={`px-4 py-4 font-medium ${
+								activeTab === "Taxes Due"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
-									: "text-[#94A3B8]"
-								}`}
+									: "text-grey-300"
+							}`}
 							onClick={() => setActiveTab("Taxes Due")}
 						>
 							Taxes Due
 						</button>
 						<button
-							className={`px-4 py-2 font-medium ${activeTab === "Unfilled Taxes"
+							className={`px-4 py-2 font-medium ${
+								activeTab === "Unfilled Taxes"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
-									: "text-[#94A3B8]"
-								}`}
+									: "text-grey-300"
+							}`}
 							onClick={() => setActiveTab("Unfilled Taxes")}
 						>
 							Unfilled Taxes
 						</button>
 						<button
-							className={`px-4 py-2 font-medium ${activeTab === "Concluded Taxes"
+							className={`px-4 py-2 font-medium ${
+								activeTab === "Concluded Taxes"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
-									: "text-[#94A3B8]"
-								}`}
+									: "text-grey-300"
+							}`}
 							onClick={() => setActiveTab("Concluded Taxes")}
 						>
 							Concluded Taxes

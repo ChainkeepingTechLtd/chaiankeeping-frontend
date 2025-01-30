@@ -82,19 +82,16 @@ const MakePayment = () => {
 			<div className='flex flex-col  w-full '>
 				<div className='flex justify-between items-center mb-5'>
 					<div className='gap-2 flex items-center text-sm'>
-						<p className='text-[#94A3B8]'>Practitioner</p>
+						<p className='text-grey-300'>Practitioner</p>
 						<ArrowIcon />
-						<p className='text-[#94A3B8]'>P2B</p>
+						<p className='text-grey-300'>P2B</p>
 						<ArrowIcon />
 						<p>Adegboyega & Akinsanya LLC</p>
 					</div>
 				</div>
 				<div className='flex max-sm:flex-col items-start w-full gap-6'>
 					{practitionersData.map((practitioner, idx) => (
-						<div
-							key={idx}
-							className='bg-white lg:w-[60%] rounded-lg p-6'
-						>
+						<div key={idx} className='bg-white lg:w-[60%] rounded-lg p-6'>
 							<h3 className='font-bold text-lg'>{practitioner.name}</h3>
 							<p className='text-sm'>{practitioner.description}</p>
 

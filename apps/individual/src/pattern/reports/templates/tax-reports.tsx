@@ -39,19 +39,21 @@ const TaxReports = () => {
 				<div className='flex justify-between md:px-8 mx-auto px-4'>
 					<div className='flex'>
 						<button
-							className={`px-4 py-5 font-medium ${activeTab === "Tax Reports"
+							className={`px-4 py-5 font-medium ${
+								activeTab === "Tax Reports"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
-									: "text-[#94A3B8]"
-								}`}
+									: "text-grey-300"
+							}`}
 							onClick={() => setActiveTab("Tax Reports")}
 						>
 							Tax Reports
 						</button>
 						<button
-							className={`px-4 py-5 font-medium ${activeTab === "Financial Reports"
+							className={`px-4 py-5 font-medium ${
+								activeTab === "Financial Reports"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
-									: "text-[#94A3B8]"
-								}`}
+									: "text-grey-300"
+							}`}
 							onClick={() => setActiveTab("Financial Reports")}
 						>
 							Financial Reports
@@ -62,7 +64,7 @@ const TaxReports = () => {
 							<h1 className='font-bold text-2xl'>
 								{selectedDate} Assessment Year
 							</h1>
-							<p className='text-[#94A3B8] text-sm'>
+							<p className='text-grey-300 text-sm'>
 								Jan 1, {selectedDate} - Dec 31, {selectedDate}
 							</p>
 						</div>
