@@ -1,7 +1,9 @@
 "use client";
 
 import { Topbar } from "@/pattern/common/templates/topbar";
+import { AppSidebar } from "@/pattern/settings/organisms/app-sidebar";
 import PageWrapper from "@/pattern/settings/templates/settings-sidebar-wrapper";
+import { SidebarInset, SidebarProvider } from "@chainkeeping/ui";
 
 const SettingsLayout = ({
 	children,
@@ -9,15 +11,19 @@ const SettingsLayout = ({
 	children: any;
 }) => {
 	return (
-		<div className='relative bg-accent w-screen min-h-screen h-auto flex flex-col font-dmsans'>
-			{/* Topbar */}
-			<Topbar />
-
-			{/* Main Content Wrapper */}
-			<div className='flex w-full flex-1 overflow-hidden'>
-				<PageWrapper>{children}</PageWrapper>
+		<SidebarProvider
+		>
+			<AppSidebar />
+			<div className='relative bg-accent w-screen min-h-screen h-fit flex flex-col font-dmsans'>
+				<div className="h-full flex flex-col flex-1 overflow-hidden">
+					<Topbar />
+					<main
+						className='bg-accent w-full pl-8 flex items-center justify-center ml-[--sidebar-width] mt-[--topbar-height] pt-8 mb-[88px] overflow-auto'
+					>{children}
+					</main>
+				</div>
 			</div>
-		</div>
+		</SidebarProvider>
 	);
 }
 

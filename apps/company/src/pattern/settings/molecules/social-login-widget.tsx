@@ -1,7 +1,6 @@
+import AppleIcon from "@/pattern/common/atoms/apple-icon";
+import GoogleIcon from "@/pattern/common/atoms/google-icon";
 import React, { FC, ReactElement, useEffect, useState } from "react";
-
-import Appleicon from "@/pattern/auth/atoms/apple-icon";
-import GoogleIcon from "@/pattern/auth/atoms/google-icon";
 
 interface IProps {
 	onClick: () => void;
@@ -15,7 +14,7 @@ const SocialsLoginWidget: FC<IProps> = ({ onClick, social }) => {
 		if (social) {
 			switch (social) {
 				case "Apple":
-					setSocialIcon(<Appleicon />);
+					setSocialIcon(<AppleIcon />);
 					break;
 				case "Google":
 					setSocialIcon(<GoogleIcon />);
@@ -24,7 +23,7 @@ const SocialsLoginWidget: FC<IProps> = ({ onClick, social }) => {
 					setSocialIcon(<GoogleIcon />);
 			}
 		}
-	}, []);
+	}, [social]);
 
 	return (
 		<div

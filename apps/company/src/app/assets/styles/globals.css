@@ -3,101 +3,120 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--topbar-height: 72px;
-		--sidebar-width: 288px;
-	}
+  :root {
+    --topbar-height: 72px;
+    --sidebar-width: 288px;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-	width: screen;
-	min-height: 1svh;
-	height: fit-content;
-	color: var(--foreground);
-	background: var(--background) !important;
-	overflow-x: hidden;
+  width: screen;
+  min-height: 1svh;
+  height: fit-content;
+  color: var(--foreground);
+  background: var(--background) !important;
+  overflow-x: hidden;
 }
 
 * {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 @media (prefers-color-scheme: dark) {
-	.next-error-h1 {
-		color: #000 !important;
-		border-right: 1px solid #000 !important;
-	}
+  .next-error-h1 {
+    color: #000 !important;
+    border-right: 1px solid #000 !important;
+  }
 }
 
 .roman-list {
-	@apply list-none relative; /* Tailwind utilities for styling */
-	counter-reset: list-counter; /* Initialize the counter */
+  @apply list-none relative; /* Tailwind utilities for styling */
+  counter-reset: list-counter; /* Initialize the counter */
 }
 
 .roman-list > li {
-	counter-increment: list-counter; /* Increment the counter */
+  counter-increment: list-counter; /* Increment the counter */
 }
 
 /* Custom Scrollbar style */
 .custom_scollbar::-webkit-scrollbar {
-	width: 8px !important;
-	height: 6px;
-	padding-top: 10px;
+  width: 8px !important;
+  height: 6px;
+  padding-top: 10px;
 }
 
 .custom_scollbar::-webkit-scrollbar-track {
-	border-radius: 4px !important;
-	background-color: transparent;
+  border-radius: 4px !important;
+  background-color: transparent;
 }
 
 .custom_scollbar::-webkit-scrollbar-thumb {
-	background-color: hsla(213, 27%, 84%, 1);
-	border-radius: 4px !important;
+  background-color: hsla(213, 27%, 84%, 1);
+  border-radius: 4px !important;
 }
 
 ::-webkit-scrollbar {
-	width: 8px !important;
-	height: 6px;
-	padding-top: 10px;
+  width: 8px !important;
+  height: 6px;
+  padding-top: 10px;
 }
 
 ::-webkit-scrollbar-track {
-	border-radius: 4px !important;
-	background-color: transparent;
+  border-radius: 4px !important;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: hsla(210, 40%, 96%, 1);
-	border-radius: 4px !important;
+  background-color: hsla(210, 40%, 96%, 1);
+  border-radius: 4px !important;
 }
 
 /* PhoneNumber Input */
 .selected-flag {
-	background-color: hsla(204, 33%, 97%, 1) !important;
-	border-top-left-radius: 6px !important;
-	border-bottom-left-radius: 6px !important;
+  background-color: hsla(204, 33%, 97%, 1) !important;
+  border-top-left-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
 }
 .selected-flag:hover {
-	background-color: hsla(204, 33%, 97%, 1) !important;
+  background-color: hsla(204, 33%, 97%, 1) !important;
 }
 
 select option {
-	color: hsla(216, 30%, 18%, 1);
-	background-color: transparent;
-	padding: 8px;
+  color: hsla(216, 30%, 18%, 1);
+  background-color: transparent;
+  padding: 8px;
 }
 
 select option:hover {
-	background-color: hsla(204, 33%, 97%, 1);
+  background-color: hsla(204, 33%, 97%, 1);
 }

@@ -12,25 +12,25 @@ interface IProps {
 
 const PageWrapper: FC<IProps> = ({ children }) => {
 	return (
-		<>
-			<SidebarProvider>
-				<div
-					className={cn(
-						"relative bg-accent w-full min-h-screen flex transition-all duration-200 ease-in-out"
-					)}
-				>
-					{/* Sidebar */}
-					<AppSidebar />
+		<div className={cn(
+			'relative w-full h-full flex items-start transition-all duration-200 ease-in-out',
+		)}>
+			<div
+				className={cn(
+					"relative bg-accent w-full min-h-svh flex transition-all duration-200 ease-in-out"
+				)}
+			>
+				{/* Sidebar */}
+				<AppSidebar />
 
-					{/* Main Content */}
-					<main
-						className='w-full pl-8 flex items-center justify-center ml-[var(--sidebar-width)] mt-[var(--topbar-height)] pt-8 mb-[88px] overflow-x-auto'
-					>
-						{children}
-					</main>
-				</div>
-			</SidebarProvider>
-		</>
+				{/* Main Content */}
+				<main
+					className='w-full pl-8 flex items-center justify-center ml-[var(--sidebar-width)] mt-[var(--topbar-height)] pt-8 mb-[88px] overflow-x-auto'
+				>
+					{children}
+				</main>
+			</div>
+		</div>
 	);
 };
 

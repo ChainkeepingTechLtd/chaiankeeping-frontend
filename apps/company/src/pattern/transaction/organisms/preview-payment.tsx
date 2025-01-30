@@ -10,17 +10,16 @@ import {
 import SortIcon from "../atoms/sort-icon";
 import PrevIcon from "../atoms/prev-icon";
 import NextIcon from "../atoms/next-icon";
-import { Button, Checkbox } from "@chainkeeping/ui";
+import { Button, Checkbox, cn } from "@chainkeeping/ui";
 import { useRouter } from "next/navigation";
 import TetherIcon from "@/pattern/individual/atoms/tether-icon";
 import EditIcon from "../atoms/edit-icon";
 import DeleteIcon from "../atoms/delete-icon";
-import Modal from "@/pattern/taxes/molecules/modal-compoent";
-import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
 import PaymentSuccessModal from "../molecules/payment-success-modal";
 import ApprovePaymentModal from "../molecules/approve-payment-modal";
 import DeletePaymentModal from "../molecules/delete-payment-modal";
 import EditPaymentModal from "../molecules/edit-payment-modal";
+import Image from "next/image";
 
 interface Transaction {
 	id: string | number;
@@ -133,7 +132,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		}, 2000);
 	};
 
-	const columns = React.useMemo(
+	const columns: any = React.useMemo(
 		() => [
 			{
 				id: "select",
@@ -250,8 +249,8 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 					);
 				},
 			},
-		],
-		[selectedRows]
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		], [selectedRows]
 	);
 
 	const table = useReactTable({
@@ -269,7 +268,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						<p className='font-medium text-black'>Binance Mainnet</p>
 					</div>
 					<div className='flex bg-[#E5EBEF] items-center gap-2 py-[10px] px-5 rounded-md'>
-						<img src='/Base.svg' alt='' />
+						<Image src='/Base.svg' alt='Base Icon' />
 						<p className='font-medium'>0x2c9b...fa23bc093ae3b282c0</p>
 					</div>
 				</div>
@@ -286,25 +285,23 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 			</div>
 
 			<div className='overflow-x-auto'>
-				<table className='min-w-full table-fixed border border-[red] shadow-md rounded-lg overflow-hidden'>
+				<table className='min-w-full table-fixed border border-destructive shadow-md rounded-lg overflow-hidden'>
 					<thead className='bg-[#F5F8FA]'>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={cn("text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold")}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
-												: flexRender(
+												: (flexRender(
 													header.column.columnDef.header,
 													header.getContext()
-												)}
-											{header.column.id !== "actions" &&
-												header.column.id !== "select" && <SortIcon />}
+												) as React.ReactNode)}
+											{header.column.id !== "actions" && header.column.id !== "select" && <SortIcon />}
 										</div>
 									</th>
 								))}
@@ -322,7 +319,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 										key={cell.id}
 										className='px-6 py-4 border-b border-gray-300 text-sm text-grey-600'
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										{flexRender(cell.column.columnDef.cell, cell.getContext()) as React.ReactNode}
 									</td>
 								))}
 							</tr>
@@ -352,8 +349,8 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 							<button
 								key={pageIndex}
 								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
-										? "bg-[#D82E2E] text-white"
-										: "bg-transparent text-gray-800"
+									? "bg-[#D82E2E] text-white"
+									: "bg-transparent text-gray-800"
 									}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>

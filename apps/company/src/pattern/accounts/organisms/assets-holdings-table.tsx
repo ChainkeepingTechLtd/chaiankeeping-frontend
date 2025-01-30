@@ -4,8 +4,7 @@ import {
 	getCoreRowModel,
 	getPaginationRowModel,
 	flexRender,
-	Table,
-	ColumnDef,
+	Table
 } from "@tanstack/react-table";
 import {
 	Button,

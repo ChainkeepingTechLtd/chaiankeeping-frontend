@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 const CoinbaseIcon = () => {
-	return <img src='/coinbase.svg' />;
+	return <Image src='/coinbase.svg' alt="Coinbase Icon" />;
 };
 
 export default CoinbaseIcon;

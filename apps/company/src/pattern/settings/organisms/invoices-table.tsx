@@ -5,15 +5,11 @@ import {
 	getPaginationRowModel,
 	flexRender,
 	Table,
-	ColumnDef,
 } from "@tanstack/react-table";
 
 import { useRouter } from "next/navigation";
-import { Button, Checkbox } from "@chainkeeping/ui";
-import FileNameIcon from "@/pattern/transaction/atoms/file-name-icon";
-import SearchInput from "@/pattern/transaction/molecules/search-input";
+import { Button, Checkbox, cn } from "@chainkeeping/ui";
 import Downloadicon from "@/pattern/transaction/atoms/download-icon";
-import AddIcon from "@/pattern/transaction/atoms/add-icon";
 import SortIcon from "@/pattern/transaction/atoms/sort-icon";
 import PrevIcon from "@/pattern/transaction/atoms/prev-icon";
 import NextIcon from "@/pattern/transaction/atoms/next-icon";
@@ -114,7 +110,8 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 		return filtered;
 	}, [data, search]);
 
-	const columns = React.useMemo(
+
+	const columns: any = React.useMemo(
 		() => [
 			{
 				id: "select",
@@ -126,11 +123,11 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
-				cell: ({ row }) => (
+				cell: (row: { id: string }) => (
 					<Checkbox
 						checked={!!selectedRows[row.id]}
 						onCheckedChange={(checked) => handleCheckboxChange(row.id, checked)}
@@ -159,7 +156,6 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 				),
 				headerClassName: "text-end item-end justify-end", // Right-align the header
 			},
-
 			{
 				header: "Date",
 				accessorKey: "date",
@@ -170,7 +166,6 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 				),
 				headerClassName: "text-end item-end justify-end", // Right-align the header
 			},
-
 			{
 				id: "actions",
 				cell: () => (
@@ -181,8 +176,8 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 					</div>
 				),
 			},
-		],
-		[selectedRows]
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		], [selectedRows]
 	);
 
 	const table = useReactTable({
@@ -219,16 +214,16 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								{headerGroup.headers.map((header, idx) => (
 									<th
 										key={idx}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={cn("text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold")}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
-												: flexRender(
+												: (flexRender(
 													header.column.columnDef.header,
 													header.getContext()
-												)}
+												) as React.ReactNode)
+											}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -248,7 +243,7 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 										key={idx}
 										className='px-6 py-4 border-b border-gray-300 text-sm text-grey-600'
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										{flexRender(cell.column.columnDef.cell, cell.getContext()) as React.ReactNode}
 									</td>
 								))}
 							</tr>
@@ -278,8 +273,8 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 							<button
 								key={pageIndex}
 								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
-										? "bg-[#D82E2E] text-white"
-										: "bg-transparent text-gray-800"
+									? "bg-[#D82E2E] text-white"
+									: "bg-transparent text-gray-800"
 									}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>

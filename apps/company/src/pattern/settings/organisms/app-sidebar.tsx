@@ -1,4 +1,4 @@
-import { APP_ROUTES } from "@/lib/routes";
+"use client";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@chainkeeping/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,27 +22,25 @@ const MenuItems = [
     { title: "Verification", href: "/settings/verification" },
 ];
 
-export function AppSidebar() {
+export const AppSidebar = () => {
     const pathname = usePathname()
 
     return (
-        <Sidebar variant="floating" className="pt-[140px]" >
+        <Sidebar variant="sidebar" side="left" className="w-[700px]" >
             <SidebarContent>
-                <SidebarGroup>
-                    <SidebarGroupContent>
-                        <SidebarMenu className="bg-sidebar min-h-[394px] w-fit pl-[14px] pr-[22px] space-y-[12px] py-5 border-r-2">
-                            {MenuItems.map(({ href, title }) => (
-                                <SidebarMenuItem key={title}>
-                                    <SidebarMenuButton isActive={href === '/' ? pathname === href : pathname.startsWith(href)} asChild={true} className="h-fit text-base data-[active=true]:bg-transparent data-[active=true]:font-medium data-[active=true]:text-primary p-2">
-                                        <Link href={href} className="w-full flex items-center gap-x-3 text-left font-dmsans" >
-                                            <span className="whitespace-nowrap">{title}</span>
-                                        </Link>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
+                <SidebarGroupContent>
+                    <SidebarMenu className="bg-sidebar min-h-[394px] w-fit pl-[14px] pr-[22px] space-y-[12px] py-5 border-r-2">
+                        {MenuItems.map(({ href, title }) => (
+                            <SidebarMenuItem key={title}>
+                                <SidebarMenuButton isActive={href === '/' ? pathname === href : pathname.startsWith(href)} asChild={true} className="h-fit text-base data-[active=true]:bg-transparent data-[active=true]:font-medium data-[active=true]:text-primary p-2">
+                                    <Link href={href} className="w-full flex items-center gap-x-3 text-left font-dmsans" >
+                                        <span className="whitespace-nowrap">{title}</span>
+                                    </Link>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                        ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
             </SidebarContent>
             <SidebarFooter></SidebarFooter>
         </Sidebar>
