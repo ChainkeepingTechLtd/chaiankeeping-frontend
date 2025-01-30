@@ -7,6 +7,7 @@ export const APP_ROUTES = {
 	reports: "/reports",
 	business: "/business",
 	practitioner: "/practitioner",
+	signupEmailVerified: "/signup/email-verified",
 };
 
 export const AUTH_ROUTES = {
