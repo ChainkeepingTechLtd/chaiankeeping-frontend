@@ -4,11 +4,12 @@ import React from "react";
 import { cn } from '@chainkeeping/ui'
 import { Topbar } from '@/pattern/common/templates/topbar';
 
-export default function Layout({
-    children,
+
+export const MainLayout = ({
+    children
 }: {
     children: React.ReactNode
-}) {
+}) => {
     return (
         <div className={cn(
             'relative bg-accent w-screen min-h-svh h-fit flex flex-col gap-[12px] font-dmsans transition-all duration-200 ease-in-out',
@@ -19,6 +20,6 @@ export default function Layout({
                     {children}
                 </div>
             </main>
-        </div >
+        </div>
     )
 }

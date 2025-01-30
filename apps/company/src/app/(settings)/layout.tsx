@@ -2,8 +2,7 @@
 
 import { Topbar } from "@/pattern/common/templates/topbar";
 import { AppSidebar } from "@/pattern/settings/organisms/app-sidebar";
-import PageWrapper from "@/pattern/settings/templates/settings-sidebar-wrapper";
-import { SidebarInset, SidebarProvider } from "@chainkeeping/ui";
+import { SidebarProvider } from "@chainkeeping/ui";
 
 const SettingsLayout = ({
 	children,

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useState } from "react"
 import useEmblaCarousel, {
     type UseEmblaCarouselType,
