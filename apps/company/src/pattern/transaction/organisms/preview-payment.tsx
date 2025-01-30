@@ -233,14 +233,14 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						<div className='flex gap-4 w-full items-center justify-start'>
 							<button
 								onClick={openEditModal}
-								className=' flex items-center gap-1 text-[#94A3B8]'
+								className=' flex items-center gap-1 text-grey-300'
 							>
 								<EditIcon />
 								Edit
 							</button>
 							<button
 								onClick={openDeleteModal}
-								className='flex items-center gap-1 text-[#94A3B8]'
+								className='flex items-center gap-1 text-grey-300'
 							>
 								<DeleteIcon />
 								Delete

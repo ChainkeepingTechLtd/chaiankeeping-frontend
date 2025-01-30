@@ -64,7 +64,7 @@ const AssetsCard = () => {
 						<div className='border-b border-[#E6E9EE]'></div>
 						<div className='flex justify-between pt-7'>
 							<div className='flex items-center gap-1'>
-								<p className='text-[#94A3B8] text-base'>NGN</p>
+								<p className='text-grey-300 text-base'>NGN</p>
 								<p className='font-bold' style={{ color: totalColor }}>
 									{whole}
 									{decimal && (

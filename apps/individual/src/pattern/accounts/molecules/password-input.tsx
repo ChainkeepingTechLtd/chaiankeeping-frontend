@@ -3,8 +3,8 @@ import { ICustomInputProps } from "@/pattern/types";
 import { cn, Input } from "@chainkeeping/ui";
 
 import { Controller, useFormContext } from "react-hook-form";
-import PasswordInputLockIcon from "../../../../../landing/src/pattern/common/atoms/password-input-lock-icon";
-import PasswordToggleIcon from "../../../../../landing/src/pattern/common/atoms/password-toggle-icon";
+import PasswordInputLockIcon from "../atoms/password-input-lock-icon";
+import PasswordToggleIcon from "../atoms/password-toggle-icon";
 
 const PasswordInput: FC<ICustomInputProps> = ({
 	name,

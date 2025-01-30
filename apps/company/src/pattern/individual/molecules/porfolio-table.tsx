@@ -47,7 +47,7 @@ const PortfolioTable = () => {
 						<th className='p-4'>Asset</th>
 						<th className='p-4 text-end'>Balance</th>
 						<th className='p-4'>
-							Value <span className='text-[#94A3B8]'>(NGN)</span>
+							Value <span className='text-grey-300'>(NGN)</span>
 						</th>
 					</tr>
 				</thead>
@@ -61,7 +61,7 @@ const PortfolioTable = () => {
 							<td className='p-4 text-end'>{item.balance}</td>
 							<td className='p-4 text-right'>
 								<span className='font-bold'>{item.value.split(".")[0]}</span>
-								<span className='text-[#94A3B8] text-[10px]'>
+								<span className='text-grey-300 text-[10px]'>
 									.{item.value.split(".")[1]}
 								</span>
 							</td>

@@ -170,7 +170,7 @@ const InvoicesTable: React.FC<UnresolvedTransactionsTableProps> = ({
 				id: "actions",
 				cell: () => (
 					<div className='flex w-full items-center justify-start'>
-						<button onClick={handleAddAccount} className='p-2 text-[#94A3B8]'>
+						<button onClick={handleAddAccount} className='p-2 text-grey-300'>
 							Download
 						</button>
 					</div>

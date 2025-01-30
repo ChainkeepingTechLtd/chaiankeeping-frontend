@@ -113,10 +113,11 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 	}, [data, search]);
 
 	// Define columns
-	const columns = React.useMemo(
+	const columns = React.useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
+				accessorKey: "select", // Add this line
 				header: ({ table }: { table: Table<Transaction> }) => (
 					<Checkbox
 						checked={table
@@ -125,25 +126,25 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
-				cell: ({ row }) => (
+				cell: ({ row }: { row: { id: string | number } }) => (
 					<Checkbox
 						checked={!!selectedRows[row.id]}
 						onCheckedChange={(checked) => handleCheckboxChange(row.id, checked)}
 					/>
 				),
 			},
-
 			{
 				header: "Asset",
-				accessorKey: "assets",
+				accessorKey: "label", // Update this to match your data structure
 				cell: (info: any) => (
 					<div className='flex'>
 						<div className='text-grey-600 text-sm flex items-center gap-1 w-auto '>
-							{info.getValue().icon}
+							{info.row.original.label.icon}{" "}
+							{/* Access the icon from the row data */}
 							<span>{info.getValue().title}</span>
 						</div>
 					</div>
@@ -151,25 +152,25 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 			},
 			{
 				header: "Amount",
-				accessorKey: "amount",
+				accessorKey: "outFrom.amount", // Update this to match your data structure
 				cell: (info: any) => (
 					<div className='flex items-center gap-2'>
 						<span className='text-sm text-[#222222]'>{info.getValue()}</span>
 					</div>
 				),
 			},
-
 			{
 				header: "Change 24h",
-				accessorKey: "change_24h",
+				accessorKey: "change_24h", // Ensure this matches your data structure
 				cell: (info: any) => (
 					<div className='flex'>
 						<div className='text-sm flex gap-1 items-center border border-border px-2 py-1 rounded-full'>
 							<span
-								className={`h-2 w-2 flex rounded-full ${info.getValue().startsWith("-")
+								className={`h-2 w-2 flex rounded-full ${
+									info.getValue().startsWith("-")
 										? "bg-destructive"
 										: "bg-[#27AE60] h-2 w-2 "
-									}`}
+								}`}
 							></span>
 							{info.getValue()}
 						</div>
@@ -178,15 +179,16 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 			},
 			{
 				header: "Change 30d",
-				accessorKey: "change_30d",
+				accessorKey: "change_30d", // Ensure this matches your data structure
 				cell: (info: any) => (
 					<div className='flex'>
 						<div className='text-sm flex gap-1 items-center border border-border px-2 py-1 rounded-full'>
 							<span
-								className={`h-2 w-2 flex rounded-full ${info.getValue().startsWith("-")
+								className={`h-2 w-2 flex rounded-full ${
+									info.getValue().startsWith("-")
 										? "bg-destructive"
 										: "bg-[#27AE60] h-2 w-2 "
-									}`}
+								}`}
 							></span>
 							{info.getValue()}
 						</div>
@@ -195,15 +197,16 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 			},
 			{
 				header: "Change 1yr",
-				accessorKey: "change_1year",
+				accessorKey: "change_1year", // Ensure this matches your data structure
 				cell: (info: any) => (
 					<div className='flex'>
 						<div className='text-sm flex gap-1 items-center border border-border px-2 py-1 rounded-full'>
 							<span
-								className={`h-2 w-2 flex rounded-full ${info.getValue().startsWith("-")
+								className={`h-2 w-2 flex rounded-full ${
+									info.getValue().startsWith("-")
 										? "bg-destructive"
 										: "bg-[#27AE60] h-2 w-2 "
-									}`}
+								}`}
 							></span>
 							{info.getValue()}
 						</div>
@@ -283,16 +286,17 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
+											header.column.columnDef || ""
+										}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												)}
+														header.column.columnDef.header,
+														header.getContext()
+													)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -341,10 +345,11 @@ const AssetsHoldingsTable: React.FC<UnresolvedTransactionsTableProps> = ({
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${
+									pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-									}`}
+								}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

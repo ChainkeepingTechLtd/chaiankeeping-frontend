@@ -237,7 +237,7 @@ const BulkPaymentTransactionTable: React.FC<
 							{actionValue && (
 								<button
 									onClick={handleAddAccount}
-									className='p-2 flex items-center gap-1 text-[#94A3B8]'
+									className='p-2 flex items-center gap-1 text-grey-300'
 								>
 									<RetryIcon />
 									{actionValue}
@@ -289,8 +289,9 @@ const BulkPaymentTransactionTable: React.FC<
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
+											header.column.columnDef.headerClassName || ""
+										}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
@@ -348,10 +349,11 @@ const BulkPaymentTransactionTable: React.FC<
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${
+									pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-									}`}
+								}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}
