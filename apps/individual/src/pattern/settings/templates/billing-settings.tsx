@@ -67,7 +67,7 @@ const BillingSettings = () => {
 					</div>
 				</div>
 
-				<InvoicesTable data={InvoiceData} />
+				<InvoicesTable data={InvoiceData as any} />
 			</div>
 
 			{/* Sliding Payment Information Panel */}

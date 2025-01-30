@@ -88,7 +88,7 @@ const TransactionCard = () => {
 									{asset.rate && (
 										<Link
 											href='/transactions/unresolved-transactions'
-											className='font-normal text-[#94A3B8] pl-3'
+											className='font-normal text-grey-300 pl-3'
 										>
 											{asset.rate}
 										</Link>
@@ -98,7 +98,7 @@ const TransactionCard = () => {
 							<div className='flex items-center justify-between w-full gap-1 text-sm'>
 								<p className='text-grey-600 '>{asset.volume_name}</p>
 								<p className='font-bold'>
-									<span className='font-normal text-[#94A3B8]'>NGN</span>{" "}
+									<span className='font-normal text-grey-300'>NGN</span>{" "}
 									{asset.total}
 								</p>
 							</div>
