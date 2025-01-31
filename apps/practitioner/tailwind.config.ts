@@ -1,18 +1,17 @@
 import type { Config } from "tailwindcss";
 
-export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
-  },
-  plugins: [],
+import { sharedConfig } from "@chainkeeping/tailwind-config";
+import { shadcnPreset } from "@chainkeeping/tailwind-config/lib/shadcn-preset";
+
+const config = {
+	...sharedConfig,
+	content: [
+		"./src/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/app/**/*.{jsx,tsx,mdx}",
+		"./src/pattern/**/*.{jsx,tsx,mdx}",
+		"./src/redux/provider.tsx",
+	],
+	presets: [shadcnPreset],
 } satisfies Config;
+
+export default config;
