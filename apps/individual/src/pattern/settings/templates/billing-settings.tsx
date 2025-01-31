@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-	Button,
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@chainkeeping/ui";
+import { Button } from "@chainkeeping/ui";
 import ToggleIcon from "../atoms/toggle-icon";
 import InfoButtonIcon from "@/pattern/reports/atoms/info-button-icon";
 import SubscriptionWidget from "../organisms/subscription-widget";
@@ -73,7 +67,7 @@ const BillingSettings = () => {
 					</div>
 				</div>
 
-				<InvoicesTable data={InvoiceData} />
+				<InvoicesTable data={InvoiceData as any} />
 			</div>
 
 			{/* Sliding Payment Information Panel */}

@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef } from "react"
+import React, { forwardRef } from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { type AvatarProps } from "@radix-ui/react-avatar"
 import { cva, type VariantProps } from "class-variance-authority"

@@ -14,6 +14,8 @@ import Link from "next/link";
 import { APP_ROUTES } from "@/lib/routes";
 import QuickActionIcon from "../atoms/quick-action-icon";
 import UserProfileIcon from "../atoms/user-profile-icon";
+import { QuickActionPopover } from "../organisms/quick-action-popover";
+import { ProfileMenuDropdown } from "../organisms/profile-menu-dropdown";
 
 interface INavigation {
 	title: string;
@@ -92,10 +94,11 @@ const Topbar = () => {
 
 				<div className='h-full flex items-center gap-[27px]'>
 					<div className='flex items-center gap-4'>
-						<QuickActionIcon />
-						<UserProfileIcon />
-
-						{/* <CountrySelect /> */}
+						<QuickActionPopover />
+						<ProfileMenuDropdown
+							email='example@gmail.com'
+							username='Convexity'
+						/>
 					</div>
 				</div>
 			</div>

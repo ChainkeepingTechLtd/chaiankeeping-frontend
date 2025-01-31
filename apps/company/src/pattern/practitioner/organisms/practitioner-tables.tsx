@@ -209,7 +209,7 @@ const PractitionerTables = () => {
 								</div>
 							</td>
 
-							<td className='whitespace-nowrap border-b px-4 py-3 text-sm text-[#94A3B8]'>
+							<td className='whitespace-nowrap border-b px-4 py-3 text-sm text-grey-300'>
 								<Button variant='ghost' size='sm' onClick={openModal}>
 									{order.action}
 								</Button>

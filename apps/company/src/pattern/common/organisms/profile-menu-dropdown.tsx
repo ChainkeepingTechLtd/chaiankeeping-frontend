@@ -1,5 +1,6 @@
 "use client"
 
+import { FC } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
@@ -11,15 +12,15 @@ import {
     Button,
     DropdownMenuGroup
 } from "@chainkeeping/ui"
-import AccountQuickActionIcon from "../atoms/account-quick-action-icon"
 import { INavigation } from "@/pattern/types"
+import AccountQuickActionIcon from "../atoms/account-quick-action-icon"
 import EditProfileMenuIcon from "../atoms/edit-profile-menu-icon"
 import PricingMenuIcon from "../atoms/pricing-menu-icon"
 import SupportMenuIcon from "../atoms/support-menu-icon"
 import SettingsMenuIcon from "../atoms/settings-menu-icon"
 import LogoutIcon from "../atoms/logout-icon"
-import { SUPPORT_ROUTE } from "@/lib/routes"
 import ExternalLinkIcon from "../atoms/external-link-icon"
+import { SUPPORT_ROUTE } from "@/lib/routes"
 
 interface ProfileMenuProps {
     username: string
@@ -49,7 +50,7 @@ const MenuLinks: IMenuLinks[] = [
     }
 ];
 
-export const ProfileMenuDropdown = ({ username, email }: ProfileMenuProps) => {
+export const ProfileMenuDropdown: FC<ProfileMenuProps> = ({ username, email }) => {
     const { push } = useRouter()
     return (
         <DropdownMenu>
@@ -68,10 +69,10 @@ export const ProfileMenuDropdown = ({ username, email }: ProfileMenuProps) => {
                         <p className="text-xs text-[hsla(215,16%,47%,1)]">{email}</p>
                     </div>
                 </div>
-                <DropdownMenuSeparator className="my-0" />
+                <DropdownMenuSeparator />
                 <DropdownMenuGroup className="py-4 space-y-[8px]">
                     {MenuLinks?.map(({ title, href, Icon }, idx) => (
-                        <DropdownMenuItem key={idx} className="h-[34px] flex items-center gap-[10px] cursor-pointer py-[6px] px-4 rounded-none" onClick={()=>push(href as string)} >
+                        <DropdownMenuItem key={idx} className="h-[34px] flex items-center gap-[10px] cursor-pointer py-[6px] px-4 rounded-none" onClick={() => push(href as string)} >
                             <Icon />
                             <span className="text-base text-foreground font-dmsans">{title}</span>
                         </DropdownMenuItem>

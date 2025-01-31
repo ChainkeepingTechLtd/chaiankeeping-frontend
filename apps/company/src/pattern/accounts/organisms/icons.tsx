@@ -31,17 +31,17 @@ export const TrustwalletAccount = () => <TwtAccountIcon />;
 
 export const TrustWalletAccount2 = () => <TwtAccountIcon />;
 
-export const FanthomAccount = () => <img src='/fanthom.svg' alt='dekalo' />;
+export const FanthomAccount = () => <Image src='/fanthom.svg' alt='dekalo' />;
 
 export const KucionAccount = () => <KucoinAccountIcon />;
 
-export const LedgerAccount = () => <img src='/ledger.svg' alt='dekalo' />;
+export const LedgerAccount = () => <Image src='/ledger.svg' alt='dekalo' />;
 
 export const OptimismAccount = () => <OptimismAccountIcon />;
 
-export const GeminiAccount = () => <img src='/gemini.svg' alt='dekalo' />;
+export const GeminiAccount = () => <Image src='/gemini.svg' alt='dekalo' />;
 
-export const BitmexAccount = () => <img src='/bitmex.svg' alt='dekalo' />;
+export const BitmexAccount = () => <Image src='/bitmex.svg' alt='dekalo' />;
 
 export const GbpIcon = () => (
 	<Image width={20} height={20} src='/Icon3.svg' alt='' />

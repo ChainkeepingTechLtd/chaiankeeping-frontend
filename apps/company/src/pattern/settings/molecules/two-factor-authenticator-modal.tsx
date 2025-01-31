@@ -1,14 +1,14 @@
 import CloseModalIcon from "@/pattern/taxes/atoms/close-modal-icon";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC, ReactNode } from "react";
 
 interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
-	children: React.ReactNode;
+	children: ReactNode;
 	title?: string; // Add a title prop
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
+const Modal: FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
 	const [show, setShow] = useState(false);
 
 	// Trigger the show animation when the modal is open

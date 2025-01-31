@@ -1,14 +1,17 @@
 "use client";
 
+import React, { ReactNode } from "react";
 import PageWrapper from "@/pattern/accounts/templates/account-sidebar-wrapper";
 import { Topbar } from "@/pattern/common/templates/topbar";
 import { cn, SidebarProvider } from "@chainkeeping/ui";
 
-export default function MainLayout({
+interface IProps {
+    children: ReactNode;
+}
+
+const AccountLayout = ({
     children,
-}: {
-    children: React.ReactNode;
-}) {
+}: IProps) => {
     return (
         <div
             className={cn(
@@ -20,10 +23,10 @@ export default function MainLayout({
 
             {/* Main Content Wrapper */}
             <div className='flex w-full flex-1 overflow-hidden'>
-                <SidebarProvider>
-                    <PageWrapper>{children}</PageWrapper>
-                </SidebarProvider>
+                <PageWrapper>{children}</PageWrapper>
             </div>
         </div>
     );
 }
+
+export default AccountLayout

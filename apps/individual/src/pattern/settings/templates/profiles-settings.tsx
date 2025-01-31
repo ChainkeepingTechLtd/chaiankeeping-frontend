@@ -24,9 +24,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import EmailInput from "@/pattern/accounts/molecules/email-input";
-import PasswordInput from "@/pattern/accounts/molecules/password-input";
-import OrWidget from "../molecules/or-widget";
-import SocialsLoginWidget from "../molecules/social-login-widget";
 import PhoneNumberInput from "../molecules/phone-number-input";
 import LocationSelector from "../organisms/locator-selector";
 
@@ -253,10 +250,6 @@ const ProfileSettings = () => {
 								Save
 							</SubmitButton>
 						</form>
-						<div className='w-full flex items-center justify-center gap-x-2 font-dmsans text-base'>
-							<p className='text-gray-700'>Already have an account?</p>
-							<Button variant='link'>Log in</Button>
-						</div>
 					</Form>
 				</CardContent>
 			</Card>

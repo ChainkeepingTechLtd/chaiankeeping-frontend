@@ -12,10 +12,10 @@ function PortfolioCard() {
 					<p className='font-medium text-[#202B3C]'>Portfolio</p>
 				</div>
 				<div className='flex gap-3 items-center '>
-					<p className='text-[#94A3B8] text-sm'>
+					<p className='text-grey-300 text-sm'>
 						NGN{" "}
 						<span className='font-bold text-[#202B3C]'>
-							40,453,456.<span className='text-[10px] text-[#94A3B8]'>26</span>
+							40,453,456.<span className='text-[10px] text-grey-300'>26</span>
 						</span>
 					</p>
 					<p className='text-[10px] text-[#27AE60]'>+15%</p>
