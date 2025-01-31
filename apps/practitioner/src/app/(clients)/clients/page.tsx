@@ -1,7 +1,6 @@
 "use client";
 
 import ClientsTemplate from "@/pattern/clients/templates/clients-template";
-import DashboardTemplates from "@/pattern/dashboard/templates/dashboard-templates";
 
 const page = () => {
 	return (

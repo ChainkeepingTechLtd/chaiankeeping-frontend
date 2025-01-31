@@ -32,6 +32,7 @@ import DocIcon from "../atoms/doc-icon";
 import FileNameIcon from "../atoms/file-name-icon";
 import Downloadicon2 from "../atoms/download-icon2";
 import Link from "next/link";
+import AddClientModal from "@/pattern/taxes/molecules/add-client-modal";
 
 interface Clientele {
 	id: string | number;
@@ -75,6 +76,8 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 	const [selectedYear, setSelectedYear] = useState("all-year");
 	const [selectedType, setSelectedType] = useState("all-transactions");
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -82,6 +85,22 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 
 	const closeModal = () => {
 		setIsModalOpen(false);
+	};
+
+	const openAddClientModal = () => {
+		setIsAddClientModalOpen(true);
+	};
+
+	const closeClientModal = () => {
+		setIsAddClientModalOpen(false);
+	};
+
+	const openDeleteModal = () => {
+		setIsDeleteModalOpen(true);
+	};
+
+	const closeDeleteModal = () => {
+		setIsDeleteModalOpen(false);
 	};
 
 	// Handle select/deselect all rows
@@ -262,17 +281,17 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 									<Popover.Panel className='absolute right-0 z-10 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg'>
 										<div className='p-1 flex flex-col'>
 											<Link
-												href=''
+												href='clients/manage'
 												className='w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md'
 											>
 												Manage
 											</Link>
-											<Link
-												href=''
+											<button
+												onClick={openDeleteModal}
 												className='w-full text-left px-4 py-2 text-sm text-secondary hover:bg-gray-100 rounded-md'
 											>
 												Remove
-											</Link>
+											</button>
 										</div>
 									</Popover.Panel>
 								</>
@@ -353,7 +372,12 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 						Bulk add clients
 					</Button>
 
-					<Button variant='secondary' size='md' className='text-base  gap-2'>
+					<Button
+						onClick={openAddClientModal}
+						variant='secondary'
+						size='md'
+						className='text-base  gap-2'
+					>
 						<AddIcon />
 						Add new client
 					</Button>
@@ -480,6 +504,50 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 					</Button>
 				</div>
 			</Modal>
+
+			<Modal
+				isOpen={isDeleteModalOpen}
+				onClose={closeDeleteModal}
+				title='Remove Client'
+			>
+				<div className='p-4 flex flex-col gap-7 items-center'>
+					{/* <SuccesIcon /> */}
+
+					<p className='text-grey-400 text-sm text-center'>
+						<span className='text-[#202B3C]'>[First_name][Last_name]</span> will
+						be removed from your client list. Are you sure about this?
+					</p>
+
+					<Button variant='secondary' className='w-full text-base'>
+						Remove client
+					</Button>
+					<Button
+						variant='link'
+						onClick={closeDeleteModal}
+						className='w-full text-base'
+					>
+						Cancel
+					</Button>
+				</div>
+			</Modal>
+			<AddClientModal
+				isOpen={isAddClientModalOpen}
+				onClose={closeClientModal}
+				title='Remove Client'
+			>
+				<div className='p-4 flex flex-col gap-7 items-center'>
+					{/* <SuccesIcon /> */}
+
+					<p className='text-grey-400 text-sm text-center'>
+						<span className='text-[#202B3C]'>[First_name][Last_name]</span> will
+						be removed from your client list. Are you sure about this?
+					</p>
+
+					<Button variant='secondary' className='w-full text-base'>
+						Remove client
+					</Button>
+				</div>
+			</AddClientModal>
 		</div>
 	);
 };

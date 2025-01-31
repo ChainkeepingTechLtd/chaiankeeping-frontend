@@ -7,53 +7,48 @@ import {
 	Table,
 	ColumnDef,
 } from "@tanstack/react-table";
-
+import { Popover } from "@headlessui/react"; // Import Popover from Headless UI
 import SortIcon from "../atoms/sort-icon";
-
 import PrevIcon from "../atoms/prev-icon";
 import NextIcon from "../atoms/next-icon";
-import { Button, Checkbox } from "@chainkeeping/ui";
+import {
+	Button,
+	Checkbox,
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@chainkeeping/ui";
+import MoreIcon from "../atoms/more-icon";
 import SearchInput from "../molecules/search-input";
-import FileNameIcon from "../atoms/file-name-icon";
-import Downloadicon from "../atoms/download-icon";
+import ArrowIcon from "../atoms/arrow-icon";
+import InfoIcon from "../atoms/info-icon";
+import ArrowDownIcon from "../atoms/arrow-down";
+import ChevronDownIcon from "../atoms/chevron-down-icon";
 import AddIcon from "../atoms/add-icon";
-import { useRouter } from "next/navigation";
-import TetherIcon from "@/pattern/individual/atoms/tether-icon";
-import RetryIcon from "../atoms/retry-icon";
-import ExportIcon from "../atoms/export-icon";
+import Modal from "@/pattern/taxes/molecules/modal-compoent";
+import DocIcon from "../atoms/doc-icon";
+import FileNameIcon from "../atoms/file-name-icon";
+import Downloadicon2 from "../atoms/download-icon2";
+import Link from "next/link";
+import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
+import CopyIcon from "@/pattern/taxes/atoms/copy-icon";
 
-interface Transaction {
+interface AccountInfo {
 	id: string | number;
-	dateTime: {
-		date: string;
-		time: string;
-	};
-	label: {
-		title: string;
-		icon?: React.ReactNode;
-	};
-	account: string;
-	accountIcon?: React.ReactNode;
-	outFrom: {
-		amount: string;
-		details: string;
-		icon?: React.ReactNode;
-	};
-	inTo: {
-		amount: string;
-		details: string;
-		icon?: React.ReactNode;
-	};
-	profitLoss: string;
+	year: string;
+	transactions: string;
+	service_type: string;
+
+	status: string;
 }
 
-interface UnresolvedTransactionsTableProps {
-	data: Transaction[];
+interface AccountInfoProps {
+	data: AccountInfo[];
 }
 
-const BulkPaymentTransactionTable: React.FC<
-	UnresolvedTransactionsTableProps
-> = ({ data }) => {
+const AccountTable: React.FC<AccountInfoProps> = ({ data }) => {
 	const [selectedRows, setSelectedRows] = useState<
 		Record<string | number, boolean>
 	>({});
@@ -63,11 +58,6 @@ const BulkPaymentTransactionTable: React.FC<
 
 	const toggleFilter = () => {
 		setIsFilterOpen(!isFilterOpen);
-	};
-	const router = useRouter();
-
-	const handleAddAccount = () => {
-		router.push("bulk-payments/transaction");
 	};
 
 	// Handle individual checkbox change
@@ -79,6 +69,17 @@ const BulkPaymentTransactionTable: React.FC<
 			...prev,
 			[rowId]: !prev[rowId],
 		}));
+	};
+	const [selectedYear, setSelectedYear] = useState("all-year");
+	const [selectedType, setSelectedType] = useState("all-transactions");
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
 	};
 
 	// Handle select/deselect all rows
@@ -102,9 +103,9 @@ const BulkPaymentTransactionTable: React.FC<
 		if (search) {
 			filtered = filtered.filter((item) => {
 				return (
-					item.label.title.toLowerCase().includes(search.toLowerCase()) ||
-					item.account.toLowerCase().includes(search.toLowerCase()) ||
-					item.dateTime.date.includes(search)
+					item.year.toLowerCase().includes(search.toLowerCase()) ||
+					item.transactions.toLowerCase().includes(search.toLowerCase()) ||
+					item.service_type.includes(search)
 				);
 			});
 		}
@@ -113,11 +114,12 @@ const BulkPaymentTransactionTable: React.FC<
 		return filtered;
 	}, [data, search]);
 
-	const columns = React.useMemo<ColumnDef<Transaction>[]>(
+	// Define columns
+	const columns = React.useMemo<ColumnDef<AccountInfo>[]>(
 		() => [
 			{
 				id: "select",
-				header: ({ table }: { table: Table<Transaction> }) => (
+				header: ({ table }: { table: Table<AccountInfo> }) => (
 					<Checkbox
 						checked={table
 							.getRowModel()
@@ -125,7 +127,7 @@ const BulkPaymentTransactionTable: React.FC<
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked as any, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
@@ -136,115 +138,91 @@ const BulkPaymentTransactionTable: React.FC<
 					/>
 				),
 			},
+
 			{
-				header: "Transaction ID",
-				accessorKey: "transaction_id",
+				header: "Year",
+				accessorKey: "year",
 				cell: (info: any) => (
-					<div className='flex w-[300px] items-center gap-2'>
-						<span className='text-[#D82E2E] underline text-sm'>
-							{info.getValue()}
-						</span>
-					</div>
-				),
-			},
-			{
-				header: "Amount",
-				accessorKey: "amount",
-				cell: (info: any) => (
-					<div className='flex w-full'>
-						<div className='text-sm justify-end flex items-end gap-1 w-[50%] text-end'>
-							{info.getValue()}
+					<div className='flex'>
+						<div className='text-grey-600 text-sm flex items-center gap-1 w-auto  text-center'>
+							<span>{info.getValue()}</span>
 						</div>
 					</div>
 				),
-				headerClassName: "text-end item-end justify-end", // Right-align the header
 			},
-			{
-				header: "Currency",
-				accessorKey: "currency",
-				cell: (info: any) => {
-					const value = info.getValue();
 
-					return (
-						<div className='flex'>
-							<div className='flex gap-1 text-xs items-center'>
-								<TetherIcon />
-								{value}
-							</div>
+			{
+				header: "Transactions",
+				accessorKey: "transactions",
+				cell: (info: any) => (
+					<div className='flex'>
+						<div className='text-grey-600 text-sm flex items-center gap-1 w-auto  text-center'>
+							<span>{info.getValue()}</span>
 						</div>
-					);
-				},
+					</div>
+				),
 			},
 
 			{
-				header: "Recipient",
-				accessorKey: "recipient",
+				header: "Plan",
+				accessorKey: "service_type",
 				cell: (info: any) => (
-					<div className='flex gap-1 w-full items-center'>
-						<span className='text-[#222222] text-sm'>{info.getValue()}</span>
+					<div className='flex'>
+						<div className='text-grey-600 text-sm flex items-center gap-1 w-auto  text-center'>
+							<span>{info.getValue()}</span>
+						</div>
 					</div>
 				),
-				headerClassName: "text-end item-end justify-end", // Right-align the header
 			},
-			{
-				header: "Recipient Email",
-				accessorKey: "recipient_email",
-				cell: (info: any) => (
-					<div className='flex gap-1 w-full items-center'>
-						<span className='text-[#222222] text-sm'>{info.getValue()}</span>
-					</div>
-				),
-				headerClassName: "text-end item-end justify-end", // Right-align the header
-			},
-			{
-				header: "Payment Description",
-				accessorKey: "payment_description",
-				cell: (info: any) => (
-					<div className='flex gap-1 w-full items-center'>
-						<span className='text-[#222222] text-sm'>{info.getValue()}</span>
-					</div>
-				),
-				headerClassName: "text-end item-end justify-end", // Right-align the header
-			},
+
 			{
 				header: "Status",
 				accessorKey: "status",
 				cell: (info: any) => {
-					const value = info.getValue();
-					const statusStyles =
-						value === "Paid"
-							? "bg-[#27AE60]  rounded-full p-1"
-							: value === "Failed"
-								? "bg-[#F14848]  rounded-full p-1"
-								: "bg-gray-200 "; // Default styles for other statuses
+					const status = info.getValue();
+					let bgColor = "";
+
+					switch (status) {
+						case "Paid":
+							bgColor = "bg-[#27AE60]"; // Green for Paid
+							break;
+						case "Unpaid":
+							bgColor = "bg-secondary"; // Red for Unpaid
+							break;
+						default:
+							bgColor = "bg-grey-500"; // Gray for other statuses
+					}
 
 					return (
-						<div className='flex'>
-							<div className='flex justify-center border-[#E6E9EE] border rounded-full items-center gap-2 px-2 py-1  text-xs'>
-								<p className={` ${statusStyles}`}></p>
-								{value}
+						<div className='flex gap-1'>
+							{/* Dynamic background color based on status */}
+							<div
+								className={`rounded-full text-xs py-1 px-2 text-white ${bgColor}`}
+							>
+								<span>{status}</span>
 							</div>
 						</div>
 					);
 				},
 			},
-
 			{
 				id: "actions",
-				accessorKey: "action",
-				cell: (info: any) => {
-					const actionValue = info.getValue();
+				cell: ({ row }) => {
+					const status = row.getValue("status");
+
 					return (
 						<div className='flex w-full items-center justify-start'>
-							{actionValue && (
-								<button
-									onClick={handleAddAccount}
-									className='p-2 flex items-center gap-1 text-grey-300'
-								>
-									<RetryIcon />
-									{actionValue}
-								</button>
-							)}
+							<Button
+								onClick={openModal}
+								variant={
+									status === "Paid" ? "primaryOutline" : "secondaryOutline"
+								}
+								size='sm'
+								className='text-sm'
+								disabled={status === "Paid"}
+							>
+								Pay
+							</Button>
 						</div>
 					);
 				},
@@ -253,6 +231,7 @@ const BulkPaymentTransactionTable: React.FC<
 		[selectedRows]
 	);
 
+	// Use React Table instance
 	const table = useReactTable({
 		data: filteredData,
 		columns,
@@ -262,27 +241,6 @@ const BulkPaymentTransactionTable: React.FC<
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
-				<div className='flex gap-3 '>
-					<SearchInput
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-						placeholder='Search...'
-					/>
-				</div>
-				<div className='flex gap-3'>
-					<Button
-						onClick={toggleFilter}
-						variant='default'
-						size='md'
-						className='text-base gap-2'
-					>
-						<ExportIcon />
-						Export
-					</Button>
-				</div>
-			</div>
-
 			<div className='overflow-x-auto'>
 				<table className='min-w-full table-fixed border border-[red] shadow-md rounded-lg overflow-hidden'>
 					<thead className='bg-[#F5F8FA]'>
@@ -373,8 +331,27 @@ const BulkPaymentTransactionTable: React.FC<
 					</div>
 				</div>
 			</div>
+
+			<Modal isOpen={isModalOpen} onClose={closeModal} title='Tax Processed'>
+				<div className='p-4 flex flex-col gap-7 items-center'>
+					<SuccesIcon />
+
+					<p className='text-grey-400 text-sm text-center'>
+						Tax <span className='text-[#202B3C]'>#01234567</span> has been been
+						processed successfully, copy the RRR number below and proceed to
+						pay.
+					</p>
+					<div className='flex w-full rounded-lg border border-dashed py-4 px-3 justify-between items-center'>
+						<p className='text-sm text-[#4F627D]'>0123-5678-9012</p>
+						<CopyIcon />
+					</div>
+					<Button onClick={closeModal} className='w-full text-base'>
+						Ok, got it
+					</Button>
+				</div>
+			</Modal>
 		</div>
 	);
 };
 
-export default BulkPaymentTransactionTable;
+export default AccountTable;
