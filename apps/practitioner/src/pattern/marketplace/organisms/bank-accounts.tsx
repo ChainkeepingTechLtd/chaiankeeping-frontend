@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
 import Modal from "@/pattern/taxes/molecules/modal-compoent";
 import DeleteIcon from "../atoms/delete-icon";
-import DeletePaymentModal from "../molecules/delete-bank-account";
+import DeletePaymentModal from "@/pattern/clients/molecules/delete-payment-modal";
 
 const BankAccount = () => {
 	// State to track which row's checkbox is checked

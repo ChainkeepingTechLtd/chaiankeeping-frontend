@@ -1,10 +1,6 @@
 import { Button } from "@chainkeeping/ui";
-import { Checkbox } from "@chainkeeping/ui"; // Import the custom Checkbox
 import React, { useState } from "react";
-import WarningIcon from "../atoms/warning-icon";
 import CheckIcon from "../atoms/check-icon";
-import MessageIcon from "@/pattern/clients/atoms/message-icon";
-
 import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
 import Modal from "@/pattern/taxes/molecules/modal-compoent";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DeleteIcon from "../atoms/delete-icon";
-import DeletePaymentModal from "../molecules/delete-bank-account";
+import DeletePaymentModal from "@/pattern/clients/molecules/delete-payment-modal";
 
 const CryptoPayment = () => {
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
