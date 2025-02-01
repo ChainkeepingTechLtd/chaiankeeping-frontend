@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@chainkeeping/ui";
-import { ClientsData } from "../molecules/clients-data";
 import GoBack from "../atoms/go-back";
 import NoAccountIcon from "../atoms/no-account-icon";
-import ClientsTable from "../organisms/clients-table";
 import JJIcon from "../atoms/jj-icon";
-import MessageIcon from "../atoms/message-icon";
 import TabComponent from "./tab-component";
 
 const ManageClient = () => {
