@@ -7,31 +7,11 @@ import {
 	Table,
 	ColumnDef,
 } from "@tanstack/react-table";
-import { Popover } from "@headlessui/react"; // Import Popover from Headless UI
 import SortIcon from "../atoms/sort-icon";
 import PrevIcon from "../atoms/prev-icon";
 import NextIcon from "../atoms/next-icon";
-import {
-	Button,
-	Checkbox,
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@chainkeeping/ui";
-import MoreIcon from "../atoms/more-icon";
-import SearchInput from "../molecules/search-input";
-import ArrowIcon from "../atoms/arrow-icon";
-import InfoIcon from "../atoms/info-icon";
-import ArrowDownIcon from "../atoms/arrow-down";
-import ChevronDownIcon from "../atoms/chevron-down-icon";
-import AddIcon from "../atoms/add-icon";
+import { Button, Checkbox } from "@chainkeeping/ui";
 import Modal from "@/pattern/taxes/molecules/modal-compoent";
-import DocIcon from "../atoms/doc-icon";
-import FileNameIcon from "../atoms/file-name-icon";
-import Downloadicon2 from "../atoms/download-icon2";
-import Link from "next/link";
 import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
 import CopyIcon from "@/pattern/taxes/atoms/copy-icon";
 
