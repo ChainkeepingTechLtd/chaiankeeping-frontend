@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import BankAccount from "../organisms/bank-accounts";
 import CryptoPayment from "../organisms/crypto-payment";
 import CBDCPayment from "../organisms/cbdc-payment";
+import { Button } from "@chainkeeping/ui";
 
 const PaymentInfoTabs = () => {
 	const [activeTab, setActiveTab] = useState("Bank accounts");
@@ -44,12 +45,17 @@ const PaymentInfoTabs = () => {
 			{/* Fixed Tabs */}
 			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3'>
 				<div className='flex flex-col justify-between md:px-8 mx-auto px-4'>
-					<div
-						className='flex items-center gap-2 cursor-pointer'
-						onClick={handleGoBack}
-					>
-						<MainMenuIcon />
-						<h6 className='font-bold fomt-sen'>Payment Information</h6>
+					<div className='flex justify-between items-center'>
+						<div
+							className='flex items-center gap-2 cursor-pointer'
+							onClick={handleGoBack}
+						>
+							<MainMenuIcon />
+							<h6 className='font-bold fomt-sen'>Payment Information</h6>
+						</div>
+						<Button variant='secondary' size='md' className='text-base gap-2'>
+							New payment info
+						</Button>
 					</div>
 
 					<div className='flex'>
