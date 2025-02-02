@@ -146,7 +146,7 @@ const MarketplaceProfile = () => {
 		<div className='flex w-full h-svh max-sm:flex-col'>
 			{/* Fixed Tabs */}
 			<div className='fixed left-0 w-full bg-white shadow-md z-10 '>
-				<div className='flex flex-col justify-between md:px-8 mx-auto p-4'>
+				<div className='flex f justify-between md:px-8 mx-auto p-4'>
 					<div
 						className='flex items-center gap-2 cursor-pointer'
 						onClick={handleGoBack}
@@ -154,6 +154,13 @@ const MarketplaceProfile = () => {
 						<MainMenuIcon />
 						<h6 className='font-bold'>Marketplace Profile</h6>
 					</div>
+					<Button
+						variant={"secondary"}
+						size='sm'
+						className='text-base transition-all ease-in-out duration-300'
+					>
+						Save Changes
+					</Button>
 				</div>
 			</div>
 
