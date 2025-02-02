@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import {
 	Card,
@@ -56,16 +56,33 @@ const AccordionItem = ({
 	isOpen: boolean;
 	onClick: () => void;
 }) => {
+	const [maxHeight, setMaxHeight] = useState(0);
+	const contentRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (isOpen && contentRef.current) {
+			setMaxHeight(contentRef.current.scrollHeight);
+		} else {
+			setMaxHeight(0);
+		}
+	}, [isOpen]);
+
 	return (
 		<div className='border-b'>
 			<button
 				onClick={onClick}
-				className='w-full flex justify-between items-center px-4 py-3 bg-[#F8F9FA]   mb-4 transition-all duration-300'
+				className='w-full flex justify-between items-center px-4 py-3 bg-[#F8F9FA] mb-4 transition-all duration-300'
 			>
 				<span className='font-semibold'>{title}</span>
 				{isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
 			</button>
-			{isOpen && <div className='py-2 bg-white'>{children}</div>}
+			<div
+				ref={contentRef}
+				className='overflow-hidden transition-all duration-300 ease-in-out'
+				style={{ maxHeight: `${maxHeight}px` }}
+			>
+				<div className='py-2 bg-white'>{children}</div>
+			</div>
 		</div>
 	);
 };
@@ -98,7 +115,7 @@ const SidebarAccordion = () => {
 	};
 
 	return (
-		<div className='transition-all duration-300 ease-in-out bg-white shadow-lg min-w-[460px] rounded-lg'>
+		<div className='transition-all duration-300 ease-in-out bg-white shadow-lg min-w-[465px] rounded-lg'>
 			<div className='mt-20 p-4'>
 				<AccordionItem
 					title='Services'
