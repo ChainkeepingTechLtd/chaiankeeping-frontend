@@ -114,6 +114,7 @@ const BranchTable: React.FC<BranchInfoProps> = ({ data }) => {
 				return (
 					item.branch.toLowerCase().includes(search.toLowerCase()) ||
 					item.email.toLowerCase().includes(search.toLowerCase()) ||
+					item.tax_collector.toLowerCase().includes(search.toLowerCase()) ||
 					item.tax_collector.includes(search)
 				);
 			});
