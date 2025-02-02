@@ -152,7 +152,7 @@ const MarketplaceProfile = () => {
 						onClick={handleGoBack}
 					>
 						<MainMenuIcon />
-						<h6 className='font-bold'>MarketPlace Profile</h6>
+						<h6 className='font-bold'>Marketplace Profile</h6>
 					</div>
 				</div>
 			</div>
