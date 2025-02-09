@@ -1,27 +1,53 @@
 {
-  "name": "practitioner",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "next": "15.1.0"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.0",
-    "@eslint/eslintrc": "^3"
-  }
+	"name": "practitioner",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"3x2": "link:country-flag-icons/react/3x2",
+		"@chainkeeping/tailwind-config": "workspace:*",
+		"@chainkeeping/ui": "workspace:*",
+		"@chainkeeping/utils": "workspace:*",
+		"@ebay/nice-modal-react": "^1.2.13",
+		"@headlessui/react": "^2.2.0",
+		"@hookform/resolvers": "^3.9.1",
+		"@reduxjs/toolkit": "^2.5.0",
+		"@tanstack/react-table": "^8.20.6",
+		"clsx": "^2.1.1",
+		"country-flag-icons": "^1.5.13",
+		"lucide-react": "^0.456.0",
+		"next": "15.1.6",
+		"nookies": "^2.5.2",
+		"numbro": "^2.5.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-form-hook": "^0.0.1",
+		"react-hook-form": "^7.54.2",
+		"react-icons": "^5.4.0",
+		"react-phone-input-2": "^2.15.1",
+		"react-redux": "^9.2.0",
+		"redux-persist": "^6.0.0",
+		"rollbar": "^2.26.4",
+		"sonner": "^1.7.0",
+		"tailwind": "^4.0.0",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@chainkeeping/eslint-config": "workspace:*",
+		"@chainkeeping/typescript-config": "workspace:*",
+		"@eslint/eslintrc": "^3",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"eslint": "^9",
+		"eslint-config-next": "15.1.0",
+		"postcss": "^8",
+		"tailwindcss": "^3.4.17",
+		"typescript": "^5"
+	}
 }
