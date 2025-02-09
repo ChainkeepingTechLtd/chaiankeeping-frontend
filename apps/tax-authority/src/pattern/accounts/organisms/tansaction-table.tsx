@@ -20,12 +20,10 @@ import {
 import ArrowIcon from "@/pattern/clients/atoms/arrow-icon";
 import MoreIcon from "@/pattern/clients/atoms/more-icon";
 import SearchInput from "@/pattern/clients/molecules/search-input";
-import FilterIcon from "@/pattern/practitioner/atoms/filter-icon";
 import PrevIcon from "@/pattern/clients/atoms/prev-icon";
 import NextIcon from "@/pattern/clients/atoms/next-icon";
 import SortIcon from "@/pattern/clients/atoms/sort-icon";
 import HistoryIcon from "../atoms/history-icon";
-import NoAccountIcon from "@/pattern/individual/atoms/no-account-icon";
 import { useRouter } from "next/navigation";
 
 interface Transaction {
@@ -61,18 +59,14 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 	const [selectedRows, setSelectedRows] = useState<
 		Record<string | number, boolean>
 	>({});
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
+
 	const [search, setSearch] = useState("");
 	const [selectedYear, setSelectedYear] = useState("all-year");
 	const [selectedType, setSelectedType] = useState("all-transactions");
-	const router = useRouter();
-
-	const toggleFilter = () => {
-		setIsFilterOpen(!isFilterOpen);
-	};
+	const { push } = useRouter();
 
 	const handleImportHistory = () => {
-		router.push("/import-history");
+		push("/import-history");
 	};
 
 	// Handle individual checkbox change
@@ -237,11 +231,10 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 				accessorKey: "profitLoss",
 				cell: (info: any) => (
 					<div
-						className={`text-sm ${
-							info.getValue().startsWith("-")
+						className={`text-sm ${info.getValue().startsWith("-")
 								? "text-[#F14848]"
 								: "text-[#27AE60]"
-						}`}
+							}`}
 					>
 						{info.getValue()}
 					</div>
@@ -362,17 +355,16 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
-											header.column.columnDef || ""
-										}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef || ""
+											}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-													)}
+													header.column.columnDef.header,
+													header.getContext()
+												)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -408,7 +400,8 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 									className='px-6 py-4 text-center  text-sm text-grey-600'
 								>
 									<div className='flex w-full items-center flex-col gap-3 justify-center'>
-										<NoAccountIcon />
+										{/* <NoAccountIcon /> */}
+										<span>No Account Icon</span>
 										<p className='font-bold'>
 											Your transactions will show up here
 										</p>
@@ -444,11 +437,10 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${
-									pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-								}`}
+									}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

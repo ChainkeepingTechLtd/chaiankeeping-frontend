@@ -9,14 +9,14 @@ const OrderHistoryTab = () => {
 	const [checkedRow, setCheckedRow] = useState<number | null>(null);
 
 	// Handle checkbox change for a specific row
-	const handleCheckboxChange = (rowId: number) => (checked: boolean) => {
-		setCheckedRow(checked ? rowId : null);
-	};
+	// const handleCheckboxChange = (rowId: number) => (checked: boolean) => {
+	// 	setCheckedRow(checked ? rowId : null);
+	// };
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const openModal = () => {
-		setIsModalOpen(true);
-	};
+	// const openModal = () => {
+	// 	setIsModalOpen(true);
+	// };
 
 	const closeModal = () => {
 		setIsModalOpen(false);
@@ -30,6 +30,7 @@ const OrderHistoryTab = () => {
 			amount: "NGN 10,000",
 			request: "Report signing",
 			paymentMethod: "Bank Transfer",
+			txhash: "0x078395eec8b3b15...",
 			reference: "190867543912",
 			status: "Completed",
 		},
@@ -38,6 +39,7 @@ const OrderHistoryTab = () => {
 			client: "Ann Clare",
 			amount: "NGN 80,000",
 			request: "Account management",
+			txhash: "0x078395eec8b3b15...",
 			paymentMethod: "Bank Transfer",
 			reference: "190867543912",
 			status: "Cancelled",
@@ -81,7 +83,7 @@ const OrderHistoryTab = () => {
 									<td className='px-4 pb-4'>
 										{order.paymentMethod === "Crypto" ? (
 											<span className='text-secondary underline px-2 py-1 rounded-md'>
-												{order.txhash}
+												{order?.txhash}
 											</span>
 										) : (
 											<span className='text-grey-700'>{order.reference}</span>

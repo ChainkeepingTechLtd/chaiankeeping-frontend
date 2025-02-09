@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@chainkeeping/eslint-config": "workspace:*",
@@ -12,6 +13,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
+    "lint-staged": "^15.4.3",
     "tsup": "^8.3.5",
     "typescript": "5.5.4"
   }
