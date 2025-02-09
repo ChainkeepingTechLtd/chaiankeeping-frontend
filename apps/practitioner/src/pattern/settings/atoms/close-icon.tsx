@@ -1,0 +1,33 @@
+const Closeicon = () => {
+	return (
+		<svg
+			width='28'
+			height='28'
+			viewBox='0 0 28 28'
+			fill='none'
+			xmlns='http://www.w3.org/2000/svg'
+		>
+			<rect opacity='0.5' width='28' height='28' rx='14' fill='#F5F8FA' />
+			<rect
+				x='9.9873'
+				y='8.90234'
+				width='13.4167'
+				height='1.75'
+				rx='0.875'
+				transform='rotate(45 9.9873 8.90234)'
+				fill='#384860'
+			/>
+			<rect
+				x='8.82031'
+				y='18.2383'
+				width='13.4167'
+				height='1.75'
+				rx='0.875'
+				transform='rotate(-45 8.82031 18.2383)'
+				fill='#384860'
+			/>
+		</svg>
+	);
+};
+
+export default Closeicon;

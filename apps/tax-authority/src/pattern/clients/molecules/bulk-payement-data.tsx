@@ -1,0 +1,91 @@
+export const BulkPaymentData = [
+	{
+		filename: "New_payment_file.xlsx",
+		entries: "2",
+		status: "Pending",
+		date_update: "Mar 27, 2023, 5:43 PM",
+	},
+
+	{
+		filename: "Payroll_2.xlsx",
+		entries: "3",
+		status: "Processed",
+		date_update: "Mar 27, 2023, 5:43 PM",
+	},
+	{
+		filename: "Payment_21.xlsx",
+		entries: "4",
+		status: "Processed",
+		date_update: "Mar 27, 2023, 5:43 PM",
+	},
+	{
+		filename: "Payment_21.xlsx",
+		entries: "4",
+		status: "Pending",
+		date_update: "Mar 27, 2023, 5:43 PM",
+	},
+];
+
+export const BulkPaymentTransactionData = [
+	{
+		transaction_id: "0x078395eec8b3b15888b70cf64db2fadc12b6d860",
+		amount: "100",
+		currency: "USDT",
+		recipient: "Nick Hunterman",
+		recipient_email: "example@gmail.com",
+		payment_description: "-",
+		status: "Paid",
+		action: "",
+	},
+
+	{
+		transaction_id: "0x078395eec8b3b15888b70cf64db2fadc12b6d860",
+		amount: "100",
+		currency: "USDT",
+		recipient: "Nick Hunterman",
+		recipient_email: "example@gmail.com",
+		payment_description: "-",
+		status: "Paid",
+		action: "",
+	},
+	{
+		transaction_id: "0x078395eec8b3b15888b70cf64db2fadc12b6d860",
+		amount: "100",
+		currency: "USDT",
+		recipient: "Alexis Thorpe",
+		recipient_email: "example@gmail.com",
+		payment_description: "-",
+		status: "Paid",
+		action: "",
+	},
+	{
+		transaction_id: "0x078395eec8b3b15888b70cf64db2fadc12b6d860",
+		amount: "100",
+		currency: "USDT",
+		recipient: "Janet Doe",
+		recipient_email: "example@gmail.com",
+		payment_description: "Sample description",
+		status: "Paid",
+		action: "",
+	},
+	{
+		transaction_id: "0x078395eec8b3b15888b70cf64db2fadc12b6d860",
+		amount: "100",
+		currency: "USDT",
+		recipient: "-",
+		recipient_email: "example@gmail.com",
+		payment_description: "Sample description",
+		status: "Failed",
+		action: "Retry",
+	},
+	{
+		transaction_id: "0x078395eec8b3b15888b70cf64db2fadc12b6d860",
+		amount: "100",
+		currency: "USDT",
+		recipient: "Karllesinho",
+		recipient_email: "-",
+		payment_description: "Payroll",
+		status: "Paid",
+		action: "",
+	},
+];
