@@ -6,9 +6,12 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "cleanup": "node ./scripts/clean-project.mjs"
+    "cleanup": "node ./scripts/clean-project.mjs",
+    "pre-commit": "pnpm run --filter \"@chainkeeping/*\" pre-commit",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
     "prettier": "^3.4.2",
     "turbo": "^2.3.3",
     "typescript": "5.7.2"

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@chainkeeping/ui";
-import NoAccountIcon from "@/pattern/individual/atoms/no-account-icon";
 import { exchangeData } from "../molecules/transaction-data";
 import ExchangeTable from "../organisms/exchange-table";
 import ExchangeTransactionCard from "../organisms/exchange-transaction-card";
@@ -9,10 +8,10 @@ import ExchangeTransactionCard from "../organisms/exchange-transaction-card";
 const ExchangeTransactionSection = () => {
 	const [hasAccount, setHasAccount] = useState<boolean>(true);
 
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleAddAccount = () => {
-		router.push("/add-account");
+		push("/add-account");
 	};
 
 	return (
@@ -26,7 +25,8 @@ const ExchangeTransactionSection = () => {
 				</div>
 			) : (
 				<div className='flex flex-col h-full justify-center w-full items-center mt-40'>
-					<NoAccountIcon />
+					{/* <NoAccountIcon /> */}
+					<span>No Account Icon</span>
 					<p className='text-sm font-bold text-accent-foreground mt-6'>
 						No transaction yet
 					</p>

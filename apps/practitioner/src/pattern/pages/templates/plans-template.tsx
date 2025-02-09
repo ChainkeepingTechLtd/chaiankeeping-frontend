@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import { Button } from "@chainkeeping/ui";
+import React from "react";
 import PricingCards from "../organisms/pricing-card";
 import AdditionalBenefits from "../organisms/additional-benefit";
 import { useRouter } from "next/navigation";
 import GoBack from "@/pattern/clients/atoms/go-back";
 
 const PlansTemplates = () => {
-	const router = useRouter();
-	// Individual toggle states
-	const [googleAuthToggled, setGoogleAuthToggled] = useState(false);
+	const { back } = useRouter();
 
 	const handleGoBack = () => {
-		router.back();
+		back();
 	};
 
 	return (
