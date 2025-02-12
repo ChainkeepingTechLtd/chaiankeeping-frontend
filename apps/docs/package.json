@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@chainkeeping/ui": "workspace:*",

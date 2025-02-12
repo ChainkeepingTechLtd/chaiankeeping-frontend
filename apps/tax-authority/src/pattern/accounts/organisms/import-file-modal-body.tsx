@@ -2,8 +2,8 @@ import { FC } from "react";
 import Modal from "../molecules/import-file-modal"; // Adjust the path if necessary.
 import { Button, Input } from "@chainkeeping/ui";
 import ImportIcon from "../atoms/import-icon";
-import DocIcon from "@/pattern/practitioner/atoms/doc-icon";
 import { CopyIcon, FileIcon } from "lucide-react";
+import DocIcon from "../atoms/doc-icon";
 
 interface ModalComponentProps {
 	isOpen: boolean;
