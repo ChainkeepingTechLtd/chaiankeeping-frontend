@@ -1,7 +1,4 @@
 import BinanceIcon from "@/pattern/common/atoms/crypto-platforms/binance-icon";
-
-import EthIcon from "@/pattern/individual/atoms/eth-icon";
-import MaticIcon from "@/pattern/practitioner/atoms/matic-icon";
 import TetherIcon from "@/pattern/clients/atoms/tether-icon";
 import FanthomIcon from "@/pattern/clients/atoms/fanthom-icon";
 import ArrowDownIcon from "@/pattern/clients/atoms/arrow-down";
@@ -13,7 +10,6 @@ import KucionIcon from "@/pattern/clients/atoms/kucion-icon";
 import XtzIcon from "@/pattern/clients/atoms/xtz-icon";
 import FiatIcon from "@/pattern/clients/atoms/fiat-icon";
 import AvalancheIcon from "@/pattern/clients/atoms/avalanche-icon";
-import UsdcIcon from "@/pattern/individual/atoms/usdc-icon";
 import NairaIcon from "@/pattern/clients/atoms/naira-icon";
 import ChzIcon from "@/pattern/clients/atoms/chz-icon";
 import SwapIcon from "@/pattern/clients/atoms/swap-icon";
@@ -21,8 +17,6 @@ import MetamaskIcon from "@/pattern/clients/atoms/metamask-icon";
 import UniIcon from "@/pattern/clients/atoms/uni-icon";
 import PolsIcon from "@/pattern/clients/atoms/pols-icon";
 import TradeIcon from "@/pattern/clients/atoms/trade-icon";
-import BusdIcon from "@/pattern/individual/atoms/transactions-icons/busd-icon";
-import TrustWalletIcon from "@/pattern/individual/atoms/transactions-icons/trust-wallet-icon";
 
 export const transactionData = [
 	{
@@ -116,12 +110,12 @@ export const transactionData = [
 		outFrom: {
 			amount: "-105.956 MATIC",
 			details: "NGN 90,160.50 - Cost Basis",
-			icon: <MaticIcon />,
+			icon: <span>Matic Icon here</span>,
 		},
 		inTo: {
 			amount: "+121.80976 BUSD",
 			details: "≈ NGN 90,145.50",
-			icon: <BusdIcon />,
+			icon: <span>BUSD icon here</span>,
 		},
 		fees: "1.06 USDT",
 		profitLoss: "",
@@ -166,7 +160,7 @@ export const transactionData = [
 		outFrom: {
 			amount: "-3,456.56 USDC",
 			details: "NGN 2,574,720.00 - Cost basis",
-			icon: <UsdcIcon />,
+			icon: <span>USDC icon here</span>,
 		},
 		inTo: {
 			amount: "+2,574,720.00 NGN",
@@ -262,7 +256,7 @@ export const transactionData = [
 			icon: <ArrowDownIcon />,
 		},
 		account: "Trust Wallet",
-		accountIcon: <TrustWalletIcon />,
+		accountIcon: <span>Trust wallet Icon here</span>,
 		outFrom: {
 			amount: "",
 			details: "0x2c9b...fa23bc093ae3b282c0",
@@ -271,7 +265,7 @@ export const transactionData = [
 		inTo: {
 			amount: "+10 ETH",
 			details: "≈ NGN 14,192,250.50",
-			icon: <EthIcon />,
+			icon: <span>ETH icon here</span>,
 		},
 		fees: "0.0006 ETH",
 		profitLoss: "NGN 14,192,250.50",
@@ -362,7 +356,7 @@ export const transactionData = [
 			icon: <ArrowDownIcon />,
 		},
 		account: "Trust Wallet",
-		accountIcon: <TrustWalletIcon />,
+		accountIcon: <span>Trust wallet Icon here</span>,
 		outFrom: {
 			amount: "",
 			details: "0x2c9b...fa23bc093ae3b282c0",
@@ -371,7 +365,7 @@ export const transactionData = [
 		inTo: {
 			amount: "+10 ETH",
 			details: "≈ NGN 14,192,250.50",
-			icon: <EthIcon />,
+			icon: <span>ETH Icon here</span>,
 		},
 		fees: "0.0006 ETH",
 		profitLoss: "NGN 14,192,250.50",

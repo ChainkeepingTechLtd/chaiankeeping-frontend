@@ -6,7 +6,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@chainkeeping/ui";
-import TwoFAModal from "../organisms/2FA-modal";
 import EmailAuthModal from "../organisms/email-auth-modal";
 import SmsAuthModal from "../organisms/SMS-auth-modal";
 import ToggleIcon from "../atoms/toggle-icon";
@@ -143,7 +142,8 @@ const SecuritySettings = () => {
 					</form>
 				</CardContent>
 			</Card>
-			<TwoFAModal isOpen={isModalOpen} onClose={closeModal} />
+			{/* <TwoFAModal isOpen={isModalOpen} onClose={closeModal} /> */}
+			<div>2FA Modal here</div>
 			<EmailAuthModal isOpen={isEmailModalOpen} onClose={closeEmailModal} />
 			<SmsAuthModal isOpen={isSmsModalOpen} onClose={closeSmsModal} />
 		</div>

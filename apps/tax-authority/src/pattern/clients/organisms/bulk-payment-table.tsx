@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -61,14 +61,14 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 	const toggleFilter = () => {
 		setIsFilterOpen(!isFilterOpen);
 	};
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleAddAccount = () => {
-		router.push("bulk-payments/transaction");
+		push("bulk-payments/transaction");
 	};
 
 	const handlePayment = () => {
-		router.push("bulk-payments/payment");
+		push("bulk-payments/payment");
 	};
 
 	// Handle individual checkbox change
@@ -114,7 +114,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 		return filtered;
 	}, [data, search]);
 
-	const columns = React.useMemo<ColumnDef<Transaction>[]>(
+	const columns = useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
