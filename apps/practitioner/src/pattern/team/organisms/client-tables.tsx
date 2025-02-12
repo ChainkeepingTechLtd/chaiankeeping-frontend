@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -7,7 +7,6 @@ import {
 	Table,
 	ColumnDef,
 } from "@tanstack/react-table";
-import { Popover } from "@headlessui/react"; // Import Popover from Headless UI
 
 import {
 	Button,
@@ -19,11 +18,7 @@ import {
 	SelectValue,
 } from "@chainkeeping/ui";
 import Modal from "@/pattern/taxes/molecules/modal-compoent";
-
-import Link from "next/link";
 import AddClientModal from "@/pattern/taxes/molecules/add-client-modal";
-import { ChevronDownIcon } from "lucide-react";
-import MoreIcon from "@/pattern/clients/atoms/more-icon";
 import SearchInput from "@/pattern/clients/molecules/search-input";
 import AddIcon from "@/pattern/clients/atoms/add-icon";
 import SortIcon from "@/pattern/clients/atoms/sort-icon";
@@ -142,7 +137,7 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 	}, [data, search]);
 
 	// Define columns
-	const columns = React.useMemo<ColumnDef<Clientele>[]>(
+	const columns = useMemo<ColumnDef<Clientele>[]>(
 		() => [
 			{
 				id: "select",

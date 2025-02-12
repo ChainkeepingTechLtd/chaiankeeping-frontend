@@ -94,11 +94,11 @@ const ExchangeTransactionCard = () => {
 
 	return (
 		<div className='grid grid-cols-3 gap-4 w-full max-sm:grid-cols-1 font-dmsans'>
-			{assetStats.map((asset) => {
+			{assetStats.map((asset, idx) => {
 				const { whole, decimal } = formatTotal(asset.total);
 
 				return (
-					<div className='space-y-2 bg-primary-foreground rounded-lg p-4'>
+					<div key={idx} className='space-y-2 bg-primary-foreground rounded-lg p-4'>
 						<div className='flex w-full justify-between'>
 							<div className='flex items-center gap-2 w-full mb-3'>
 								{asset.icon}
@@ -148,9 +148,9 @@ const ExchangeTransactionCard = () => {
 				);
 			})}
 
-			{syncImports.map((asset) => {
+			{syncImports.map((asset, idx) => {
 				return (
-					<div className='space-y-2 bg-primary-foreground rounded-lg p-4 flex flex-col justify-between h-full'>
+					<div key={idx} className='space-y-2 bg-primary-foreground rounded-lg p-4 flex flex-col justify-between h-full'>
 						{/* Top Section */}
 						<div>
 							<div className='flex w-full justify-between gap-2 items-start'>
@@ -158,13 +158,12 @@ const ExchangeTransactionCard = () => {
 									{asset.connected ? (
 										<div
 											onClick={handleClick}
-											className={` ${
-												isCompleted
+											className={` ${isCompleted
 													? "bg-[#27AE60]" // Green background for success
 													: isScanning
 														? "bg-[#F9CC59]" // Yellow background during scanning
 														: "bg-accent hover:bg-destructive"
-											} flex cursor-pointer hover:bg-destructive transition-all ease-in-out duration-300 rounded-full min-h-11 min-w-11 items-center justify-center group`}
+												} flex cursor-pointer hover:bg-destructive transition-all ease-in-out duration-300 rounded-full min-h-11 min-w-11 items-center justify-center group`}
 										>
 											{isCompleted ? (
 												<SuccessIcon />
@@ -235,9 +234,9 @@ const ExchangeTransactionCard = () => {
 				);
 			})}
 
-			{importsFiles.map((asset) => {
+			{importsFiles.map((asset, idx) => {
 				return (
-					<div className='space-y-2 bg-primary-foreground rounded-lg p-4 flex flex-col justify-between h-full'>
+					<div key={idx} className='space-y-2 bg-primary-foreground rounded-lg p-4 flex flex-col justify-between h-full'>
 						{/* Top Section */}
 						<div>
 							<div className='flex w-full justify-between gap-2 items-start'>
