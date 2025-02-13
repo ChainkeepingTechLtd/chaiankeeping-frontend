@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Input } from "@chainkeeping/ui";
 import { useRouter } from "next/navigation";
 import SmsIcon from "../atoms/sms-icon";
+import Image from "next/image";
 
 const ConnectAPractioner = () => {
 	const router = useRouter();
@@ -30,10 +31,12 @@ const ConnectAPractioner = () => {
 							Connect to a Practitioner
 						</Button>
 					</div>
-					<img
+					<Image
 						src='/connect.gif'
-						className='w-[189px] h-[189px] max-sm:w-full max-sm:h-full'
 						alt='connect-to-practioner'
+						width={189}
+						height={189}
+						className='max-sm:w-full max-sm:h-full'
 					/>
 				</div>
 				<div className='px-8 py-6 bg-[#E6E9EE] max-sm:rounded-lg max-sm:px-6 rounded-r-lg'>

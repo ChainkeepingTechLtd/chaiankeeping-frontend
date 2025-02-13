@@ -1,4 +1,3 @@
-import { GiNurseMale } from "react-icons/gi";
 import Image from "next/image";
 import Link from "next/link";
 import BCWIcon from "@/pattern/transaction/atoms/bcw-icon";
@@ -32,17 +31,17 @@ export const TrustwalletAccount = () => <TwtAccountIcon />;
 
 export const TrustWalletAccount2 = () => <TwtAccountIcon />;
 
-export const FanthomAccount = () => <img src='/fanthom.svg' alt='dekalo' />;
+export const FanthomAccount = () => <Image src='/fanthom.svg' width={20} height={20} alt='dekalo' />;
 
 export const KucionAccount = () => <KucoinAccountIcon />;
 
-export const LedgerAccount = () => <img src='/ledger.svg' alt='dekalo' />;
+export const LedgerAccount = () => <Image src='/ledger.svg' width={20} height={20} alt='dekalo' />;
 
 export const OptimismAccount = () => <OptimismAccountIcon />;
 
-export const GeminiAccount = () => <img src='/gemini.svg' alt='dekalo' />;
+export const GeminiAccount = () => <Image src='/gemini.svg' width={20} height={20} alt='dekalo' />;
 
-export const BitmexAccount = () => <img src='/bitmex.svg' alt='dekalo' />;
+export const BitmexAccount = () => <Image src='/bitmex.svg' width={20} height={20} alt='dekalo' />;
 
 export const GbpIcon = () => (
 	<Image width={20} height={20} src='/Icon3.svg' alt='' />
