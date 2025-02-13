@@ -17,7 +17,7 @@ const TabComponent = () => {
 	return (
 		<div className='w-full'>
 			{/* Tab Navigation */}
-			<div className='flex border-b border-gray-200 justify-between'>
+			<div className='flex border-b border-gray-200 justify-between max-sm:flex-col'>
 				<div className='flex gap-1'>
 					<button
 						className={`px-4 py-2 text-sm font-medium ${
@@ -40,7 +40,11 @@ const TabComponent = () => {
 						Tax Due
 					</button>
 				</div>
-				<Button variant='secondary' size='sm' className='text-base   gap-1'>
+				<Button
+					variant='secondary'
+					size='sm'
+					className='text-base max-sm:mt-4 max-sm:w-full  gap-1'
+				>
 					<SettingsMenuIcon className='text-white' />
 					View client account
 				</Button>

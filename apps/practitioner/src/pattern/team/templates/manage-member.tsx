@@ -33,7 +33,7 @@ const ManageMember = () => {
 						<div className=' flex xl:w-[35%] w-full gap-4 '>
 							<div className='flex w-full items-start'>
 								<div className='bg-[#EBEFF3]  flex w-full flex-col rounded-lg gap-4 p-4'>
-									<div className='flex w-full border-b pb-3 justify-between md:gap-4 max-sm:flex-col'>
+									<div className='flex w-full border-b pb-3 justify-between md:gap-4 '>
 										<div className='flex gap-2'>
 											<JJIcon />
 											<div>

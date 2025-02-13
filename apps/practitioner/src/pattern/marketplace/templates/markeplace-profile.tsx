@@ -10,6 +10,7 @@ import WebsiteIcon from "../atoms/website-icon";
 import TwitterIcon from "../atoms/twitter-icon";
 import LinkedInIcon from "../atoms/linkedin-icon";
 import SidebarAccordion from "../organisms/sidebar-accordion";
+import PreviewIcon from "../atoms/preview-icon";
 
 const practitionersData = [
 	{
@@ -170,8 +171,11 @@ const MarketplaceProfile = () => {
 			<div className='pt-24 md:px-8 w-full'>
 				<div className='flex flex-col pt-10 px-16 w-full max-sm:px-4'>
 					<div className='flex flex-col w-full'>
-						<div className='flex max-sm:flex-col justify-center  items-start w-full gap-6'>
-							{/* Order Configuration */}
+						<div className='flex flex-col justify-center  items-start w-full gap-6'>
+							<div className='flex text-lg items-center gap-1'>
+								<p>Preview</p>
+								<PreviewIcon />
+							</div>
 							<div className='bg-white shadow-xl flex lg:w-[90%] flex-col rounded-lg p-6 transition-all ease-in-out duration-300'>
 								<div className='flex w-full items-start gap-2'>
 									<ProfileImage />

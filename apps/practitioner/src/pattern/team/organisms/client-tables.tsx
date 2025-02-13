@@ -264,32 +264,44 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
-				<div className='flex  gap-3 '>
+			<div className='flex max-sm:flex-col justify-between mb-10'>
+				<div className='flex max-sm:flex-col gap-3 '>
 					<SearchInput
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 						placeholder='Search...'
 					/>
-
-					<Select
-						value={selectedYear}
-						onValueChange={(value) => setSelectedYear(value)}
-					>
-						<SelectTrigger>
-							<SelectValue placeholder='Status: All' />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value='all-year'>Status: All </SelectItem>
-							<SelectItem value='2025'>2025</SelectItem>
-							<SelectItem value='2024'>2024</SelectItem>
-							<SelectItem value='2023'>2023</SelectItem>
-							<SelectItem value='2022'>2022</SelectItem>
-							<SelectItem value='2021'>2021</SelectItem>
-						</SelectContent>
-					</Select>
+					<div className='max-sm:flex w-full gap-3 items-center'>
+						<Select
+							value={selectedYear}
+							onValueChange={(value) => setSelectedYear(value)}
+						>
+							<SelectTrigger>
+								<SelectValue placeholder='Status: All' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value='all-year'>Status: All </SelectItem>
+								<SelectItem value='2025'>2025</SelectItem>
+								<SelectItem value='2024'>2024</SelectItem>
+								<SelectItem value='2023'>2023</SelectItem>
+								<SelectItem value='2022'>2022</SelectItem>
+								<SelectItem value='2021'>2021</SelectItem>
+							</SelectContent>
+						</Select>
+						<div className='flex gap-3 lg:hidden'>
+							<Button
+								onClick={openAddClientModal}
+								variant='secondary'
+								size='sm'
+								className='text-base  gap-2'
+							>
+								<SettingsMenuIcon className='text-white' />
+								Assign client
+							</Button>
+						</div>
+					</div>
 				</div>
-				<div className='flex gap-3'>
+				<div className='flex gap-3 max-sm:hidden'>
 					<Button
 						onClick={openAddClientModal}
 						variant='secondary'

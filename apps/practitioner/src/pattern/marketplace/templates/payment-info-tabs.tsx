@@ -43,17 +43,21 @@ const PaymentInfoTabs = () => {
 	return (
 		<div className='h-full w-full flex flex-col'>
 			{/* Fixed Tabs */}
-			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3'>
+			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3 max-sm:pt-24'>
 				<div className='flex flex-col justify-between md:px-8 mx-auto px-4'>
-					<div className='flex justify-between items-center'>
+					<div className='flex max-sm:flex-col justify-between md:items-center'>
 						<div
-							className='flex items-center gap-2 cursor-pointer'
+							className='flex max-sm:mb-4 items-center gap-2 cursor-pointer'
 							onClick={handleGoBack}
 						>
 							<MainMenuIcon />
 							<h6 className='font-bold fomt-sen'>Payment Information</h6>
 						</div>
-						<Button variant='secondary' size='md' className='text-base gap-2'>
+						<Button
+							variant='secondary'
+							size='sm'
+							className='text-base max-sm:w-full gap-2'
+						>
 							New payment info
 						</Button>
 					</div>
@@ -94,7 +98,9 @@ const PaymentInfoTabs = () => {
 			</div>
 
 			{/* Tab Content */}
-			<div className='pt-24 md:px-8 w-full'>{renderContent()}</div>
+			<div className='pt-24 md:px-8 max-sm:px-0 max-sm:pt-56 w-full'>
+				{renderContent()}
+			</div>
 		</div>
 	);
 };

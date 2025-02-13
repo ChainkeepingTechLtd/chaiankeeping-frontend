@@ -156,7 +156,7 @@ const TeamTable: React.FC<TeamsTableProps> = ({ data }) => {
 					<div className='flex'>
 						<Link
 							href='team/manage-member'
-							className='text-grey-600 w-[500px] text-sm flex items-center gap-1   text-center'
+							className='text-grey-600 2xl:w-[500px] text-sm flex items-center gap-1   text-center'
 						>
 							<span>{info.getValue()}</span>
 						</Link>
@@ -272,7 +272,7 @@ const TeamTable: React.FC<TeamsTableProps> = ({ data }) => {
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
+			<div className='flex justify-between items-center mb-10'>
 				<div className='flex  gap-3 '>
 					<SearchInput
 						value={search}
@@ -284,11 +284,11 @@ const TeamTable: React.FC<TeamsTableProps> = ({ data }) => {
 					<Button
 						onClick={openAddClientModal}
 						variant='secondary'
-						size='md'
-						className='text-base  gap-2'
+						size='sm'
+						className='text-base max-sm:p-2  gap-2'
 					>
 						<AddIcon />
-						Add new Staff
+						<p className='max-sm:hidden'>Add new Staff</p>
 					</Button>
 				</div>
 			</div>

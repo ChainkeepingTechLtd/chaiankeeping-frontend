@@ -22,7 +22,7 @@ const SearchInput: FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
 				onFocus={() => setIsFocus(true)}
 				onBlur={() => setIsFocus(false)}
 				placeholder={placeholder ?? "Search"}
-				className={cn("pl-[56px] w-[300px] h-[44px]", className)}
+				className={cn("pl-[48px] max-sm:w-full w-[300px] h-[40px]", className)}
 				{...props}
 			/>
 			{/* prefix Icon */}

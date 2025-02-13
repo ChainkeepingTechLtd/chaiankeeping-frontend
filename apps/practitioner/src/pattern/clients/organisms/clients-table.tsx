@@ -314,60 +314,61 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
-				<div className='flex  gap-3 '>
+			<div className='flex max-sm:flex-col justify-between mb-10'>
+				<div className='flex max-sm:flex-col gap-3 '>
 					<SearchInput
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 						placeholder='Search...'
 					/>
+					<div className='max-sm:grid gap-4 max-sm:grid-cols-2 w-full flex'>
+						<Select
+							value={selectedYear}
+							onValueChange={(value) => setSelectedYear(value)}
+						>
+							<SelectTrigger>
+								<SelectValue placeholder='Status: All' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value='all-year'>Status: All </SelectItem>
+								<SelectItem value='2025'>2025</SelectItem>
+								<SelectItem value='2024'>2024</SelectItem>
+								<SelectItem value='2023'>2023</SelectItem>
+								<SelectItem value='2022'>2022</SelectItem>
+								<SelectItem value='2021'>2021</SelectItem>
+							</SelectContent>
+						</Select>
 
-					<Select
-						value={selectedYear}
-						onValueChange={(value) => setSelectedYear(value)}
-					>
-						<SelectTrigger>
-							<SelectValue placeholder='Status: All' />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value='all-year'>Status: All </SelectItem>
-							<SelectItem value='2025'>2025</SelectItem>
-							<SelectItem value='2024'>2024</SelectItem>
-							<SelectItem value='2023'>2023</SelectItem>
-							<SelectItem value='2022'>2022</SelectItem>
-							<SelectItem value='2021'>2021</SelectItem>
-						</SelectContent>
-					</Select>
-
-					<Select
-						value={selectedType}
-						onValueChange={(value) => setSelectedType(value)}
-					>
-						<SelectTrigger>
-							<SelectValue placeholder='Assigned to: Everyone ' />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value='all-transactions'>
-								Assigned to: Everyone
-							</SelectItem>
-							<SelectItem value='trade'>Trade</SelectItem>
-							<SelectItem value='deposit'>Deposit</SelectItem>
-							<SelectItem value='withdrawal'>Withdrawal</SelectItem>
-							<SelectItem value='airdrop'>Airdrop</SelectItem>
-							<SelectItem value='fiat buy'>Fiat Buy</SelectItem>
-							<SelectItem value='fiat sell'>Fiat Sell</SelectItem>
-							<SelectItem value='investment loss'>Investment Loss</SelectItem>
-							<SelectItem value='swap'>Swap</SelectItem>
-							<SelectItem value='donation'>Donation</SelectItem>
-						</SelectContent>
-					</Select>
+						<Select
+							value={selectedType}
+							onValueChange={(value) => setSelectedType(value)}
+						>
+							<SelectTrigger>
+								<SelectValue placeholder='Assigned to: Everyone ' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value='all-transactions'>
+									Assigned to: Everyone
+								</SelectItem>
+								<SelectItem value='trade'>Trade</SelectItem>
+								<SelectItem value='deposit'>Deposit</SelectItem>
+								<SelectItem value='withdrawal'>Withdrawal</SelectItem>
+								<SelectItem value='airdrop'>Airdrop</SelectItem>
+								<SelectItem value='fiat buy'>Fiat Buy</SelectItem>
+								<SelectItem value='fiat sell'>Fiat Sell</SelectItem>
+								<SelectItem value='investment loss'>Investment Loss</SelectItem>
+								<SelectItem value='swap'>Swap</SelectItem>
+								<SelectItem value='donation'>Donation</SelectItem>
+							</SelectContent>
+						</Select>
+					</div>
 				</div>
-				<div className='flex gap-3'>
+				<div className='flex gap-3 mt-3'>
 					<Button
 						onClick={openModal}
 						variant='secondaryOutline'
-						size='md'
-						className='text-base gap-2  '
+						size='sm'
+						className='text-base gap-2  max-sm:text-sm'
 					>
 						Bulk add clients
 					</Button>
@@ -375,8 +376,8 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 					<Button
 						onClick={openAddClientModal}
 						variant='secondary'
-						size='md'
-						className='text-base  gap-2'
+						size='sm'
+						className='text-base  gap-2 max-sm:text-sm'
 					>
 						<AddIcon />
 						Add new client
@@ -431,15 +432,15 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 				</table>
 
 				{/* Pagination */}
-				<div className='flex justify-between items-center py-4'>
+				<div className='flex justify-between items-center py-4 max-sm:text-sm max-sm:hidden'>
 					<span>
 						Showing page {table.getState().pagination.pageIndex + 1} of{" "}
 						{table.getPageCount()}
 					</span>
-					<div className='flex items-center gap-1'>
+					<div className='flex items-center gap-1 max-sm:text-xs'>
 						{/* Previous Page Button */}
 						<button
-							className='px-3 py-1 text-grey-400 flex gap-1 items-center rounded disabled:opacity-50'
+							className='px-3 py-1 max-sm:px-1 text-grey-400 flex gap-1 items-center rounded disabled:opacity-50'
 							onClick={() => table.previousPage()}
 							disabled={!table.getCanPreviousPage()}
 						>
@@ -451,7 +452,7 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${
+								className={`h-6 max-sm:w-5 max-sm:text-xs max-sm:h-5  text-sm w-6 rounded-full ${
 									pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"

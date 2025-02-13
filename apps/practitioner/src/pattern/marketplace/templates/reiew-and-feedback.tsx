@@ -63,7 +63,7 @@ const ReviewsAndFeedback = () => {
 
 	return (
 		<div className='h-full w-full flex flex-col'>
-			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3'>
+			<div className='fixed max-sm:pt-[70px] left-0 w-full bg-white shadow-md z-10 pt-3'>
 				<div className='flex flex-col justify-between md:px-8 mx-auto px-4'>
 					<div className='flex justify-between items-center py-4'>
 						<div
@@ -77,9 +77,9 @@ const ReviewsAndFeedback = () => {
 				</div>
 			</div>
 
-			<div className='pt-24 md:px-8 w-full'>
+			<div className='pt-24 max-sm:pt-36 md:px-8 w-full'>
 				<div className='w-fit flex flex-col items-center px-[18px] pb-[144px]'>
-					<Card className='bg-white w-fit max-w-[939px] lg:w-[939px] h-fit flex flex-col p-8 rounded-[8px] shadow-md border-none'>
+					<Card className='bg-white w-fit max-w-[939px] lg:w-[939px] h-fit flex flex-col max-sm:p-4 p-8 rounded-[8px] shadow-md border-none'>
 						<div className='flex w-full border-b pb-3 items-center justify-between'>
 							<div className='text-sm'>
 								<h6 className='font-bold text-grey-300'>FEEDBACK</h6>

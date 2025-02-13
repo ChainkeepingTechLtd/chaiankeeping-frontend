@@ -108,9 +108,9 @@ const NotificationInfo = () => {
 	} = form;
 
 	return (
-		<div className='h-full w-full flex flex-col'>
+		<div className=' w-full bg-[#F4F7F9] flex flex-col'>
 			{/* Fixed Tabs */}
-			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3'>
+			<div className='fixed max-sm:pt-[70px] left-0 w-full bg-white shadow-md z-10 pt-3'>
 				<div className='flex flex-col justify-between md:px-8 mx-auto px-4'>
 					<div className='flex justify-between items-center py-4'>
 						<div
@@ -125,10 +125,10 @@ const NotificationInfo = () => {
 			</div>
 
 			{/* Tab Content */}
-			<div className='pt-24 md:px-8 w-full'>
+			<div className='pt-24 max-sm:pt-36 md:px-8  w-full'>
 				<div className='w-fit flex  flex-col items-center px-[18px] pb-[144px]'>
-					<Card className='bg-white w-fit max-w-[856px] lg:w-[856px] h-fit flex flex-col p-6 rounded-[8px] shadow-md border-none'>
-						<div className='flex w-full bg-accent p-4 rounded-md justify-between'>
+					<Card className='bg-white w-fit max-w-[856px] lg:w-[856px] h-fit flex flex-col p-6 max-sm:p-4 rounded-[8px] shadow-md border-none'>
+						<div className='flex w-full max-sm:flex-col gap-3 bg-accent p-4 rounded-md justify-between'>
 							<div className='text-sm'>
 								<h6 className='font-bold'>Contact details</h6>
 								<p className=' text-grey-500'>
@@ -201,16 +201,16 @@ const NotificationInfo = () => {
 								</div>
 							</div>
 						</div>
-						<CardHeader className='h-fit lg:h-[30px] flex items-start justify-start pb-2'>
+						<CardHeader className='h-fit lg:h-[30px] flex  items-start justify-start pb-2'>
 							<CardTitle className='text-base font-bold font-sen text-grey-300'>
 								NOTIFICATIONS
 							</CardTitle>
 						</CardHeader>
 						<CardContent className='w-full h-full flex flex-col !mt-0'>
-							<form className='flex flex-col gap-2 mt-5'>
+							<form className='flex flex-col gap-2 md:mt-5'>
 								{/* Google enticator */}
-								<div className='flex justify-between border-b py-3   w-full'>
-									<div className='flex justify-between  w-full gap-10'>
+								<div className='flex  justify-between border-b py-3   w-full'>
+									<div className='flex max-sm:flex-col justify-between  w-full md:gap-10'>
 										<div className='flex flex-col w-full'>
 											<h6 className='font-medium'>Orders</h6>
 											<p className='text-grey-400 text-sm'>
@@ -219,7 +219,7 @@ const NotificationInfo = () => {
 											</p>
 										</div>
 										<div className='justify-between items-center  flex w-full'>
-											<div className='flex-col flex gap-5'>
+											<div className='flex-col flex gap-5 max-sm:gap-3'>
 												<p>Email</p>
 												<p>SMS</p>
 											</div>
@@ -239,7 +239,7 @@ const NotificationInfo = () => {
 								</div>
 
 								<div className='flex justify-between border-b py-3   w-full'>
-									<div className='flex justify-between  w-full gap-10'>
+									<div className='flex max-sm:flex-col justify-between  w-full md:gap-10'>
 										<div className='flex flex-col w-full'>
 											<h6 className='font-medium'>Payments</h6>
 											<p className='text-grey-400 text-sm'>
@@ -247,7 +247,7 @@ const NotificationInfo = () => {
 											</p>
 										</div>
 										<div className='justify-between items-center  flex w-full'>
-											<div className='flex-col flex gap-5'>
+											<div className='flex-col flex gap-5 max-sm:gap-3'>
 												<p>Email</p>
 												<p>SMS</p>
 											</div>
@@ -271,7 +271,7 @@ const NotificationInfo = () => {
 								</div>
 
 								<div className='flex justify-between border-b py-3   w-full'>
-									<div className='flex justify-between  w-full gap-10'>
+									<div className='flex max-sm:flex-col justify-between  w-full md:gap-10'>
 										<div className='flex flex-col w-full'>
 											<h6 className='font-medium'>Chats</h6>
 											<p className='text-grey-400 text-sm'>
@@ -279,7 +279,7 @@ const NotificationInfo = () => {
 											</p>
 										</div>
 										<div className='justify-between items-center  flex w-full'>
-											<div className='flex-col flex gap-5'>
+											<div className='flex-col flex gap-5 max-sm:gap-3'>
 												<p>Email</p>
 												<p>SMS</p>
 											</div>
@@ -301,7 +301,7 @@ const NotificationInfo = () => {
 								</div>
 
 								<div className='flex justify-between  py-3   w-full'>
-									<div className='flex justify-between  w-full gap-10'>
+									<div className='flex max-sm:flex-col justify-between  w-full md:gap-10 '>
 										<div className='flex flex-col w-full'>
 											<h6 className='font-medium'>Reviews</h6>
 											<p className='text-grey-400 text-sm'>
@@ -310,7 +310,7 @@ const NotificationInfo = () => {
 											</p>
 										</div>
 										<div className='justify-between items-center  flex w-full'>
-											<div className='flex-col flex gap-5'>
+											<div className='flex-col flex gap-5 max-sm:gap-3'>
 												<p>Email</p>
 												<p>SMS</p>
 											</div>
