@@ -1,4 +1,4 @@
-import { useMemo, useState, ReactNode } from "react";
+import { useMemo, useState, ReactNode, FC } from "react";
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -50,7 +50,7 @@ interface UnresolvedTransactionsTableProps {
 	data: Transaction[];
 }
 
-const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
+const PreviewPayment: FC<UnresolvedTransactionsTableProps> = ({
 	data,
 }) => {
 	const [selectedRows, setSelectedRows] = useState<

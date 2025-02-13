@@ -34,6 +34,9 @@ const SignUpInformationTemp = () => {
     const [countryName, setCountryName] = useState<string>('')
     const [stateName, setStateName] = useState<string>('')
 
+    const [formData, setFormData] = useState<Partial<FormData>>({})
+    const [step, setStep] = useState(1)
+
     const { push } = useRouter()
 
     const defaultValues = {
@@ -62,6 +65,22 @@ const SignUpInformationTemp = () => {
         console.log("Submitted: ", data)
         push(APP_ROUTES.verifySignupEmail)
     }
+
+    const handleNext = (data: Partial<FormData>) => {
+        setFormData((prev) => ({ ...prev, ...data }))
+        setStep((prev) => prev + 1)
+    }
+
+    const handleBack = () => {
+        setStep((prev) => prev - 1)
+    }
+
+    // const handleSubmit = async (data: Partial<FormData>) => {
+    //     const finalData = { ...formData, ...data }
+    //     console.log("Form submitted:", finalData)
+    //     // Here you would typically send the data to your server
+    //     // await fetch('/api/register', { method: 'POST', body: JSON.stringify(finalData) });
+    // }
     return (
         <div className='w-fit flex flex-col items-center gap-y-8 px-[18px] pb-[144px]'>
             <Link href={APP_ROUTES.index}>
@@ -168,7 +187,7 @@ const SignUpInformationTemp = () => {
                                 disabled={!isDirty}
                                 className="w-full text-base font-medium mt-[18px]"
                             >
-                              Complete Sign up
+                                Complete Sign up
                             </SubmitButton>
                         </form>
                     </Form>
