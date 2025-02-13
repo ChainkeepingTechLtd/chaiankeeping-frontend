@@ -256,7 +256,7 @@ const MessageTable: React.FC<MessagesTableProps> = ({ data }) => {
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
+			<div className='flex justify-between items-center max-sm:mt-12 mb-10'>
 				<div className='flex  gap-3 '>
 					<SearchInput
 						value={search}
@@ -268,11 +268,11 @@ const MessageTable: React.FC<MessagesTableProps> = ({ data }) => {
 					<Button
 						onClick={openAddClientModal}
 						variant='secondary'
-						size='md'
-						className='text-base  gap-2'
+						size='sm'
+						className='text-base max-sm:px-2  max-sm:py-1 gap-2'
 					>
 						<AddIcon />
-						Add message
+						<p className='max-sm:hidden'>Add message</p>
 					</Button>
 				</div>
 			</div>

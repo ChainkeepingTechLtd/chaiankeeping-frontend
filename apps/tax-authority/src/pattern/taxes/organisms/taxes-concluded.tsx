@@ -187,7 +187,7 @@ const TaxesConcluded = () => {
 								</div>
 							</td>
 
-							<td className='whitespace-nowrap border-b px-4 py-2 text-sm w-[30%]'>
+							<td className='whitespace-nowrap border-b px-4 py-2 text-sm md:w-[30%]'>
 								<div className='flex items-center gap-2'>{order.tax}</div>
 							</td>
 							<td className='whitespace-nowrap border-b px-4 py-3 text-sm'>

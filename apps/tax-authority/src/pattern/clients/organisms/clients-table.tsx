@@ -22,9 +22,6 @@ import {
 } from "@chainkeeping/ui";
 import MoreIcon from "../atoms/more-icon";
 import SearchInput from "../molecules/search-input";
-import ArrowIcon from "../atoms/arrow-icon";
-import InfoIcon from "../atoms/info-icon";
-import ArrowDownIcon from "../atoms/arrow-down";
 import ChevronDownIcon from "../atoms/chevron-down-icon";
 import AddIcon from "../atoms/add-icon";
 import Modal from "@/pattern/taxes/molecules/modal-compoent";
@@ -292,73 +289,54 @@ const ClientsTable: React.FC<ClientsTableProps> = ({ data }) => {
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
-				<div className='flex  gap-3 '>
+			<div className='flex justify-between mb-10 max-sm:mt-12'>
+				<div className='flex max-sm:flex-col items-center  gap-3 '>
 					<SearchInput
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 						placeholder='Search...'
 					/>
+					<div className='max-sm:flex flex w-full max-sm:gap-2 gap-3'>
+						<Select
+							value={selectedYear}
+							onValueChange={(value) => setSelectedYear(value)}
+						>
+							<SelectTrigger>
+								<SelectValue placeholder='Status: All' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value='all-year'>Status: All </SelectItem>
+								<SelectItem value='2025'>2025</SelectItem>
+								<SelectItem value='2024'>2024</SelectItem>
+								<SelectItem value='2023'>2023</SelectItem>
+								<SelectItem value='2022'>2022</SelectItem>
+								<SelectItem value='2021'>2021</SelectItem>
+							</SelectContent>
+						</Select>
 
-					<Select
-						value={selectedYear}
-						onValueChange={(value) => setSelectedYear(value)}
-					>
-						<SelectTrigger>
-							<SelectValue placeholder='Status: All' />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value='all-year'>Status: All </SelectItem>
-							<SelectItem value='2025'>2025</SelectItem>
-							<SelectItem value='2024'>2024</SelectItem>
-							<SelectItem value='2023'>2023</SelectItem>
-							<SelectItem value='2022'>2022</SelectItem>
-							<SelectItem value='2021'>2021</SelectItem>
-						</SelectContent>
-					</Select>
-
-					<Select
-						value={selectedType}
-						onValueChange={(value) => setSelectedType(value)}
-					>
-						<SelectTrigger>
-							<SelectValue placeholder='Assigned to: Everyone ' />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value='all-transactions'>
-								Assigned to: Everyone
-							</SelectItem>
-							<SelectItem value='trade'>Trade</SelectItem>
-							<SelectItem value='deposit'>Deposit</SelectItem>
-							<SelectItem value='withdrawal'>Withdrawal</SelectItem>
-							<SelectItem value='airdrop'>Airdrop</SelectItem>
-							<SelectItem value='fiat buy'>Fiat Buy</SelectItem>
-							<SelectItem value='fiat sell'>Fiat Sell</SelectItem>
-							<SelectItem value='investment loss'>Investment Loss</SelectItem>
-							<SelectItem value='swap'>Swap</SelectItem>
-							<SelectItem value='donation'>Donation</SelectItem>
-						</SelectContent>
-					</Select>
-				</div>
-				<div className='flex gap-3'>
-					<Button
-						onClick={openModal}
-						variant='secondaryOutline'
-						size='md'
-						className='text-base gap-2  '
-					>
-						Bulk add clients
-					</Button>
-
-					<Button
-						onClick={openAddClientModal}
-						variant='secondary'
-						size='md'
-						className='text-base  gap-2'
-					>
-						<AddIcon />
-						Add new client
-					</Button>
+						<Select
+							value={selectedType}
+							onValueChange={(value) => setSelectedType(value)}
+						>
+							<SelectTrigger>
+								<SelectValue placeholder='Assigned to: Everyone ' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value='all-transactions'>
+									Assigned to: Everyone
+								</SelectItem>
+								<SelectItem value='trade'>Trade</SelectItem>
+								<SelectItem value='deposit'>Deposit</SelectItem>
+								<SelectItem value='withdrawal'>Withdrawal</SelectItem>
+								<SelectItem value='airdrop'>Airdrop</SelectItem>
+								<SelectItem value='fiat buy'>Fiat Buy</SelectItem>
+								<SelectItem value='fiat sell'>Fiat Sell</SelectItem>
+								<SelectItem value='investment loss'>Investment Loss</SelectItem>
+								<SelectItem value='swap'>Swap</SelectItem>
+								<SelectItem value='donation'>Donation</SelectItem>
+							</SelectContent>
+						</Select>
+					</div>
 				</div>
 			</div>
 

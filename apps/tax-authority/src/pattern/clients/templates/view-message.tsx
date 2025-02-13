@@ -20,10 +20,13 @@ const ViewMessage = () => {
 	};
 
 	return (
-		<div className='h-full'>
+		<div className='bg-[#F4F7F9] pb-4'>
 			{hasAccount ? (
-				<div className='md:px-8  pt-6'>
-					<div className='flex items-center gap-2 mb-10' onClick={handleGoBack}>
+				<div className='md:px-8 max-sm:pt-24 pt-6'>
+					<div
+						className='flex items-center gap-2 md:mb-10 max-sm:mb-6 max-sm:px-4'
+						onClick={handleGoBack}
+					>
 						<GoBack />
 						<h6 className='font-bold'>Jerome Jenkins</h6>
 					</div>
@@ -67,8 +70,8 @@ const ViewMessage = () => {
 								</p>
 							</div>
 						</div>
-						<div className='flex rounded-md flex-col gap-4 w-full bg-white p-8 '>
-							<h5 className='font-sen font-bold text-2xl'>
+						<div className='flex rounded-md flex-col gap-4 w-full bg-white p-8 max-sm:p-4'>
+							<h5 className='font-sen font-bold text-2xl max-sm:text-base'>
 								Cannot import transactions from Binance
 							</h5>
 							<p className='text-sm text-grey-500 font-bold'>CONTENT </p>

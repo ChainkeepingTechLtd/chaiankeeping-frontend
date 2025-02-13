@@ -1,13 +1,5 @@
 import React from "react";
-import ClientsIcon from "../atoms/clients-icon";
-import TaxesIcon from "../atoms/taxes-icon";
 import TeamIcon from "../atoms/team-icon";
-import MarketplaceIcon from "../atoms/marketplace-icon";
-import { Button } from "@chainkeeping/ui";
-import Link from "next/link";
-import TaxPayerIcon from "../atoms/tax-payers";
-import TaxesPaidIcon from "../atoms/taxes-paid-icon";
-import TaxesPending from "../atoms/taxes-pending";
 import InvestigationIcon from "../atoms/investigation-icon";
 
 export const DataStructure = [

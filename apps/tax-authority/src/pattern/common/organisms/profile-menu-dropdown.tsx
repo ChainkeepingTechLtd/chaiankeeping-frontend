@@ -55,7 +55,7 @@ export const ProfileMenuDropdown = ({ username, email }: ProfileMenuProps) => {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button variant='icon' size='icon'>
-					<AccountQuickActionIcon />
+					<AccountQuickActionIcon className='max-sm:h-7 max-sm:w-7' />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className='w-[240px] p-0' align='end'>
