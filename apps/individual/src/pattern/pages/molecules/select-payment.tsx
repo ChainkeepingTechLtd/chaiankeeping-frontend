@@ -1,9 +1,8 @@
 import React from "react";
-import PaystackIcon from "../atoms/paystackt-icon";
-import ActiveRadioIcon from "../atoms/active-radio-icon";
 import InactiveRadioIcon from "../atoms/inactive-radio-icon";
 import { Button } from "@chainkeeping/ui";
 import KeyIcon from "../atoms/key-icon";
+import Image from "next/image";
 
 const SelectPayment = () => {
 	return (
@@ -15,19 +14,20 @@ const SelectPayment = () => {
 				</p>
 				<div className='flex w-full items-center flex-col gap-4 mt-4'>
 					<div className='border justify-between items-center rounded-md flex w-full p-4'>
-						<img
+						<Image
 							src='/Paystack_Logo 1 (1).png'
-							alt=''
-							className='w-[136.19px]'
+							width={136.19}
+							height={75}
+							alt='paystack'
 						/>
 						<InactiveRadioIcon />
 					</div>
 					<div className='border justify-between items-center rounded-md flex w-full p-4'>
-						<img src='/image 67 (1).png' alt='' className='w-[92px]' />
+						<Image src='/image 67 (1).png' width={92} height={50} alt='Image 67' />
 						<InactiveRadioIcon />
 					</div>
 					<div className='border justify-between items-center rounded-md flex w-full p-4'>
-						<img src='/Frame 218.png' alt='' className='w-[144px]' />
+						<Image src='/Frame 218.png' width={144} height={50} alt='Frame 218' />
 						<InactiveRadioIcon />
 					</div>
 

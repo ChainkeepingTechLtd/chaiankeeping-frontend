@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState, ReactNode } from "react";
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -7,7 +7,6 @@ import {
 	Table,
 	ColumnDef,
 } from "@tanstack/react-table";
-
 import SortIcon from "../atoms/sort-icon";
 import PrevIcon from "../atoms/prev-icon";
 import NextIcon from "../atoms/next-icon";
@@ -16,12 +15,11 @@ import { useRouter } from "next/navigation";
 import TetherIcon from "@/pattern/individual/atoms/tether-icon";
 import EditIcon from "../atoms/edit-icon";
 import DeleteIcon from "../atoms/delete-icon";
-import Modal from "@/pattern/taxes/molecules/modal-compoent";
-import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
 import PaymentSuccessModal from "../molecules/payment-success-modal";
 import ApprovePaymentModal from "../molecules/approve-payment-modal";
 import DeletePaymentModal from "../molecules/delete-payment-modal";
 import EditPaymentModal from "../molecules/edit-payment-modal";
+import Image from "next/image";
 
 interface Transaction {
 	id: string | number;
@@ -31,19 +29,19 @@ interface Transaction {
 	};
 	label: {
 		title: string;
-		icon?: React.ReactNode;
+		icon?: ReactNode;
 	};
 	account: string;
-	accountIcon?: React.ReactNode;
+	accountIcon?: ReactNode;
 	outFrom: {
 		amount: string;
 		details: string;
-		icon?: React.ReactNode;
+		icon?: ReactNode;
 	};
 	inTo: {
 		amount: string;
 		details: string;
-		icon?: React.ReactNode;
+		icon?: ReactNode;
 	};
 	profitLoss: string;
 }
@@ -59,13 +57,12 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		Record<string | number, boolean>
 	>({});
 
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const [search, setSearch] = useState("");
 
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleAddAccount = () => {
-		router.push("bulk-payments/transaction");
+		push("bulk-payments/transaction");
 	};
 
 	// Handle individual checkbox change
@@ -110,6 +107,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		console.log("Filtered Data:", filtered);
 		return filtered;
 	}, [data, search]);
+
 	const [loading, setLoading] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -134,7 +132,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		}, 2000);
 	};
 
-	const columns = React.useMemo<ColumnDef<Transaction>[]>(
+	const columns = useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -270,7 +268,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						<p className='font-medium text-black'>Binance Mainnet</p>
 					</div>
 					<div className='flex bg-[#E5EBEF] items-center gap-2 py-[10px] px-5 rounded-md'>
-						<img src='/Base.svg' alt='' />
+						<Image src='/Base.svg' width={20} height={20} alt='Base SVG Icon' />
 						<p className='font-medium'>0x2c9b...fa23bc093ae3b282c0</p>
 					</div>
 				</div>
@@ -287,7 +285,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 			</div>
 
 			<div className='overflow-x-auto'>
-				<table className='min-w-full table-fixed border border-[red] shadow-md rounded-lg overflow-hidden'>
+				<table className='min-w-full table-fixed border border-destructive shadow-md rounded-lg overflow-hidden'>
 					<thead className='bg-[#F5F8FA]'>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>

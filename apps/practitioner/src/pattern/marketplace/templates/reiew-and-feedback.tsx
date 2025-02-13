@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import MainMenuIcon from "../atoms/menu-icon";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, Textarea } from "@chainkeeping/ui";
@@ -7,8 +7,13 @@ import StarIcon from "../atoms/start-icon";
 import HalfStarIcon from "../atoms/half-star-icon";
 import CancelIcon from "../atoms/cancel-icon";
 
+interface IStarRating {
+	rating: number;
+	maxRating?: number
+}
+
 // Star Rating Component
-const StarRating = ({ rating, maxRating = 5 }) => {
+const StarRating = ({ rating, maxRating = 5 }: IStarRating) => {
 	const fullStars = Math.floor(rating);
 	const hasHalfStar = rating % 1 !== 0;
 
@@ -31,10 +36,10 @@ const ReviewsAndFeedback = () => {
 	const [replyingReviewId, setReplyingReviewId] = useState<number | null>(null);
 	const [replyText, setReplyText] = useState("");
 
-	const router = useRouter();
+	const { back } = useRouter();
 
 	const handleGoBack = () => {
-		router.back();
+		back();
 	};
 
 	const reviews = [

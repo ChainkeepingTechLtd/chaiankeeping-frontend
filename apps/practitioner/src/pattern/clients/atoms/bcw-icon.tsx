@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 const BCWIcon = () => {
-	return <img src='/bcw.svg' />;
+	return <Image src='/bcw.svg' width={20} height={20} alt='Binance icon' />;
 };
 
 export default BCWIcon;
