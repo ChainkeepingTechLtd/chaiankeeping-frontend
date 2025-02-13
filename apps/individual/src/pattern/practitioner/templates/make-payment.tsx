@@ -81,7 +81,7 @@ const MakePayment = () => {
 			{/* Main Content */}
 			<div className='flex flex-col  w-full '>
 				<div className='flex justify-between items-center mb-5'>
-					<div className='gap-2 flex items-center text-sm'>
+					<div className='gap-2 flex items-center text-sm max-sm:text-xs'>
 						<p className='text-grey-300'>Practitioner</p>
 						<ArrowIcon />
 						<p className='text-grey-300'>P2B</p>
@@ -93,12 +93,12 @@ const MakePayment = () => {
 					{practitionersData.map((practitioner) => (
 						<div
 							key={practitioner.id}
-							className='bg-white lg:w-[60%] rounded-lg p-6'
+							className='bg-white lg:w-[60%] rounded-lg p-6 max-sm:p-4'
 						>
 							<h3 className='font-bold text-lg'>{practitioner.name}</h3>
 							<p className='text-sm'>{practitioner.description}</p>
 
-							<div className='flex gap-3 my-5'>
+							<div className='flex flex-wrap gap-3 my-5'>
 								<div className='flex bg-[#F5F8FA]  rounded-md items-center gap-1 py-1 px-2'>
 									<StarRatingIcon />
 									<p className='text-grey-600'>Rating</p>
@@ -137,7 +137,7 @@ const MakePayment = () => {
 						<div className='flex flex-col gap-4 w-full lg:w-[40%]'>
 							<div
 								key={practitioner.id}
-								className='bg-[#EBEFF3] w-full flex flex-col rounded-lg gap-4 p-8'
+								className='bg-[#EBEFF3] w-full flex flex-col rounded-lg gap-4 p-6 max-sm:p-4'
 							>
 								<div className='flex w-full p-2 bg-[#DDE2E9]'>
 									<p className='text-grey-600 text-sm'>
@@ -187,7 +187,7 @@ const MakePayment = () => {
 											{paymentMethod === "bank" && (
 												<>
 													<div className='flex bg-[#F5F8FA] text-sm flex-col gap-3 p-4 rounded-md'>
-														<div className='flex justify-between items-center'>
+														<div className='flex max-sm:flex-col justify-between md:items-center'>
 															<p className='text-grey-600'>Account Name:</p>
 															<div className='flex items-center gap-1'>
 																<p className='font-bold'>
@@ -196,7 +196,7 @@ const MakePayment = () => {
 																<CopyIcon />
 															</div>
 														</div>
-														<div className='flex justify-between items-center'>
+														<div className='flex max-sm:flex-col justify-between md:items-center'>
 															<p className='text-grey-600'>Account Number:</p>
 															<div className='flex items-center gap-1'>
 																<p className='font-bold'>0234632030</p>
