@@ -264,14 +264,19 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
+			<div className='flex max-sm:flex-col max-sm:gap-3 justify-between mb-10'>
 				<div className='flex gap-3 '>
-					<div className='flex bg-[#E5EBEF] py-[10px] px-5 rounded-md'>
+					<div className='flex bg-[#E5EBEF] py-[10px] md:px-5 rounded-md max-sm:px-2 max-sm:text-sm'>
 						<p className='font-medium text-black'>Binance Mainnet</p>
 					</div>
-					<div className='flex bg-[#E5EBEF] items-center gap-2 py-[10px] px-5 rounded-md'>
-						<img src='/Base.svg' alt='' />
-						<p className='font-medium'>0x2c9b...fa23bc093ae3b282c0</p>
+					<div className='flex bg-[#E5EBEF] items-center gap-2 py-[10px] px-5 rounded-md max-sm:px-2 max-sm:text-sm'>
+						<img src='/Base.svg' alt='' className='w-5 h-5' />
+						<p className='font-medium'>
+							<span className='hidden sm:inline'>
+								0x2c9b...fa23bc093ae3b282c0
+							</span>
+							<span className='inline sm:hidden'>0x2c9b...fa23bc09</span>
+						</p>
 					</div>
 				</div>
 				<div className='flex gap-3'>

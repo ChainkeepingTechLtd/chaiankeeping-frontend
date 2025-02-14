@@ -70,12 +70,14 @@ const PaymentSection = () => {
 
 	const renderUploadFile = () => (
 		<div>
-			<h2 className='text-xl font-semibold mb-2'>Upload bulk payment file</h2>
+			<h2 className='text-xl font-semibold mb-2 max-sm:text-base'>
+				Upload bulk payment file
+			</h2>
 			<p className='text-grey-600 text-sm mb-4 max-w-md'>
 				Download our custom excel template, if you don’t already have it. File
 				upload may take a few minutes.
 			</p>
-			<div className='flex flex-col items-center bg-white max-w-md p-6 rounded-md'>
+			<div className='flex flex-col items-center bg-white max-w-md p-6 max-sm:p-4 rounded-md'>
 				<div className='flex gap-1 mb-3 items-start p-2 bg-[#E9F2FE] rounded-md'>
 					<InfoIcon />
 					<p className='text-sm'>
@@ -127,7 +129,7 @@ const PaymentSection = () => {
 	);
 
 	return (
-		<div className='md:px-8 flex h-full gap-4 justify-between pt-10 max-sm:px-4 max-sm:flex-col'>
+		<div className='md:px-8 flex h-full gap-4 justify-between pt-10 max-sm:pt-24 max-sm:px-4 max-sm:flex-col'>
 			{/* Steps Section */}
 			<div className='flex flex-col  max-sm:w-full relative'>
 				{/* Step 1 */}
@@ -169,7 +171,7 @@ const PaymentSection = () => {
 							You’ll need to connect a non-custodial wallet to continue. Select
 							your wallet provider below or search.
 						</p>
-						<div className='flex flex-col items-center bg-white p-6 rounded-md'>
+						<div className='flex flex-col items-center bg-white p-6 max-sm:p-4 rounded-md'>
 							<WalletSearch value='search' placeholder='Search...' />
 							<div className='flex flex-col space-y-4 w-full mt-6'>
 								{[
