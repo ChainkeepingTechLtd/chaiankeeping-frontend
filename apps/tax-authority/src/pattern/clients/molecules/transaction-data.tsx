@@ -18,10 +18,7 @@ import SwapIcon from "../atoms/swap-icon";
 import MetamaskIcon from "../atoms/metamask-icon";
 import UniIcon from "../atoms/uni-icon";
 import PolsIcon from "../atoms/pols-icon";
-import EthIcon from "@/pattern/individual/atoms/eth-icon";
-import MaticIcon from "@/pattern/practitioner/atoms/matic-icon";
-import TrustWalletIcon from "@/pattern/individual/atoms/transactions-icons/trust-wallet-icon";
-import BusdIcon from "@/pattern/individual/atoms/transactions-icons/busd-icon";
+import { EthereumIcon, TrustWalletIcon } from "@chainkeeping/ui";
 
 export const transactionData = [
 	{
@@ -115,12 +112,12 @@ export const transactionData = [
 		outFrom: {
 			amount: "-105.956 MATIC",
 			details: "NGN 90,160.50 - Cost Basis",
-			icon: <MaticIcon />,
+			icon: <span>Matic Icon here</span>,
 		},
 		inTo: {
 			amount: "+121.80976 BUSD",
 			details: "≈ NGN 90,145.50",
-			icon: <BusdIcon />,
+			icon: <span>BUSD Icon here</span>,
 		},
 		fees: "1.06 USDT",
 		profitLoss: "",
@@ -270,7 +267,7 @@ export const transactionData = [
 		inTo: {
 			amount: "+10 ETH",
 			details: "≈ NGN 14,192,250.50",
-			icon: <EthIcon />,
+			icon: <EthereumIcon />,
 		},
 		fees: "0.0006 ETH",
 		profitLoss: "NGN 14,192,250.50",
@@ -370,7 +367,7 @@ export const transactionData = [
 		inTo: {
 			amount: "+10 ETH",
 			details: "≈ NGN 14,192,250.50",
-			icon: <EthIcon />,
+			icon: <EthereumIcon />,
 		},
 		fees: "0.0006 ETH",
 		profitLoss: "NGN 14,192,250.50",

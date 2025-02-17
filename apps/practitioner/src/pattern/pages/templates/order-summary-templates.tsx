@@ -1,19 +1,8 @@
-import React, { useState } from "react";
-
-import PricingCards from "../organisms/pricing-card";
-import { useRouter } from "next/navigation";
-import ArrowIcon from "@/pattern/practitioner/atoms/arrow-icon";
+import React from "react";
 import OrderSummaryCard from "../organisms/order-summary-card";
+import ArrowIcon from "@/pattern/clients/atoms/arrow-icon";
 
 const OrderSummaryTemplates = () => {
-	const router = useRouter();
-	// Individual toggle states
-	const [googleAuthToggled, setGoogleAuthToggled] = useState(false);
-
-	const handleGoBack = () => {
-		router.back();
-	};
-
 	return (
 		<div className='w-full h-full flex relative   pt-24 flex-col gap-10 xl:pr-16 pb-[144px] '>
 			<div className='gap-2 flex items-center text-sm'>

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -61,14 +61,14 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 	const toggleFilter = () => {
 		setIsFilterOpen(!isFilterOpen);
 	};
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleAddAccount = () => {
-		router.push("bulk-payments/transaction");
+		push("bulk-payments/transaction");
 	};
 
 	const handlePayment = () => {
-		router.push("bulk-payments/payment");
+		push("bulk-payments/payment");
 	};
 
 	// Handle individual checkbox change
@@ -114,7 +114,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 		return filtered;
 	}, [data, search]);
 
-	const columns = React.useMemo<ColumnDef<Transaction>[]>(
+	const columns = useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -249,24 +249,23 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 			</div>
 
 			<div className='overflow-x-auto'>
-				<table className='min-w-full table-fixed border border-[red] shadow-md rounded-lg overflow-hidden'>
+				<table className='min-w-full table-fixed border border-destructive shadow-md rounded-lg overflow-hidden'>
 					<thead className='bg-[#F5F8FA]'>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
-											header.column.columnDef || ""
-										}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef || ""
+											}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-													)}
+													header.column.columnDef.header,
+													header.getContext()
+												)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -315,11 +314,10 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${
-									pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-								}`}
+									}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

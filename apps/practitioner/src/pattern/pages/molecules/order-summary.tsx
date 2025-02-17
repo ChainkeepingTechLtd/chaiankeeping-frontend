@@ -1,4 +1,4 @@
-import InfoButtonIcon from "@/pattern/reports/atoms/info-button-icon";
+import InfoButtonIcon from "@/pattern/settings/atoms/info-button-icon";
 import React from "react";
 
 export const SelectedPlan = [

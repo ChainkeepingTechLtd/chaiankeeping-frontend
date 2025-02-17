@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
-import { Button, Input, SubmitButton } from "@chainkeeping/ui";
+import { Button } from "@chainkeeping/ui";
 import Modal from "../molecules/two-factor-authenticator-modal";
 import CopyIcon from "@/pattern/taxes/atoms/copy-icon";
+import Image from "next/image";
 
 interface ModalComponentProps {
 	isOpen: boolean;
@@ -79,7 +80,7 @@ const TwoFAModal: FC<ModalComponentProps> = ({ isOpen, onClose }) => {
 					</div>
 				</div>
 				<div className='flex flex-col justify-between'>
-					<img src='/QRCode.svg' alt='' />
+					<Image src='/QRCode.svg' width={150} height={150} alt='QR code Image' />
 					<Button variant='default' size='md' className='w-full text-base'>
 						Enable 2FA
 					</Button>

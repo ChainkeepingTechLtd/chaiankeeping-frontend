@@ -1,7 +1,7 @@
 "use client";
 
 import OrderSummaryTemplates from "@/pattern/pages/templates/order-summary-templates";
-import { Sidebar, SidebarProvider } from "@chainkeeping/ui";
+import { SidebarProvider } from "@chainkeeping/ui";
 
 const OrderSummary = () => {
 	return (

@@ -1,7 +1,4 @@
-import React, { FC, ReactElement, useEffect, useState } from "react";
-
-import Appleicon from "@/pattern/auth/atoms/apple-icon";
-import GoogleIcon from "@/pattern/auth/atoms/google-icon";
+import { FC, ReactElement, useEffect, useState } from "react";
 
 interface IProps {
 	onClick: () => void;
@@ -15,13 +12,13 @@ const SocialsLoginWidget: FC<IProps> = ({ onClick, social }) => {
 		if (social) {
 			switch (social) {
 				case "Apple":
-					setSocialIcon(<Appleicon />);
+					setSocialIcon(<span>Apple logo here</span>);
 					break;
 				case "Google":
-					setSocialIcon(<GoogleIcon />);
+					setSocialIcon(<span>Google Logo here</span>);
 					break;
 				default:
-					setSocialIcon(<GoogleIcon />);
+					setSocialIcon(<span>Google Logo here</span>);
 			}
 		}
 	}, []);

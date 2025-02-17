@@ -11,7 +11,8 @@
     "prebuild": "rm -rf dist",
     "build:ci": "rollup -c --silent",
     "lint": "eslint \"**/**/*.ts*\"",
-    "build:types": "tsc --project tsconfig.types.json"
+    "build:types": "tsc --project tsconfig.types.json",
+    "pre-commit": "lint-staged"
   },
   "devDependencies": {
     "@chainkeeping/eslint-config": "workspace:*",
@@ -28,6 +29,7 @@
     "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
+    "lint-staged": "^15.4.3",
     "tsup": "^8.3.5",
     "typescript": "5.5.4"
   },

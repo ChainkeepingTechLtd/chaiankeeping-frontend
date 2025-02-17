@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@chainkeeping/ui";
-import NoAccountIcon from "@/pattern/individual/atoms/no-account-icon";
 
-import { transactionData } from "../molecules/transaction-data";
 import GoBack from "@/pattern/clients/atoms/go-back";
 import AssetsHoldingsTable from "../organisms/assets-holdings-table";
 import { AssetsHoldingData } from "../molecules/assets-holdings-data";
@@ -39,7 +37,8 @@ const AssetsHoldingsSection = () => {
 				</div>
 			) : (
 				<div className='flex flex-col h-full justify-center items-center mt-40'>
-					<NoAccountIcon />
+					{/* <NoAccountIcon /> */}
+					<span>No Account Icon</span>
 					<p className='text-sm font-bold text-[#202B3C] mt-6'>
 						No transaction yet
 					</p>
