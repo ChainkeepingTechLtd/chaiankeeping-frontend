@@ -5,7 +5,7 @@ import { IndividualSignupTemp } from '@/pattern/auth/templates/individual-signup
 import { PractitionersSignupTemp } from '@/pattern/auth/templates/practitioners-signup-temp'
 import { useParams } from 'next/navigation'
 
-const CompanySignUpPage = () => {
+const SignUpPage = () => {
     const params = useParams<{ slug: "" | "personal" | "company" | "practitioners" }>()
 
     const renderSignupPersona = () => {
@@ -36,4 +36,4 @@ const CompanySignUpPage = () => {
     )
 }
 
-export default CompanySignUpPage
+export default SignUpPage

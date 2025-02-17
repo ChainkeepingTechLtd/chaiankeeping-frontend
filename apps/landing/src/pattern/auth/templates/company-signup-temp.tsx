@@ -118,4 +118,3 @@ export const CompanySignupTemp = () => {
         </div>
     )
 }
-
