@@ -1,25 +1,39 @@
 'use client'
 
 import { CompanySignupTemp } from '@/pattern/auth/templates/company-signup-temp'
-import { useParams, useSearchParams } from 'next/navigation'
+import { IndividualSignupTemp } from '@/pattern/auth/templates/individual-signup-temp'
+import { PractitionersSignupTemp } from '@/pattern/auth/templates/practitioners-signup-temp'
+import { useParams } from 'next/navigation'
 
-const CompanySignUpPage = () => {
-    const searchParams = useSearchParams()
-    const params = useParams<{ slug: "" | "personal" | "company" | "practitioners" }>
+const SignUpPage = () => {
+    const params = useParams<{ slug: "" | "personal" | "company" | "practitioners" }>()
 
-    const isAdditionalInfo = searchParams.get('additional-info')
+    const renderSignupPersona = () => {
+        switch (params.slug.toLocaleLowerCase()) {
+            case "personal":
+                return (
+                    <IndividualSignupTemp />
+                );
+            case "company":
+                return (
+                    <CompanySignupTemp />
+                );
+            case "practitioners":
+                return (
+                    <PractitionersSignupTemp />
+                );
+            default:
+                return (
+                    <IndividualSignupTemp />
+                );
+        }
+    };
 
     return (
         <>
-            {/* <Hidden isVisible={!isAdditionalInfo} >
-                <CreateAccountTemp />
-            </Hidden>
-            <Hidden isVisible={!!isAdditionalInfo} >
-                <SignUpInformationTemp />
-            </Hidden> */}
-            <CompanySignupTemp />
+            {renderSignupPersona()}
         </>
     )
 }
 
-export default CompanySignUpPage
+export default SignUpPage

@@ -15,8 +15,9 @@ import { useRouter } from "next/navigation"
 import { CompanySignupFormData, defaultCompanyFormData } from "@/pattern/schema/auth-schema"
 import { LoginInfoForm } from "../organisms/login-info-form"
 import { BusinessInfoForm } from "../organisms/business-info-form"
+import PractitionersCompetenceTestNotificationWidget from "../organisms/practitioners-competence-test-notificatioin-widget"
 
-export const CompanySignupTemp = () => {
+export const PractitionersSignupTemp = () => {
     const { createSearchParams } = useCreateSearchQuery();
 
     const { push } = useRouter();
@@ -113,8 +114,10 @@ export const CompanySignupTemp = () => {
                 <BrandLogo />
             </Link>
             {step === 1 && <LoginInfoForm onSubmit={handleNext} defaultValues={formData} />}
-            {step === 2 && <BusinessInfoForm onSubmit={handleNext} onBack={handleBack} defaultValues={formData} step={2} totalSteps={3} />}
-            {step === 3 && <CompanyContactInfoForm onSubmit={handleSubmit} isLoading={isLoading} onBack={handleBack} defaultValues={formData} step={3} totalSteps={3} />}
+            {step === 2 && <PractitionersCompetenceTestNotificationWidget onSubmit={handleNext} onBack={handleBack} />}
+            {step === 3 && <BusinessInfoForm onSubmit={handleNext} onBack={handleBack} defaultValues={formData} step={1} totalSteps={2} />}
+            {step === 4 && <CompanyContactInfoForm onSubmit={handleSubmit} isLoading={isLoading} onBack={handleBack} defaultValues={formData} step={2} totalSteps={2} />}
         </div>
     )
 }
+

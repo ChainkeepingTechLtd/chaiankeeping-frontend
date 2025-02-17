@@ -4,28 +4,27 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { APP_ROUTES } from "@/lib/routes"
 import { BrandLogo } from "@chainkeeping/ui"
-import { CompanyContactInfoForm } from "../organisms/company-contact-info-form"
 import { useCreateSearchQuery } from "@/lib/hooks/use-create-search-query"
 import { show } from '@ebay/nice-modal-react'
 import { NetworkConnectionErrorModal } from "@/pattern/common/organisms/network-connection-error-modal"
 import { NETWORK_ERROR_MESSAGE } from "@/lib/constants"
-import { useRegisterCompanyMutation } from "@/redux/services/auth/register-company.api-slice"
 import { toast } from 'sonner'
 import { useRouter } from "next/navigation"
-import { CompanySignupFormData, defaultCompanyFormData } from "@/pattern/schema/auth-schema"
+import { defaultIndividualFormData, IndividualSignupFormData } from "@/pattern/schema/auth-schema"
 import { LoginInfoForm } from "../organisms/login-info-form"
-import { BusinessInfoForm } from "../organisms/business-info-form"
+import { IndividualContactInfoForm } from "../organisms/individual-contact-info-form"
+import { useRegisterIndividualMutation } from "@/redux/services/auth/register-individual.api-slice"
 
-export const CompanySignupTemp = () => {
+export const IndividualSignupTemp = () => {
     const { createSearchParams } = useCreateSearchQuery();
 
     const { push } = useRouter();
 
-    // Register Company API mutation
-    const [registerCompany, { isLoading, isSuccess, isError, error }] = useRegisterCompanyMutation()
+    // Register Individual API mutation
+    const [registerIndividual, { isLoading, isSuccess, isError, error }] = useRegisterIndividualMutation()
 
     const [step, setStep] = useState(1)
-    const [formData, setFormData] = useState<CompanySignupFormData>(defaultCompanyFormData)
+    const [formData, setFormData] = useState<IndividualSignupFormData>(defaultIndividualFormData)
 
     useEffect(() => {
         if (step) {
@@ -36,7 +35,7 @@ export const CompanySignupTemp = () => {
     }, [step])
 
 
-    const handleNext = (data: Partial<CompanySignupFormData>) => {
+    const handleNext = (data: Partial<IndividualSignupFormData>) => {
         setFormData((prev) => ({ ...prev, ...data }))
         setStep((prev) => prev + 1)
         createSearchParams({
@@ -51,24 +50,17 @@ export const CompanySignupTemp = () => {
         });
     }
 
-    const handleSubmit = async (data: Partial<CompanySignupFormData>) => {
-        const { email, businessCategory, businessName, corporateEmail, corporateTin, country, password, phoneNumber, rcNumber, state } = { ...formData, ...data }
-        registerCompany({
+    const handleSubmit = async (data: Partial<IndividualSignupFormData>) => {
+        const { email, firstname, lastname, country, password, phoneNumber, state } = { ...formData, ...data }
+        registerIndividual({
             email: email,
             password: password,
-            phonenumber: `+${phoneNumber}`,
+            firstname: firstname,
+            lastname: lastname,
+            phonenumber: phoneNumber,
             country: country,
             state: state,
-            kyc: {
-                tin: corporateTin
-            },
-            profile: {
-                corporateEmail: corporateEmail,
-                businessName: businessName,
-                rcNumber: rcNumber,
-                businessCategory: businessCategory
-            },
-            userType: "COMPANY"
+            userType: "INDIVIDUAL"
         })
             .unwrap()
             .then(res => {
@@ -113,8 +105,8 @@ export const CompanySignupTemp = () => {
                 <BrandLogo />
             </Link>
             {step === 1 && <LoginInfoForm onSubmit={handleNext} defaultValues={formData} />}
-            {step === 2 && <BusinessInfoForm onSubmit={handleNext} onBack={handleBack} defaultValues={formData} step={2} totalSteps={3} />}
-            {step === 3 && <CompanyContactInfoForm onSubmit={handleSubmit} isLoading={isLoading} onBack={handleBack} defaultValues={formData} step={3} totalSteps={3} />}
+            {step === 2 && <IndividualContactInfoForm onSubmit={handleSubmit} isLoading={isLoading} onBack={handleBack} defaultValues={formData} />}
         </div>
     )
 }
+
