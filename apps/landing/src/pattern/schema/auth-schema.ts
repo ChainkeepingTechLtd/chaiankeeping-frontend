@@ -13,8 +13,13 @@ export const loginInfoSchema = z.object({
 
 export const businessInfoSchema = z.object({
     businessName: z.string().min(2, "Business name must be at least 2 characters"),
-    businessCategory: z.enum(["llc", "plc", "corp"], {
-        errorMap: () => ({ message: "Business category must be one of: llc, plc, corp" }),
+    businessCategory: z.enum([
+        "BUSINESS NAME",
+        "INCORPORATED TRUSTEES",
+        "LIMITED PARTNERSHIP",
+        "LIMITED LIABILITY PARTNERSHIP"
+    ], {
+        errorMap: () => ({ message: "Business category must be one of: BUSINESS NAME, INCORPORATED TRUSTEES, LIMITED PARTNERSHIP or LIMITED LIABILITY PARTNERSHIP" }),
     }),
     rcNumber: z
         .string()
@@ -28,22 +33,32 @@ export const businessInfoSchema = z.object({
         .regex(/^\d+$/, "Corporate TIN must contain only numbers"),
 })
 
-export const contactInfoSchema = z.object({
+export const companyContactInfoSchema = z.object({
     corporateEmail: z.string().email("Invalid email address"),
     phoneNumber: z.string().min(10, "Phone number must be at least 10 characters"),
     country: z.string().min(2, "Country must be at least 2 characters"),
     state: z.string().min(2, "State must be at least 2 characters"),
 })
+export const contactInfoSchema = z.object({
+    firstname: z.string().min(2, "Your first name should be at least 2 characters"),
+    lastname: z.string().min(2, "Your first name should be at least 2 characters"),
+    phoneNumber: z.string().min(10, "Phone number must be at least 10 characters"),
+    country: z.string().min(2, "Country must be at least 2 characters"),
+    state: z.string().min(2, "State must be at least 2 characters"),
+})
 
-export const formSchema = loginInfoSchema.merge(businessInfoSchema).merge(contactInfoSchema)
+export const companySignupFormSchema = loginInfoSchema.merge(businessInfoSchema).merge(companyContactInfoSchema)
+export const individualSignupFormSchema = loginInfoSchema.merge(contactInfoSchema)
 
-export type FormData = z.infer<typeof formSchema>
+export type LoginFormData = z.infer<typeof loginInfoSchema>
+export type CompanySignupFormData = z.infer<typeof companySignupFormSchema>
+export type IndividualSignupFormData = z.infer<typeof individualSignupFormSchema>
 
-export const defaultFormData: FormData = {
+export const defaultCompanyFormData: CompanySignupFormData = {
     email: "",
     password: "",
     businessName: "",
-    businessCategory: "plc",
+    businessCategory: "BUSINESS NAME",
     rcNumber: "",
     corporateTin: "",
     corporateEmail: "",
@@ -51,18 +66,31 @@ export const defaultFormData: FormData = {
     country: "",
     state: "",
 }
+export const defaultIndividualFormData: IndividualSignupFormData = {
+    email: "",
+    password: "",
+    firstname: "",
+    lastname: "",
+    phoneNumber: "",
+    country: "",
+    state: "",
+}
 
 export const businessCategory = [
     {
-        name: "LLC",
-        value: "llc"
+        name: "BUSINESS NAME",
+        value: "BUSINESS NAME"
     },
     {
-        name: "PLC",
-        value: "plc"
+        name: "INCORPORATED TRUSTEES",
+        value: "INCORPORATED TRUSTEES"
     },
     {
-        name: "CORP",
-        value: "corp"
-    }
+        name: "LIMITED PARTNERSHIP",
+        value: "LIMITED PARTNERSHIP"
+    },
+    {
+        name: "LIMITED LIABILITY PARTNERSHIP",
+        value: "LIMITED LIABILITY PARTNERSHIP"
+    },
 ]

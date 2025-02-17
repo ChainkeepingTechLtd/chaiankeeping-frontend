@@ -1,22 +1,22 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Card, CardContent, CardHeader, CardTitle, Form, FormControl, FormField, FormItem, FormLabel, SubmitButton, Button, FormMessage } from '@chainkeeping/ui'
-import { contactInfoSchema, FormData } from "../../../schema/auth-schema"
+import { companyContactInfoSchema, CompanySignupFormData } from "../../schema/auth-schema"
 import { ChevronLeft } from "lucide-react"
 import EmailInput from "@/pattern/common/molecules/email-input"
 import PhoneNumberInput from "@/pattern/common/molecules/phone-number-input"
 import LocationSelector from "@/pattern/common/organisms/location-selector"
 
 type ContactInfoFormProps = {
-    onSubmit: (data: Partial<FormData>) => void
+    onSubmit: (data: Partial<CompanySignupFormData>) => void
     onBack: () => void
-    defaultValues: Partial<FormData>
+    defaultValues: Partial<CompanySignupFormData>
     isLoading: boolean
 }
 
-export const ContactInfoForm = ({ onSubmit, onBack, defaultValues, isLoading }: ContactInfoFormProps) => {
+export const CompanyContactInfoForm = ({ onSubmit, onBack, defaultValues, isLoading }: ContactInfoFormProps) => {
     const form = useForm({
-        resolver: zodResolver(contactInfoSchema),
+        resolver: zodResolver(companyContactInfoSchema),
         defaultValues: {
             corporateEmail: defaultValues.corporateEmail || "",
             phoneNumber: defaultValues.phoneNumber || "",

@@ -2,9 +2,8 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { loginInfoSchema } from "@/pattern/schema/auth-schema"
+import { LoginFormData, loginInfoSchema } from "@/pattern/schema/auth-schema"
 import { Card, CardContent, CardHeader, CardTitle, Form, FormField, FormItem, FormLabel, SubmitButton, FormMessage, Checkbox, Button } from '@chainkeeping/ui'
-import { FormData } from "../../../schema/auth-schema"
 import EmailInput from "@/pattern/common/molecules/email-input"
 import PasswordInput from "@/pattern/common/molecules/password-input"
 import { APP_ROUTES } from "@/lib/routes"
@@ -13,8 +12,8 @@ import { handleLoginRouting } from "@/lib/utils/handle-login-routing"
 import { useParams } from "next/navigation"
 
 type LoginInfoFormProps = {
-    onSubmit: (data: Partial<FormData>) => void
-    defaultValues: Partial<FormData>
+    onSubmit: (data: Partial<LoginFormData>) => void
+    defaultValues: Partial<LoginFormData>
 }
 
 export const LoginInfoForm = ({ onSubmit, defaultValues }: LoginInfoFormProps) => {

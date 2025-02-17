@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Card, CardContent, CardHeader, CardTitle, Form, FormControl, FormField, FormItem, FormLabel, Button, FormMessage, Input, SelectTrigger, SelectValue, Select, SelectContent, SelectItem } from '@chainkeeping/ui'
-import { businessCategory, businessInfoSchema, FormData } from "../../../schema/auth-schema"
 import { ChevronLeft } from "lucide-react"
+import { businessCategory, businessInfoSchema, CompanySignupFormData } from "@/pattern/schema/auth-schema"
 
 type BusinessInfoFormProps = {
-    onSubmit: (data: Partial<FormData>) => void
+    onSubmit: (data: Partial<CompanySignupFormData>) => void
     onBack: () => void
-    defaultValues: Partial<FormData>
+    defaultValues: Partial<CompanySignupFormData>
 }
 
 export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessInfoFormProps) => {
@@ -15,7 +15,7 @@ export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessIn
         resolver: zodResolver(businessInfoSchema),
         defaultValues: {
             businessName: defaultValues.businessName || "",
-            businessCategory: defaultValues.businessCategory || "plc",
+            businessCategory: defaultValues.businessCategory || "BUSINESS NAME",
             rcNumber: defaultValues.rcNumber || "",
             corporateTin: defaultValues.corporateTin || "",
         },
