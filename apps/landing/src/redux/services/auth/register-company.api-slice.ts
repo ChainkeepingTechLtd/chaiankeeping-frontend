@@ -18,7 +18,7 @@ interface IPayload {
         rcNumber: string,
         businessCategory: string
     },
-    userType: "COMPANY"
+    userType: "COMPANY" | "PRACTITIONER"
 }
 
 interface IResponse {

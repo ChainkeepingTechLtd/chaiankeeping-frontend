@@ -69,7 +69,7 @@ export const PractitionersSignupTemp = () => {
                 rcNumber: rcNumber,
                 businessCategory: businessCategory
             },
-            userType: "COMPANY"
+            userType: "PRACTITIONER"
         })
             .unwrap()
             .then(res => {
