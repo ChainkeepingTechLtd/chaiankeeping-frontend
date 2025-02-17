@@ -46,7 +46,7 @@ const LocationSelector = ({
     }
 
     return (
-        <div className={cn("w-full flex gap-2 font-dmsans", className)}>
+        <div className={cn("w-full flex flex-col gap-4 font-dmsans", className)}>
             {/* Country Selector */}
             <Popover open={openCountryDropdown} onOpenChange={setOpenCountryDropdown}>
                 <PopoverTrigger asChild>
@@ -68,7 +68,7 @@ const LocationSelector = ({
                         <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent align="start" className="w-full p-0 overflow-y-hidden">
+                <PopoverContent align="start" className="!w-full p-0 overflow-y-hidden">
                     <Command className='w-full'>
                         <CommandInput placeholder="Search country..." />
                         <CommandList className='overflow-y-hidden'>
@@ -109,58 +109,61 @@ const LocationSelector = ({
 
             {/* State Selector - Only shown if selected country has states */}
             {availableStates.length > 0 && (
-                <Popover open={openStateDropdown} onOpenChange={setOpenStateDropdown}>
-                    <PopoverTrigger asChild>
-                        <Button
-                            variant="primaryOutline"
-                            role="combobox"
-                            aria-expanded={openStateDropdown}
-                            disabled={!selectedCountry}
-                            className="w-full h-12 justify-between !font-normal font-dmsans text-base text-foreground px-3 hover:ring-0 border-[hsla(213,27%,84%,1)] focus:bg-transparent hover:bg-transparent shadow-none"
-                        >
-                            {selectedState ? (
-                                <span>{selectedState.name}</span>
-                            ) : (
-                                <span>Select State...</span>
-                            )}
-                            <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent align="start" className="w-full p-0 overflow-y-hidden">
-                        <Command className='w-full'>
-                            <CommandInput placeholder="Search state..." />
-                            <CommandList className='w-full overflow-y-hidden'>
-                                <CommandEmpty>No state found.</CommandEmpty>
-                                <CommandGroup>
-                                    <ScrollArea className="h-[200px]">
-                                        {availableStates.map((state) => (
-                                            <CommandItem
-                                                key={state.id}
-                                                value={state.name}
-                                                onSelect={() => {
-                                                    handleStateSelect(state)
-                                                    setOpenStateDropdown(false)
-                                                }}
-                                                className="flex cursor-pointer items-center justify-between text-sm"
-                                            >
-                                                <span>{state.name}</span>
-                                                <Check
-                                                    className={cn(
-                                                        'h-4 w-4',
-                                                        selectedState?.id === state.id
-                                                            ? 'opacity-100'
-                                                            : 'opacity-0',
-                                                    )}
-                                                />
-                                            </CommandItem>
-                                        ))}
-                                        <ScrollBar orientation="vertical" />
-                                    </ScrollArea>
-                                </CommandGroup>
-                            </CommandList>
-                        </Command>
-                    </PopoverContent>
-                </Popover>
+                <div className="w-full flex flex-col gap-2">
+                    <label>State</label>
+                    <Popover open={openStateDropdown} onOpenChange={setOpenStateDropdown}>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="primaryOutline"
+                                role="combobox"
+                                aria-expanded={openStateDropdown}
+                                disabled={!selectedCountry}
+                                className="w-full h-12 justify-between !font-normal font-dmsans text-base text-foreground px-3 hover:ring-0 border-[hsla(213,27%,84%,1)] focus:bg-transparent hover:bg-transparent shadow-none"
+                            >
+                                {selectedState ? (
+                                    <span>{selectedState.name}</span>
+                                ) : (
+                                    <span>Select State...</span>
+                                )}
+                                <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent align="start" className="!w-full p-0 overflow-y-hidden">
+                            <Command className='w-full'>
+                                <CommandInput placeholder="Search state..." />
+                                <CommandList className='w-full overflow-y-hidden'>
+                                    <CommandEmpty>No state found.</CommandEmpty>
+                                    <CommandGroup>
+                                        <ScrollArea className="h-[200px]">
+                                            {availableStates.map((state) => (
+                                                <CommandItem
+                                                    key={state.id}
+                                                    value={state.name}
+                                                    onSelect={() => {
+                                                        handleStateSelect(state)
+                                                        setOpenStateDropdown(false)
+                                                    }}
+                                                    className="flex cursor-pointer items-center justify-between text-sm"
+                                                >
+                                                    <span>{state.name}</span>
+                                                    <Check
+                                                        className={cn(
+                                                            'h-4 w-4',
+                                                            selectedState?.id === state.id
+                                                                ? 'opacity-100'
+                                                                : 'opacity-0',
+                                                        )}
+                                                    />
+                                                </CommandItem>
+                                            ))}
+                                            <ScrollBar orientation="vertical" />
+                                        </ScrollArea>
+                                    </CommandGroup>
+                                </CommandList>
+                            </Command>
+                        </PopoverContent>
+                    </Popover>
+                </div>
             )}
         </div>
     )
