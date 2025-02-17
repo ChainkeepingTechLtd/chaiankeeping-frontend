@@ -8,9 +8,11 @@ type BusinessInfoFormProps = {
     onSubmit: (data: Partial<CompanySignupFormData>) => void
     onBack: () => void
     defaultValues: Partial<CompanySignupFormData>
+    step: number
+    totalSteps: number
 }
 
-export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessInfoFormProps) => {
+export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues, step, totalSteps }: BusinessInfoFormProps) => {
     const form = useForm({
         resolver: zodResolver(businessInfoSchema),
         defaultValues: {
@@ -30,7 +32,7 @@ export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessIn
                     </span>
                     Additional information
                 </CardTitle>
-                <span className="text-[hsla(216,30%,18%,1)] text-base font-dmsans">2 of 3</span>
+                <span className="text-[hsla(216,30%,18%,1)] text-base font-dmsans">{step} of {totalSteps}</span>
             </CardHeader>
             <CardContent className="w-full h-full flex flex-col gap-y-6 !mt-0">
                 <Form {...form}>
@@ -49,6 +51,7 @@ export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessIn
                                 </FormItem>
                             )}
                         />
+
                         {/* Business Category */}
                         <FormField
                             control={form.control}
@@ -74,6 +77,7 @@ export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessIn
                                 </FormItem>
                             )}
                         />
+
                         {/* RC number */}
                         <FormField
                             control={form.control}
@@ -82,12 +86,13 @@ export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessIn
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>RC Number</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input placeholder="88934894" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
+
                         {/* Coporate TIN */}
                         <FormField
                             control={form.control}
@@ -96,7 +101,7 @@ export const BusinessInfoForm = ({ onSubmit, onBack, defaultValues }: BusinessIn
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>Corporate TIN</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input placeholder="3484983944" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

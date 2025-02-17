@@ -1,13 +1,14 @@
 'use client'
 
 import { CompanySignupTemp } from '@/pattern/auth/templates/company-signup-temp'
-import { useParams } from 'next/navigation'
 import { IndividualSignupTemp } from '@/pattern/auth/templates/individual-signup-temp'
+import { PractitionersSignupTemp } from '@/pattern/auth/templates/practitioners-signup-temp'
+import { useParams } from 'next/navigation'
 
 const CompanySignUpPage = () => {
     const params = useParams<{ slug: "" | "personal" | "company" | "practitioners" }>()
 
-    const getSignupPersona = () => {
+    const renderSignupPersona = () => {
         switch (params.slug.toLocaleLowerCase()) {
             case "personal":
                 return (
@@ -19,7 +20,7 @@ const CompanySignUpPage = () => {
                 );
             case "practitioners":
                 return (
-                    <CompanySignupTemp />
+                    <PractitionersSignupTemp />
                 );
             default:
                 return (
@@ -30,7 +31,7 @@ const CompanySignUpPage = () => {
 
     return (
         <>
-            {getSignupPersona()}
+            {renderSignupPersona()}
         </>
     )
 }

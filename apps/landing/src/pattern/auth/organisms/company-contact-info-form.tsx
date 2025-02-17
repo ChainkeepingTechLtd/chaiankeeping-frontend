@@ -12,9 +12,11 @@ type ContactInfoFormProps = {
     onBack: () => void
     defaultValues: Partial<CompanySignupFormData>
     isLoading: boolean
+    step: number
+    totalSteps: number
 }
 
-export const CompanyContactInfoForm = ({ onSubmit, onBack, defaultValues, isLoading }: ContactInfoFormProps) => {
+export const CompanyContactInfoForm = ({ onSubmit, onBack, defaultValues, isLoading, step, totalSteps }: ContactInfoFormProps) => {
     const form = useForm({
         resolver: zodResolver(companyContactInfoSchema),
         defaultValues: {
@@ -31,7 +33,7 @@ export const CompanyContactInfoForm = ({ onSubmit, onBack, defaultValues, isLoad
                 <CardTitle className="flex items-center text-base font-bold font-sen">
                     <span className="mr-[8px] cursor-pointer" onClick={onBack}><ChevronLeft className="text-secondary" /></span>
                     Additional information</CardTitle>
-                <span className="text-[hsla(216,30%,18%,1)] text-base font-dmsans">3 of 3</span>
+                <span className="text-[hsla(216,30%,18%,1)] text-base font-dmsans">{step} of {totalSteps}</span>
             </CardHeader>
             <CardContent className="w-full h-full flex flex-col gap-y-6 !mt-0">
                 <Form {...form}>
