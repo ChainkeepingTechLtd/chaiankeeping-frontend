@@ -113,9 +113,8 @@ export const CompanySignupTemp = () => {
                 <BrandLogo />
             </Link>
             {step === 1 && <LoginInfoForm onSubmit={handleNext} defaultValues={formData} />}
-            {step === 2 && <BusinessInfoForm onSubmit={handleNext} onBack={handleBack} defaultValues={formData} />}
-            {step === 3 && <CompanyContactInfoForm onSubmit={handleSubmit} isLoading={isLoading} onBack={handleBack} defaultValues={formData} />}
+            {step === 2 && <BusinessInfoForm onSubmit={handleNext} onBack={handleBack} defaultValues={formData} step={2} totalSteps={3} />}
+            {step === 3 && <CompanyContactInfoForm onSubmit={handleSubmit} isLoading={isLoading} onBack={handleBack} defaultValues={formData} step={3} totalSteps={3} />}
         </div>
     )
 }
-
