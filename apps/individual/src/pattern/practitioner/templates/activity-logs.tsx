@@ -108,7 +108,7 @@ const ActivityLogs = () => {
 			{/* Main Content */}
 			<div className='flex flex-col  w-full '>
 				<div className='flex justify-between items-center mb-5'>
-					<div className='gap-2 flex items-center text-sm'>
+					<div className='gap-2 flex items-center text-sm max-sm:text-xs'>
 						<p className='text-grey-300'>Practitioner</p>
 						<ArrowIcon />
 						<p className='text-grey-300'>P2B</p>
@@ -120,7 +120,7 @@ const ActivityLogs = () => {
 					{practitionersData.map((practitioner) => (
 						<div
 							key={practitioner.id}
-							className='bg-[#EBEFF3]  flex w-full flex-col rounded-lg gap-4 p-8'
+							className='bg-[#EBEFF3]  flex w-full flex-col rounded-lg gap-4 p-6 max-sm:p-4'
 						>
 							<div className='flex w-full justify-between md:gap-4 max-sm:flex-col'>
 								<div className='flex-1'>
@@ -141,7 +141,7 @@ const ActivityLogs = () => {
 									Chat
 								</Button>
 							</div>
-							<div className='flex gap-2  text-sm text-grey-600'>
+							<div className='flex flex-wrap gap-2  text-sm text-grey-600'>
 								<div className='rounded-md bg-[#CBD5E1]  px-2 py-1'>
 									<p>Financial reporting</p>
 								</div>
@@ -226,7 +226,7 @@ const ActivityLogs = () => {
 
 					<div className='w-full'>
 						<h3 className='text-xl font-bold mb-4'>Activity Log</h3>
-						<div className='my-5 flex gap-3 text-sm text-grey-600 transition-all ease-in-out duration-300'>
+						<div className='my-5 flex flex-wrap gap-3 text-sm text-grey-600 transition-all ease-in-out duration-300'>
 							<div
 								className={`rounded-full py-2 px-4 cursor-pointer ${
 									activeFilter === "Last 7 days"

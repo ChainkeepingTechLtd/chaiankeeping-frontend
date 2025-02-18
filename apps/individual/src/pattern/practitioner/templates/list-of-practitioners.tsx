@@ -90,8 +90,8 @@ const ListOfPractitioners = () => {
 				}`}
 			>
 				<div className='flex justify-between items-center mb-5'>
-					<div className='gap-2 flex items-center'>
-						<p className='text-grey-300 text-sm'>Practitioner</p>
+					<div className='gap-2 flex items-center text-sm max-sm:text-xs'>
+						<p className='text-grey-300 '>Practitioner</p>
 						<ArrowIcon />
 						<p>P2B</p>
 					</div>
@@ -106,7 +106,7 @@ const ListOfPractitioners = () => {
 					</Button>
 				</div>
 				<div
-					className={`grid 2xl:grid-cols-4 w-full   gap-4 lg:grid-cols-3 max-sm:grid-cols-1 max-sm:px-4 ${
+					className={`grid 2xl:grid-cols-4 w-full   gap-4 lg:grid-cols-3 max-sm:grid-cols-1 max-sm:px-0 ${
 						isFilterOpen ? "2xl:grid-cols-3 lg-grid-cols-2" : ""
 					}`}
 				>
@@ -116,8 +116,8 @@ const ListOfPractitioners = () => {
 							className='bg-white shadow-lg rounded-lg  p-4'
 						>
 							<div className='flex gap-4 '>
-								<div className='h-[52px] w-[52px] relative'>
-									<div className=' w-[48px] h-[48px] rounded-md bg-[#F5F8FA] flex items-center justify-center font-medium text-grey-600'>
+								<div className='h-[46px] w-[46px] relative'>
+									<div className=' w-[44px] h-[44px] rounded-md bg-[#F5F8FA] flex items-center justify-center font-medium text-grey-600'>
 										{practitioner.avatar}
 									</div>
 									<div
@@ -130,7 +130,7 @@ const ListOfPractitioners = () => {
 								</div>
 
 								<div className='flex-1'>
-									<h3 className='font-bold text-lg '>{practitioner.name}</h3>
+									<h3 className='font-bold text-base '>{practitioner.name}</h3>
 									<p className=' text-sm'>{practitioner.description}</p>
 								</div>
 							</div>
