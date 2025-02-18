@@ -91,7 +91,7 @@ const ResendResetEmailTemp = () => {
 										<FormControl>
 											<Input
 												id='code'
-												placeholder='Enter verification code'
+												placeholder='enter verification code'
 												type='text'
 												autoComplete='code'
 												{...field}

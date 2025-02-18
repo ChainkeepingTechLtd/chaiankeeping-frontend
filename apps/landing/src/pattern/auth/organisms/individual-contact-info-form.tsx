@@ -46,7 +46,7 @@ export const IndividualContactInfoForm = ({ onSubmit, onBack, defaultValues, isL
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>First Name</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input placeholder="enter your first name" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -61,7 +61,7 @@ export const IndividualContactInfoForm = ({ onSubmit, onBack, defaultValues, isL
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>Last Name</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input placeholder="enter your last name" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -77,7 +77,7 @@ export const IndividualContactInfoForm = ({ onSubmit, onBack, defaultValues, isL
                                     <FormLabel>Phone Number</FormLabel>
                                     <PhoneNumberInput
                                         id="phoneNumber"
-                                        placeholder="At least 8 characters long"
+                                        placeholder="enter your phone number"
                                         autoComplete="phoneNumber"
                                         name="phoneNumber"
                                         error={form.formState.errors['phoneNumber']}

@@ -46,7 +46,7 @@ export const PractitionerBusinessInfoForm = ({ onSubmit, onBack, defaultValues, 
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>Business Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Enter your business name" {...field} />
+                                        <Input placeholder="enter your business name" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

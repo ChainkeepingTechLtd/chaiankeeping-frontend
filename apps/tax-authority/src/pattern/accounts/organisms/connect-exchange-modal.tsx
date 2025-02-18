@@ -52,13 +52,13 @@ const ConnectExchangeModal: FC<ModalComponentProps> = ({ isOpen, onClose }) => {
 					<label htmlFor='api_key' className='text-sm'>
 						API Key
 					</label>
-					<Input id='api_key' type='text' placeholder='Enter API key' />
+					<Input id='api_key' type='text' placeholder='enter API key' />
 				</div>
 				<div className='space-y-2 w-full '>
 					<label htmlFor='api_key' className='text-sm'>
 						Secret Key
 					</label>
-					<Input id='api_key' type='text' placeholder='Enter secret key' />
+					<Input id='api_key' type='text' placeholder='enter secret key' />
 				</div>
 				<div className='space-y-2 w-full '>
 					<label htmlFor='api_key' className='text-sm'>

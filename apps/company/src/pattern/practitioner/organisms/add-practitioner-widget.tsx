@@ -51,7 +51,7 @@ const AddPractitionerWidget = () => {
 						<Input
 							id='text'
 							type='text'
-							placeholder='Enter email address or chainkeeping ID'
+							placeholder='enter email address or chainkeeping ID'
 						/>
 					</div>
 					<Button
