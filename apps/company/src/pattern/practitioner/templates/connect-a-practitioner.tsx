@@ -2,13 +2,14 @@ import React from "react";
 import { Button, Input } from "@chainkeeping/ui";
 import { useRouter } from "next/navigation";
 import SmsIcon from "../atoms/sms-icon";
+import Image from "next/image";
 
 const ConnectAPractioner = () => {
-	const router = useRouter();
+	const { push } = useRouter();
 
 	// Function to handle login click
 	const handleConnect = () => {
-		router.push("/practitioner/practitioners");
+		push("/practitioner/practitioners");
 	};
 
 	return (
@@ -30,7 +31,7 @@ const ConnectAPractioner = () => {
 							Connect to a Practitioner
 						</Button>
 					</div>
-					<img
+					<Image
 						src='/connect.gif'
 						className='w-[189px] h-[189px] max-sm:w-full max-sm:h-full'
 						alt='connect-to-practioner'
@@ -40,7 +41,7 @@ const ConnectAPractioner = () => {
 					<div className='flex flex-col gap-4'>
 						<h6 className='font-bold '>Already have a practitioner?</h6>
 						<p className='text-grey-600 sm:w-[400px]'>
-							Well, that’s not an issue, if they are already on Chainkeeping,
+							Well, that's not an issue, if they are already on Chainkeeping,
 							provide their user ID or else, their email address to invite them
 							to manage your account.
 						</p>

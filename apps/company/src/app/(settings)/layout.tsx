@@ -1,25 +1,29 @@
 "use client";
 
 import { Topbar } from "@/pattern/common/templates/topbar";
-import PageWrapper from "@/pattern/settings/templates/settings-sidebar-wrapper";
+import { AppSidebar } from "@/pattern/settings/organisms/app-sidebar";
 import { SidebarProvider } from "@chainkeeping/ui";
 
-export default function MainLayout({
+const SettingsLayout = ({
 	children,
 }: {
-	children: React.ReactNode;
-}) {
+	children: any;
+}) => {
 	return (
-		<div className='relative bg-accent w-screen min-h-screen h-auto flex flex-col font-dmsans'>
-			{/* Topbar */}
-			<Topbar />
-
-			{/* Main Content Wrapper */}
-			<div className='flex w-full flex-1 overflow-hidden'>
-				<SidebarProvider>
-					<PageWrapper>{children}</PageWrapper>
-				</SidebarProvider>
+		<SidebarProvider
+		>
+			<AppSidebar />
+			<div className='relative bg-accent w-screen min-h-screen h-fit flex flex-col font-dmsans'>
+				<div className="h-full flex flex-col flex-1 overflow-hidden">
+					<Topbar />
+					<main
+						className='bg-accent w-full pl-8 flex items-center justify-center ml-[--sidebar-width] mt-[--topbar-height] pt-8 mb-[88px] overflow-auto'
+					>{children}
+					</main>
+				</div>
 			</div>
-		</div>
+		</SidebarProvider>
 	);
 }
+
+export default SettingsLayout

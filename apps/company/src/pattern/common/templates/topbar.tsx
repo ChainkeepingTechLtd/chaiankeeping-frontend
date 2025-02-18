@@ -1,3 +1,6 @@
+"use client";
+
+import React, { FC } from 'react';
 import Link from "next/link";
 import { APP_ROUTES } from "@/lib/routes";
 import { BrandLogo, NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@chainkeeping/ui";
@@ -37,7 +40,7 @@ const navigation: INavigation[] = [
     },
 ];
 
-export const Topbar = () => {
+export const Topbar: FC = () => {
     return (
         <div className='bg-white fixed inset-0 w-full h-[--topbar-height] flex items-center justify-between px-0 md:px-8 border-b z-[25]'>
             <div className='relative h-[40px] w-full flex items-center justify-between'>

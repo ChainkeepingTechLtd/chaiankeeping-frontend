@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ClientsIcon from "../atoms/clients-icon";
 import ReportIcons from "../atoms/reports-icon";
-import { Button } from "@chainkeeping/ui";
+import { Button, cn } from "@chainkeeping/ui";
 import StarIcon from "../atoms/star-icon";
 import HalfStarIcon from "../atoms/half-star-icon";
 import EmptyStarIcon from "../atoms/empty-star-icon";

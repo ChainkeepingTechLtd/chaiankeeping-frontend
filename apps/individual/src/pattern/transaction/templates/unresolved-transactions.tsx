@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Button } from "@chainkeeping/ui";
-import TransactionCard from "../organisms/transaction-card";
 import NoAccountIcon from "@/pattern/individual/atoms/no-account-icon";
-import TransactionTable from "../organisms/transaction-table";
 
-import { transactionData } from "../molecules/transaction-data";
 import UnresolvedTransactionsTable from "../organisms/unresolved-transactions-table";
 import { UnresolvedTransactionData } from "../molecules/unresolved-transactions-data";
 import GoBack from "../atoms/go-back";

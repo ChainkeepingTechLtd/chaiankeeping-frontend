@@ -139,10 +139,7 @@ const OrderConfiguration = () => {
 				<div className='flex max-sm:flex-col items-start w-full gap-6'>
 					{/* Practitioner Details */}
 					{practitionersData.map((practitioner, idx) => (
-						<div
-							key={idx}
-							className='bg-white  shadow-lg rounded-lg p-6'
-						>
+						<div key={idx} className='bg-white  shadow-lg rounded-lg p-6'>
 							<h3 className='font-bold text-lg'>{practitioner.name}</h3>
 							<p className='text-sm'>{practitioner.description}</p>
 							<div className='flex gap-3 my-5'>
@@ -180,7 +177,9 @@ const OrderConfiguration = () => {
 														? `(NGN ${service.pricePerYear.toLocaleString()} /year)`
 														: service.pricePerSession
 															? `(NGN ${service.pricePerSession.toLocaleString()} /session)`
-															: `(NGN ${service.pricePerReport.toLocaleString()} /report)`}
+															: service.pricePerReport
+																? `(NGN ${service.pricePerReport.toLocaleString()} /report)`
+																: `(Price not available)`}
 												</p>
 											</div>
 											<Button

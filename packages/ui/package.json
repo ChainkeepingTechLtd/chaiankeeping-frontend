@@ -11,7 +11,8 @@
     "prebuild": "rm -rf dist",
     "build:ci": "rollup -c --silent",
     "lint": "eslint \"**/**/*.ts*\"",
-    "build:types": "tsc --project tsconfig.types.json"
+    "build:types": "tsc --project tsconfig.types.json",
+    "pre-commit": "lint-staged"
   },
   "devDependencies": {
     "@chainkeeping/eslint-config": "workspace:*",
@@ -25,9 +26,10 @@
     "@types/node": "^20",
     "@types/react": "^18.3.18",
     "@types/react-day-picker": "^5.3.0",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
+    "lint-staged": "^15.4.3",
     "tsup": "^8.3.5",
     "typescript": "5.5.4"
   },
@@ -47,7 +49,7 @@
     "@radix-ui/react-hover-card": "^1.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-menubar": "^1.1.2",
-    "@radix-ui/react-navigation-menu": "^1.2.2",
+    "@radix-ui/react-navigation-menu": "^1.2.4",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-radio-group": "^1.2.1",
@@ -82,7 +84,7 @@
     "tailwindcss": "^3.4.15",
     "tailwindcss-animate": "^1.0.7",
     "tslib": "^2.8.1",
-    "vaul": "^1.1.1",
+    "vaul": "^1.1.2",
     "zod": "^3.23.8"
   },
   "files": [

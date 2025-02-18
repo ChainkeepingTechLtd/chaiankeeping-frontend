@@ -12,7 +12,7 @@ import SortIcon from "../atoms/sort-icon";
 
 import PrevIcon from "../atoms/prev-icon";
 import NextIcon from "../atoms/next-icon";
-import { Button, Checkbox } from "@chainkeeping/ui";
+import { Button, Checkbox, cn } from "@chainkeeping/ui";
 import SearchInput from "../molecules/search-input";
 import FileNameIcon from "../atoms/file-name-icon";
 import Downloadicon from "../atoms/download-icon";
@@ -114,7 +114,8 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 		return filtered;
 	}, [data, search]);
 
-	const columns = React.useMemo(
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const columns: any = React.useMemo(
 		() => [
 			{
 				id: "select",
@@ -126,11 +127,11 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
-				cell: ({ row }) => (
+				cell: (row: { id: string }) => (
 					<Checkbox
 						checked={!!selectedRows[row.id]}
 						onCheckedChange={(checked) => handleCheckboxChange(row.id, checked)}
@@ -193,7 +194,6 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 				),
 				headerClassName: "text-end item-end justify-end", // Right-align the header
 			},
-
 			{
 				id: "actions",
 				cell: () => (
@@ -204,8 +204,8 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 					</div>
 				),
 			},
-		],
-		[selectedRows]
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		], [selectedRows]
 	);
 
 	const table = useReactTable({
@@ -249,24 +249,23 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 			</div>
 
 			<div className='overflow-x-auto'>
-				<table className='min-w-full table-fixed border border-[red] shadow-md rounded-lg overflow-hidden'>
+				<table className='min-w-full table-fixed border border-destructive shadow-md rounded-lg overflow-hidden'>
 					<thead className='bg-[#F5F8FA]'>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>
-								{headerGroup.headers.map((header) => (
+								{headerGroup.headers.map((header, idx) => (
 									<th
-										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
-											header.column.columnDef.headerClassName || ""
-										}`}
+										key={idx}
+										className={cn("text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold")}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
-												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-													)}
+												: (flexRender(
+													header.column.columnDef.header,
+													header.getContext()
+												) as React.ReactNode)
+											}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -286,7 +285,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 										key={cell.id}
 										className='px-6 py-4 border-b border-gray-300 text-sm text-grey-600'
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										{flexRender(cell.column.columnDef.cell, cell.getContext()) as React.ReactNode}
 									</td>
 								))}
 							</tr>
@@ -315,11 +314,10 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${
-									pageIndex === table.getState().pagination.pageIndex
-										? "bg-[#D82E2E] text-white"
-										: "bg-transparent text-gray-800"
-								}`}
+								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
+									? "bg-destructive text-white"
+									: "bg-transparent text-gray-800"
+									}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

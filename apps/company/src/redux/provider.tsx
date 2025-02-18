@@ -8,7 +8,7 @@ import { Toaster } from 'sonner'
 import NiceModal from '@ebay/nice-modal-react'
 import { TooltipProvider } from '@chainkeeping/ui'
 
-export const Providers = ({ children }: { children: ReactNode }) => {
+export const Providers = ({ children }: { children: ReactNode}) => {
     return (
         <>
             <Provider store={store}>

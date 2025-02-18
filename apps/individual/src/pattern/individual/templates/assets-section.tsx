@@ -12,10 +12,10 @@ import { Button } from "@chainkeeping/ui";
 const AssetsSection = () => {
 	const [hasAccount, setHasAccount] = useState<boolean>(true);
 
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleAddAccount = () => {
-		router.push("/add-account");
+		push("/add-account");
 	};
 
 	return (

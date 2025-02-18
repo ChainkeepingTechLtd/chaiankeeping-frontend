@@ -1,5 +1,6 @@
 import { APP_ROUTES } from "@/lib/routes";
 import { BrandLogo, Button, Input } from "@chainkeeping/ui";
+import Image from "next/image";
 import Link from "next/link";
 
 import { useRouter } from "next/navigation";
@@ -24,7 +25,7 @@ const VerifySuccessBody = () => {
 					<BrandLogo />
 				</Link>
 				<div className='w-full flex justify-center items-center mb-6'>
-					<img src='/successful.svg' alt='' />
+					<Image src='/successful.svg' width={20} height={20} alt='Success Image' />
 				</div>
 
 				<p className='max-sm:mt-14 font-bold '>Email verified successfully</p>
