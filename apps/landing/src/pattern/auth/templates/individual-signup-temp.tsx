@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { APP_ROUTES } from "@/lib/routes"
 import { BrandLogo } from "@chainkeeping/ui"
-import { useCreateSearchQuery } from "@/lib/hooks/use-create-search-query"
+import { useCreateSearchQuery } from "@/lib/hooks/useCreateSearchQuery"
 import { show } from '@ebay/nice-modal-react'
 import { NetworkConnectionErrorModal } from "@/pattern/common/organisms/network-connection-error-modal"
 import { NETWORK_ERROR_MESSAGE } from "@/lib/constants"
