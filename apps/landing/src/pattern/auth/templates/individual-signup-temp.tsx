@@ -14,8 +14,11 @@ import { defaultIndividualFormData, IndividualSignupFormData } from "@/pattern/s
 import { LoginInfoForm } from "../organisms/login-info-form"
 import { IndividualContactInfoForm } from "../organisms/individual-contact-info-form"
 import { useRegisterIndividualMutation } from "@/redux/services/auth/register-individual.api-slice"
+import { storeRegisteredEmailAddress } from "@/redux/slices/auth.slice"
+import { useDispatch } from "react-redux"
 
 export const IndividualSignupTemp = () => {
+    const dispatch = useDispatch()
     const { createSearchParams } = useCreateSearchQuery();
 
     const { push } = useRouter();
@@ -66,14 +69,15 @@ export const IndividualSignupTemp = () => {
             .then(res => {
                 toast.success('Successful Registration', {
                     description:
-                        'Proceed to Sign In',
+                        'Kindly verify registered email',
                     duration: 5000,
                     cancel: {
                         onClick: () => { },
                         label: 'Close',
                     },
                 })
-                push(`${process.env.NEXT_PUBLIC_COMPANY_APP_URL}`);
+                dispatch(storeRegisteredEmailAddress(res?.data?.email))
+                push(`${APP_ROUTES.verifySignupEmail}?persona=personal`);
             })
             .catch(error => {
                 if (

@@ -15,11 +15,14 @@ import { useRouter } from "next/navigation"
 import { CompanySignupFormData, defaultCompanyFormData } from "@/pattern/schema/auth-schema"
 import { LoginInfoForm } from "../organisms/login-info-form"
 import { BusinessInfoForm } from "../organisms/business-info-form"
+import { useDispatch } from "react-redux"
+import { storeRegisteredEmailAddress } from "@/redux/slices/auth.slice"
 
 export const CompanySignupTemp = () => {
-    const { createSearchParams } = useCreateSearchQuery();
-
+    const dispatch = useDispatch()
     const { push } = useRouter();
+
+    const { createSearchParams } = useCreateSearchQuery();
 
     // Register Company API mutation
     const [registerCompany, { isLoading, isSuccess, isError, error }] = useRegisterCompanyMutation()
@@ -74,14 +77,15 @@ export const CompanySignupTemp = () => {
             .then(res => {
                 toast.success('Successful Registration', {
                     description:
-                        'Proceed to Sign In',
+                        'Kindly verify registered email',
                     duration: 5000,
                     cancel: {
                         onClick: () => { },
                         label: 'Close',
                     },
                 })
-                push(`${process.env.NEXT_PUBLIC_COMPANY_APP_URL}`);
+                dispatch(storeRegisteredEmailAddress(res?.data?.email))
+                push(`${APP_ROUTES.verifySignupEmail}?persona=company`);
             })
             .catch(error => {
                 if (

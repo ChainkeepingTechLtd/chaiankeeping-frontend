@@ -24,7 +24,7 @@ const AccountTypeSelectorTemp: FC<IProps> = ({ pathname }) => {
     }
 
     return (
-        <div className='w-fit flex flex-col items-center gap-y-8 px-[18px] pb-[144px]'>
+        <div className='w-fit flex flex-col items-start md:items-center gap-y-8 px-[18px] pb-[144px]'>
             <Link href={APP_ROUTES.index}>
                 <BrandLogo />
             </Link>

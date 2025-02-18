@@ -1,25 +1,27 @@
-import { baseAPI } from "@/redux/api/base-api";
+import { baseAPI } from "@/redux/api/base-api"
 
 interface IPayload {
     email: string,
     password: string,
-    firstname?: string, // Not required for COMPANY
-    lastname?: string, // Not required for COMPANY
+    firstname: string,
+    lastname: string,
     phonenumber: string,
     country: string,
     state: string,
     kyc: {
-        cacDocument?: string, // Not required for COMPANY
+        cacDocument?: string, // NOT NECCESSARY
         tin: string
     },
     profile: {
+        rcNumber: string,
+        licenseNumber: string,
         corporateEmail: string,
         businessName: string,
-        rcNumber: string,
         businessCategory: string
     },
-    userType: "COMPANY"
+    userType: "PRACTITIONER"
 }
+
 
 interface IResponse {
     error: boolean,
@@ -69,9 +71,9 @@ interface IResponse {
 }
 
 
-const registerCompanyApiSlice = baseAPI.injectEndpoints({
+const registerPractitionerApiSlice = baseAPI.injectEndpoints({
     endpoints: builder => ({
-        registerCompany: builder.mutation<IResponse, IPayload>({
+        registerPractitioner: builder.mutation<IResponse, IPayload>({
             query: DTO => ({
                 url: `auth/register`,
                 method: 'POST',
@@ -82,5 +84,5 @@ const registerCompanyApiSlice = baseAPI.injectEndpoints({
 });
 
 export const {
-    useRegisterCompanyMutation
-} = registerCompanyApiSlice;
+    useRegisterPractitionerMutation
+} = registerPractitionerApiSlice;

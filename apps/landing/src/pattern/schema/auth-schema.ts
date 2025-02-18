@@ -8,7 +8,10 @@ export const loginInfoSchema = z.object({
         .regex(
             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
             "Password must contain at least one letter, one number, and one special character"
-        )
+        ),
+    acceptTerms: z.boolean().refine(value => value === true, {
+        message: "You must accept the terms.",
+    }),
 })
 
 export const businessInfoSchema = z.object({
@@ -33,6 +36,14 @@ export const businessInfoSchema = z.object({
         .regex(/^\d+$/, "Corporate TIN must contain only numbers"),
 })
 
+export const licenseNumberInfoSchema = z.object({
+    licenseNumber: z
+        .string()
+        .min(5, "License Number must be at least 5 digits")
+        .max(22, "License Number must be at most 22 digits")
+        .regex(/^\d+$/, "License Number must contain only numbers"),
+})
+
 export const companyContactInfoSchema = z.object({
     corporateEmail: z.string().email("Invalid email address"),
     phoneNumber: z.string().min(10, "Phone number must be at least 10 characters"),
@@ -46,17 +57,28 @@ export const contactInfoSchema = z.object({
     country: z.string().min(2, "Country must be at least 2 characters"),
     state: z.string().min(2, "State must be at least 2 characters"),
 })
+export const paractitionerContactInfoSchema = z.object({
+    firstname: z.string().min(2, "Your first name should be at least 2 characters"),
+    lastname: z.string().min(2, "Your first name should be at least 2 characters"),
+    corporateEmail: z.string().email("Invalid email address"),
+    phoneNumber: z.string().min(10, "Phone number must be at least 10 characters"),
+    country: z.string().min(2, "Country must be at least 2 characters"),
+    state: z.string().min(2, "State must be at least 2 characters"),
+})
 
 export const companySignupFormSchema = loginInfoSchema.merge(businessInfoSchema).merge(companyContactInfoSchema)
+export const practionerSignupFormSchema = loginInfoSchema.merge(businessInfoSchema).merge(licenseNumberInfoSchema).merge(paractitionerContactInfoSchema)
 export const individualSignupFormSchema = loginInfoSchema.merge(contactInfoSchema)
 
 export type LoginFormData = z.infer<typeof loginInfoSchema>
 export type CompanySignupFormData = z.infer<typeof companySignupFormSchema>
 export type IndividualSignupFormData = z.infer<typeof individualSignupFormSchema>
+export type PractitionerSignupFormData = z.infer<typeof practionerSignupFormSchema>
 
 export const defaultCompanyFormData: CompanySignupFormData = {
     email: "",
     password: "",
+    acceptTerms: false,
     businessName: "",
     businessCategory: "BUSINESS NAME",
     rcNumber: "",
@@ -69,6 +91,23 @@ export const defaultCompanyFormData: CompanySignupFormData = {
 export const defaultIndividualFormData: IndividualSignupFormData = {
     email: "",
     password: "",
+    acceptTerms: false,
+    firstname: "",
+    lastname: "",
+    phoneNumber: "",
+    country: "",
+    state: "",
+}
+export const defaultPractitionerFormData: PractitionerSignupFormData = {
+    email: "",
+    password: "",
+    acceptTerms: false,
+    businessName: "",
+    businessCategory: "BUSINESS NAME",
+    rcNumber: "",
+    licenseNumber: "",
+    corporateTin: "",
+    corporateEmail: "",
     firstname: "",
     lastname: "",
     phoneNumber: "",
