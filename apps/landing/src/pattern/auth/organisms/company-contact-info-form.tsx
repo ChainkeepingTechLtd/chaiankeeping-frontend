@@ -79,34 +79,6 @@ export const CompanyContactInfoForm = ({ onSubmit, onBack, defaultValues, isLoad
                         />
 
                         {/* Country */}
-                        {/* <FormField
-                            control={form.control}
-                            name="country"
-                            render={({ field }) => (
-                                <FormItem className="w-full grid gap-2">
-                                    <FormLabel>Country</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="state"
-                            render={({ field }) => (
-                                <FormItem className="w-full grid gap-2">
-                                    <FormLabel>State</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> */}
-
-                        {/* Country */}
                         <FormField
                             control={form.control}
                             name="country"
