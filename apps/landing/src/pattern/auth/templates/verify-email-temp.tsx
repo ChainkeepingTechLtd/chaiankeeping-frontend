@@ -12,15 +12,12 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
 import { RootState } from '@/redux/store';
 import { useSelector } from 'react-redux';
-import { REGISTERED_EMAIL_ADDRESS } from '@/lib/constants';
-import { handleLoginRouting } from '@/lib/utils/handle-login-routing';
-
-const VerifyEmailFormSchema = z.object({
-    code: z
-        .string()
-        .min(4, "First Name is required")
-        .max(6, "First Name must not exceed 56 characters")
-});
+import { NETWORK_ERROR_MESSAGE, REGISTERED_EMAIL_ADDRESS } from '@/lib/constants';
+import { useVerifyEmailMutation, IVerifyEmailPayload } from '@/redux/services/auth/verify-email.api-slice';
+import { VerifyEmailFormSchema } from '@/pattern/schema/auth-schema';
+import { show } from '@ebay/nice-modal-react';
+import { NetworkConnectionErrorModal } from '@/pattern/common/organisms/network-connection-error-modal';
+import { toast } from 'sonner';
 
 const VerifyEmailTemp = () => {
     const { push, back } = useRouter()
@@ -30,8 +27,11 @@ const VerifyEmailTemp = () => {
 
     const registeredEmailAddress = useSelector((state: RootState) => state.authState.registeredEmailAddress)
 
+    // Verify Email API mutation
+    const [verifyEmail, { isLoading, isSuccess, isError, error }] = useVerifyEmailMutation()
+
     const defaultValues = {
-        code: "",
+        token: "",
     }
 
     const form = useForm<z.infer<typeof VerifyEmailFormSchema>>({
@@ -46,10 +46,38 @@ const VerifyEmailTemp = () => {
         formState: { errors, isDirty },
     } = form
 
-    const onSubmit = (data: z.infer<typeof VerifyEmailFormSchema>) => {
-        console.log("Submitted: ", data)
-        localStorage.removeItem(REGISTERED_EMAIL_ADDRESS)
-        push(`${APP_ROUTES.signupEmailVerified}?persona=${persona}`)
+    const onSubmit = ({ token }: z.infer<typeof VerifyEmailFormSchema>) => {
+        verifyEmail({
+            email: registeredEmailAddress ?? "",
+            token: token
+        })
+            .unwrap()
+            .then(res => {
+                localStorage.removeItem(REGISTERED_EMAIL_ADDRESS)
+                push(`${APP_ROUTES.signupEmailVerified}?persona=${persona}`)
+            })
+            .catch(error => {
+                if (
+                    'error' in error &&
+                    error?.error === 'TypeError: Failed to fetch'
+                ) {
+                    show(NetworkConnectionErrorModal, {
+                        message: `${NETWORK_ERROR_MESSAGE}`,
+                    })
+                } else {
+                    // display error message
+                    toast.error('Unexpected error', {
+                        description: `${error?.data?.responseMessage ??
+                            "We ran into an issue while verifying your email address. Please try again or contact support for assistance."
+                            }`,
+                        duration: 8000,
+                        cancel: {
+                            onClick: () => { },
+                            label: 'Close',
+                        },
+                    })
+                }
+            })
     }
     return (
         <div className='w-full max-w-[437px] flex flex-col items-start md:items-center gap-y-8 px-[18px] md:px-0 pb-[144px]'>
@@ -70,17 +98,17 @@ const VerifyEmailTemp = () => {
                 <CardContent className="w-full h-full flex flex-col gap-y-6 !mt-0">
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex flex-col justify-start items-start gap-y-4 font-dmsans">
-                            {/* First Name */}
+                            {/* Token */}
                             <FormField
                                 control={form.control}
-                                name="code"
+                                name="token"
                                 render={({ field }) => (
                                     <FormItem className="w-full grid gap-2">
                                         <FormLabel htmlFor="code">Verification Code</FormLabel>
                                         <FormControl>
                                             <Input
                                                 id="code"
-                                                placeholder="Enter verification code"
+                                                placeholder="enter verification code"
                                                 type="text"
                                                 autoComplete="code"
                                                 {...field}
@@ -93,6 +121,8 @@ const VerifyEmailTemp = () => {
 
                             <SubmitButton
                                 size="lg"
+                                loading={isLoading}
+                                disabled={isLoading}
                                 className="w-full text-base font-medium"
                             >
                                 Verify

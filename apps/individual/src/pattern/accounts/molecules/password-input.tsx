@@ -9,8 +9,8 @@ import PasswordToggleIcon from "../atoms/password-toggle-icon";
 const PasswordInput: FC<ICustomInputProps> = ({
 	name,
 	error,
-	value,
-	onChange,
+	// value,
+	// onChange,
 	className,
 	placeholder,
 	...props
@@ -35,7 +35,7 @@ const PasswordInput: FC<ICustomInputProps> = ({
 							onBlur={() => setIsFocus(false)}
 							disabled={disabled}
 							variant={error ? "error" : "default"}
-							placeholder={placeholder ?? "Enter password"}
+							placeholder={placeholder ?? "enter password"}
 							className={cn(className, "pl-[34px] pr-[40px]")}
 							{...props}
 						/>

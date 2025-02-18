@@ -66,6 +66,15 @@ export const paractitionerContactInfoSchema = z.object({
     state: z.string().min(2, "State must be at least 2 characters"),
 })
 
+export const VerifyEmailFormSchema = z.object({
+    // email: z.string().email("Invalid email address"),
+    token: z
+        .string()
+        .min(4, "Veification token must be at least 4 digits")
+        .max(6, "Veification token must be at most 6 digits")
+        .regex(/^\d+$/, "verification token must contain only numbers"),
+});
+
 export const companySignupFormSchema = loginInfoSchema.merge(businessInfoSchema).merge(companyContactInfoSchema)
 export const practionerSignupFormSchema = loginInfoSchema.merge(businessInfoSchema).merge(licenseNumberInfoSchema).merge(paractitionerContactInfoSchema)
 export const individualSignupFormSchema = loginInfoSchema.merge(contactInfoSchema)

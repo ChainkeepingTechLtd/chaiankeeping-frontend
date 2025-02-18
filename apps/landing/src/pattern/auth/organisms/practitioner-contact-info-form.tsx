@@ -48,7 +48,7 @@ export const PractitionerContactInfoForm = ({ onSubmit, onBack, defaultValues, i
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>First Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Enter your first name" {...field} />
+                                        <Input placeholder="enter your first name" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -63,7 +63,7 @@ export const PractitionerContactInfoForm = ({ onSubmit, onBack, defaultValues, i
                                 <FormItem className="w-full grid gap-2">
                                     <FormLabel>Last Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Enter your last name" {...field} />
+                                        <Input placeholder="enter your last name" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

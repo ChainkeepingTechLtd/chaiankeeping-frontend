@@ -57,7 +57,7 @@ const EmailAuthModal: FC<ModalComponentProps> = ({ isOpen, onClose }) => {
 					<div>
 						<h6>Enter Authentication code</h6>
 						<p className='text-grey-500 text-sm'>
-							We’ve sent an authentication code to your email ex***le@gmail.com,
+							We've sent an authentication code to your email ex***le@gmail.com,
 							enter it below.
 						</p>
 						<div className='flex gap-2 my-5'>
