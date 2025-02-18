@@ -155,7 +155,7 @@ const VerifyEmailTemp = () => {
                 <BrandLogo />
             </Link>
 
-            <Card className="bg-white w-full max-w-[438px] h-fit flex flex-col gap-y-6 p-6 rounded-[8px] card-shadow border-none shadow-none">
+            <Card className="bg-white w-full max-w-[438px] h-fit flex flex-col gap-y-6 p-6 rounded-[8px] card-shadow border-none">
                 <CardHeader className="h-[91px] border-b space-y-[16px] pb-2">
                     <CardTitle className="flex items-center text-base font-bold font-sen">
                         <span className="mr-[8px] cursor-pointer" onClick={() => back()}>
