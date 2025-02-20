@@ -1,6 +1,5 @@
-import React from "react";
-import { IInputIconProps } from "@/pattern/types";
 import { SECONDARY_HEX_COLOUR } from "@/lib/constants";
+import { IInputIconProps } from "./types";
 
 const EmailInputIcon = ({ focus }: IInputIconProps) => {
     return (
@@ -13,4 +12,4 @@ const EmailInputIcon = ({ focus }: IInputIconProps) => {
     );
 };
 
-export default EmailInputIcon;
+export { EmailInputIcon };

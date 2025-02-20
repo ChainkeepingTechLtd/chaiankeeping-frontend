@@ -1,6 +1,6 @@
-import React from 'react'
-import { IInputIconProps } from '@/pattern/types'
-import { Hidden } from '@chainkeeping/ui'
+import { Hidden } from "../ui/hidden"
+import { IInputIconProps } from "./types"
+
 
 const PasswordToggleIcon = ({ toggle }: IInputIconProps) => {
     return (
@@ -57,4 +57,4 @@ const PasswordToggleIcon = ({ toggle }: IInputIconProps) => {
     )
 }
 
-export default PasswordToggleIcon
+export { PasswordToggleIcon }
