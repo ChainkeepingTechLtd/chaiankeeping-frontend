@@ -100,6 +100,8 @@ export * from './lib/utils';
 // Icons
 export * from "./components/icons/brand-logo"
 export * from "./components/icons/brand-logo-white"
+export * from "./components/icons/topbar-menu-icon"
+export * from "./components/icons/topbar-menu-close-icon"
 export * from "./components/icons/crypto-platforms/adalite-icon"
 export * from "./components/icons/crypto-platforms/airbitz-icon"
 export * from "./components/icons/crypto-platforms/arbitrum-icon"

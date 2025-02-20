@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react"
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, BrandLogo, Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Hidden, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@chainkeeping/ui";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, BrandLogo, Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Hidden, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, TopbarMenuIcon, TopbarMenuCloseIcon } from "@chainkeeping/ui";
 // import SolutionsNavContent from "../organisms/solutions-nav-content";
 // import IntegrationsNavContent from "../organisms/integrations-nav-content";
 import CustomNavLink from "../molecules/custom-nav-link";
@@ -9,8 +9,6 @@ import { CountrySelect } from "../organisms/country-selector";
 import Link from "next/link";
 import { APP_ROUTES, AUTH_ROUTES, RESOURCES_ROUTES } from "@/lib/routes";
 import { useRouter } from "next/navigation";
-import MenuIcon from "../atoms/menu-icon";
-import { MenuCloseIcon } from "../atoms/menu-close-icon";
 
 export interface INavigation {
     title: string;
@@ -126,11 +124,11 @@ const Topbar = () => {
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger asChild>
                             <Button variant="icon" size="icon">
-                                <MenuIcon />
+                                <TopbarMenuIcon />
                                 <span className="sr-only">Toggle menu</span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="bottom" closeIcon={<MenuCloseIcon />} closeIconClassName="absolute top-[48px] right-[36px] rounded-full" className="bg-primary h-full w-screen text-white pt-12 pl-8 pr-9">
+                        <SheetContent side="bottom" closeIcon={<TopbarMenuCloseIcon />} closeIconClassName="absolute top-[48px] right-[36px] rounded-full" className="bg-primary h-full w-screen text-white pt-12 pl-8 pr-9">
                             <SheetHeader>
                                 <SheetTitle aria-hidden='true' className="hidden">Mobile navigation</SheetTitle>
                                 <SheetDescription aria-hidden='true' className="hidden">

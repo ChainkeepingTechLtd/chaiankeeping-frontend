@@ -4,18 +4,19 @@ import { usePathname } from 'next/navigation';
 import { cn, NavigationMenuLink, navigationMenulinkStyleTwo } from '@chainkeeping/ui'
 import { INavListItemProps } from '@/pattern/types';
 
-const CustomNavLink: FC<Omit<INavListItemProps, "description" | "icon">> = ({
+const MobileCustomNavLink: FC<Omit<INavListItemProps, "description" | "icon">> = ({
     href,
     title,
-    exact
+    exact,
+    toggleSheet
 }) => {
     const pathname = usePathname();
     const isActive = exact ? pathname === href : pathname.startsWith(href);
 
     return (
         <>
-            <Link href={href as string} legacyBehavior passHref className='w-fit'>
-                <NavigationMenuLink className={cn(navigationMenulinkStyleTwo(), "!mt-0")} active={isActive}>
+            <Link href={href as string} legacyBehavior passHref onClick={() => toggleSheet} className='w-fit'>
+                <NavigationMenuLink className={cn("!mt-0 ")} active={isActive} onClick={() => toggleSheet?.()}>
                     {title}
                 </NavigationMenuLink>
             </Link>
@@ -23,4 +24,4 @@ const CustomNavLink: FC<Omit<INavListItemProps, "description" | "icon">> = ({
     )
 }
 
-export default CustomNavLink
+export default MobileCustomNavLink
