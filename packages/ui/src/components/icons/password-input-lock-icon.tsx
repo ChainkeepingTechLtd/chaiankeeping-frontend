@@ -1,6 +1,6 @@
-import React from "react";
-import { IInputIconProps } from "@/pattern/types";
 import { SECONDARY_HEX_COLOUR } from "@/lib/constants";
+import { IInputIconProps } from "./types";
+
 
 const PasswordInputLockIcon = ({ focus }: IInputIconProps) => {
     return (
@@ -10,4 +10,4 @@ const PasswordInputLockIcon = ({ focus }: IInputIconProps) => {
     );
 };
 
-export default PasswordInputLockIcon;
+export { PasswordInputLockIcon }

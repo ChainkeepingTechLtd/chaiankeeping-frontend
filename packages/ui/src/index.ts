@@ -201,5 +201,8 @@ export * from "./components/icons/crypto-platforms/wazirx-icon"
 export * from "./components/icons/crypto-platforms/wirex-icon"
 export * from "./components/icons/crypto-platforms/xapo-icon"
 export * from "./components/icons/crypto-platforms/Yoroi-icon"
+export * from "./components/icons/password-input-lock-icon"
+export * from "./components/icons/password-toggle-icon"
+export * from "./components/icons/email-input-icon"
 // Icon types
 export * from "./components/icons/types"

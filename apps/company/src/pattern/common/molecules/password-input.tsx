@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { ICustomInputProps } from "@/pattern/types";
-import { cn, Input, PasswordInputLockIcon, PasswordToggleIcon } from "@chainkeeping/ui";
 import { Controller, useFormContext } from "react-hook-form";
+import { cn, Input, PasswordInputLockIcon, PasswordToggleIcon } from "@chainkeeping/ui";
 
 const PasswordInput: FC<ICustomInputProps> = ({
     name,

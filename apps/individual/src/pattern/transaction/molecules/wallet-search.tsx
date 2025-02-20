@@ -1,7 +1,7 @@
 "use client";
 import React, { FC, useState } from "react";
 import { cn, Input } from "@chainkeeping/ui";
-import SearchInputIcon from "../atoms/searc-input-icon";
+import SearchInputIcon from "../atoms/search-input-icon";
 
 const WalletSearch: FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
 	name,

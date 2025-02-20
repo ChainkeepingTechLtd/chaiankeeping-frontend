@@ -1,6 +1,5 @@
-import React from "react";
 import { IInputIconProps } from "@/pattern/types";
-import { SECONDARY_HEX_COLOUR } from "../../../../../landing/src/lib/constants/index";
+import { SECONDARY_HEX_COLOUR } from "@/lib/constants";
 
 export const SearchInputIcon = ({ focus }: IInputIconProps) => {
 	return (
