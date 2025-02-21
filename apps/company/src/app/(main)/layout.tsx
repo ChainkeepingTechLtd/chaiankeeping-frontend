@@ -40,7 +40,7 @@ export default function MainLayout({
 			)}
 		>
 			<Topbar />
-			<main className='bg-inherit w-full h-fit flex flex-col items-center sm:mt-[var(--topbar-height)]'>
+			<main className='bg-inherit w-full h-full flex flex-col items-center sm:mt-[var(--topbar-height)]'>
 				{children}
 			</main>
 		</div>
