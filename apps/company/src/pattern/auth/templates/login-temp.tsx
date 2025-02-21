@@ -14,7 +14,7 @@ type LoginInfoFormProps = {
     defaultValues: Partial<LoginFormData>
 }
 
-export const LoginInfoForm = ({ onSubmit, defaultValues }: LoginInfoFormProps) => {
+export const LoginTemp = ({ onSubmit, defaultValues }: LoginInfoFormProps) => {
     const params = useParams<{ slug: "" | "personal" | "company" | "practitioners" }>();
 
     const form = useForm({
