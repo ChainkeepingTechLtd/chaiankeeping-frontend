@@ -117,10 +117,10 @@ const Topbar = () => {
 
                     <div className="flex items-center gap-2">
                         {/* Get Early Access */}
-                        <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
+                        <Hidden isVisible={currentEnvironment === "PRODUCTION" ? true : false}>
                             <Button variant="secondary" size="sm" className="w-full font-medium text-base" onClick={()=>push(APP_ROUTES.joinWaitlist)} >Get early access</Button>
                         </Hidden>
-                        <Hidden isVisible={currentEnvironment !== "STAGING" ? true : false}>
+                        <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
                             {/* Log In */}
                             <Button variant="ghost" size="sm" onClick={() => push(AUTH_ROUTES.login)} className="w-fit font-semibold" >Log In</Button>
                             {/* Sign up */}
@@ -175,14 +175,14 @@ const Topbar = () => {
                                         </Hidden>
                                     </div>
                                 ))}
-                                <Hidden isVisible={currentEnvironment !== "STAGING" ? true : false}>
+                                <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
                                     {/* Log In */}
                                     <Button size="lg" onClick={() => push(AUTH_ROUTES.login)} className="w-full font-medium text-base" >Log In</Button>
                                     {/* Sign Up */}
                                     <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
                                 </Hidden>
                                 {/* Get Early Access */}
-                                <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
+                                <Hidden isVisible={currentEnvironment === "PRODUCTION" ? true : false}>
                                     <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={()=>push(APP_ROUTES.joinWaitlist)} >Get early access</Button>
                                 </Hidden>
                             </nav>
