@@ -97,7 +97,8 @@ const FormLabel = forwardRef<
     return (
         <Label
             ref={ref}
-            className={cn(error && "text-destructive", className)}
+            className={cn(className)}
+            // className={cn(error && "text-destructive", className)}
             htmlFor={formItemId}
             required={required}
             {...props}
@@ -160,7 +161,7 @@ const FormMessage = forwardRef<
         <p
             ref={ref}
             id={formMessageId}
-            className={cn("text-sm font-medium text-destructive", className)}
+            className={cn("text-xs font-medium text-destructive", className)}
             {...props}
         >
             {body}

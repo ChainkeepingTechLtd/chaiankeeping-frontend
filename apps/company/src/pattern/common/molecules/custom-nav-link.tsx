@@ -11,7 +11,6 @@ const CustomNavLink: FC<Omit<INavListItemProps, "description" | "icon">> = ({
 }) => {
     const pathname = usePathname();
     const isActive = exact ? pathname === href : pathname.startsWith(href);
-    console.log("PATH NAME: ", pathname)
 
     return (
         <>

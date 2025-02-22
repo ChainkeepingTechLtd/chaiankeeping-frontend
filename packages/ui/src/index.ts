@@ -100,6 +100,9 @@ export * from './lib/utils';
 // Icons
 export * from "./components/icons/brand-logo"
 export * from "./components/icons/brand-logo-white"
+export * from "./components/icons/topbar-menu-icon"
+export * from "./components/icons/topbar-menu-close-icon"
+export * from "./components/icons/th-sort-icon"
 export * from "./components/icons/crypto-platforms/adalite-icon"
 export * from "./components/icons/crypto-platforms/airbitz-icon"
 export * from "./components/icons/crypto-platforms/arbitrum-icon"
@@ -201,5 +204,8 @@ export * from "./components/icons/crypto-platforms/wazirx-icon"
 export * from "./components/icons/crypto-platforms/wirex-icon"
 export * from "./components/icons/crypto-platforms/xapo-icon"
 export * from "./components/icons/crypto-platforms/Yoroi-icon"
+export * from "./components/icons/password-input-lock-icon"
+export * from "./components/icons/password-toggle-icon"
+export * from "./components/icons/email-input-icon"
 // Icon types
 export * from "./components/icons/types"

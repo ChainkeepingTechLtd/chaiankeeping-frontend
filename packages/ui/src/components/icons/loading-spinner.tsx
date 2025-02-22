@@ -56,5 +56,4 @@ const LoadingSpinner = ({ width, height, className }: IIconProps) => {
     );
 };
 
-
-export default LoadingSpinner;
+export { LoadingSpinner }

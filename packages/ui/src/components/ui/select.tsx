@@ -3,6 +3,8 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 
 import { cn } from "../../lib/utils"
+import { VariantProps } from "class-variance-authority"
+import { inputVariants } from "./input"
 
 const Select = SelectPrimitive.Root
 
@@ -10,16 +12,21 @@ const SelectGroup = SelectPrimitive.Group
 
 const SelectValue = SelectPrimitive.Value
 
+export interface ISelectTriggerProps
+    extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
+    VariantProps<typeof inputVariants> { }
+
 const SelectTrigger = forwardRef<
     React.ElementRef<typeof SelectPrimitive.Trigger>,
-    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
+    ISelectTriggerProps
+>(({ className, children, variant, ...props }, ref) => (
     <SelectPrimitive.Trigger
         ref={ref}
-        className={cn(
-            "flex h-10 w-full items-center justify-between rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-[hsla(213,27%,84%,1)] focus:outline-none focus:ring-2 focus:ring-ring focus:border-secondary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-            className
-        )}
+        // className={cn(
+        //     "flex h-10 w-full items-center justify-between rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-[hsla(213,27%,84%,1)] focus:outline-none focus:ring-2 focus:ring-ring focus:border-secondary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+        //     className
+        // )}
+        className={cn("flex h-10 w-full items-center !justify-between rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-[hsla(213,27%,84%,1)] focus:outline-none focus:ring-2 focus:ring-ring focus:border-secondary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", inputVariants({ variant, className }))}
         {...props}
     >
         {children}

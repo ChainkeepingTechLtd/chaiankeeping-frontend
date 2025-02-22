@@ -15,6 +15,7 @@ export interface INavListItemProps extends React.AnchorHTMLAttributes<HTMLAnchor
     description: string
     exact?: boolean // Determines whether the link is exactly on the same app route e.g: "buyer" and not "buyer/checkout"
     className?: string
+    toggleSheet?: () => void // hides mobile navigation sheet
 }
 export interface ICustomInputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {

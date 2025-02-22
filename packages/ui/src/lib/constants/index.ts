@@ -1,0 +1,1 @@
+export const SECONDARY_HEX_COLOUR = "#D82E2E"

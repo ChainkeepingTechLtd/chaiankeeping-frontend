@@ -7,9 +7,9 @@ const ActiveRadioButtonIcon = () => {
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
 		>
-			<g clip-path='url(#clip0_3494_33785)'>
+			<g clipPath='url(#clip0_3494_33785)'>
 				<circle cx='13' cy='13' r='10' fill='#D82E2E' />
-				<circle cx='13' cy='13' r='9.5' stroke='black' stroke-opacity='0.04' />
+				<circle cx='13' cy='13' r='9.5' stroke='black' strokeOpacity='0.04' />
 				<circle cx='13' cy='13' r='3.75' fill='white' />
 			</g>
 			<defs>
