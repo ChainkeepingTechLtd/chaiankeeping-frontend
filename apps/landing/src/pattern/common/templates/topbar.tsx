@@ -9,6 +9,9 @@ import { CountrySelect } from "../organisms/country-selector";
 import Link from "next/link";
 import { APP_ROUTES, AUTH_ROUTES, RESOURCES_ROUTES } from "@/lib/routes";
 import { useRouter } from "next/navigation";
+import { getEnvironment } from "@/lib/helpers/get-environment";
+
+export const currentEnvironment = getEnvironment()
 
 export interface INavigation {
     title: string;
@@ -113,8 +116,18 @@ const Topbar = () => {
                     </NavigationMenu>
 
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" onClick={() => push(AUTH_ROUTES.login)} className="w-fit font-semibold" >Log In</Button>
-                        <Button variant="secondary" size="sm" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                        {/* Get Early Access */}
+                        <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
+                            <Button variant="secondary" size="sm" className="w-full font-medium text-base" onClick={()=>push(APP_ROUTES.joinWaitlist)} >Get early access</Button>
+                        </Hidden>
+                        <Hidden isVisible={currentEnvironment !== "STAGING" ? true : false}>
+                            {/* Log In */}
+                            <Button variant="ghost" size="sm" onClick={() => push(AUTH_ROUTES.login)} className="w-fit font-semibold" >Log In</Button>
+                            {/* Sign up */}
+                            <Button variant="secondary" size="sm" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                        </Hidden>
+
+                        {/* Select Country */}
                         <CountrySelect />
                     </div>
                 </div>
@@ -162,8 +175,16 @@ const Topbar = () => {
                                         </Hidden>
                                     </div>
                                 ))}
-                                <Button size="lg" onClick={() => push(AUTH_ROUTES.login)} className="w-full font-medium text-base" >Log In</Button>
-                                <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                                <Hidden isVisible={currentEnvironment !== "STAGING" ? true : false}>
+                                    {/* Log In */}
+                                    <Button size="lg" onClick={() => push(AUTH_ROUTES.login)} className="w-full font-medium text-base" >Log In</Button>
+                                    {/* Sign Up */}
+                                    <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                                </Hidden>
+                                {/* Get Early Access */}
+                                <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
+                                    <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={()=>push(APP_ROUTES.joinWaitlist)} >Get early access</Button>
+                                </Hidden>
                             </nav>
                         </SheetContent>
                     </Sheet>

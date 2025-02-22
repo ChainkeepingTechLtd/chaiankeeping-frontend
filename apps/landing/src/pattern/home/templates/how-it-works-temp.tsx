@@ -5,9 +5,16 @@ import HowItWorksWidget from '../organisms/how-it-works-widget'
 import HowItWorksImage from '../organisms/how-it-works-image'
 import { useRouter } from 'next/navigation'
 import { APP_ROUTES } from '@/lib/routes'
+import { getEnvironment } from '@/lib/helpers/get-environment'
+
+export const currentEnvironment = getEnvironment()
 
 const HowItWorksTemp = () => {
   const { push } = useRouter()
+
+  const handleGetStarted = () => {
+    currentEnvironment === "STAGING" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
+  }
 
   return (
     <div className='w-full h-fit lg:h-[572px] flex flex-col-reverse lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-[87px] px-[18px] lg:container'>
@@ -22,7 +29,7 @@ const HowItWorksTemp = () => {
         </div>
         <HowItWorksWidget />
 
-        <Button size="md" onClick={() => push(APP_ROUTES.signup)}>Get started</Button>
+        <Button size="md" onClick={handleGetStarted}>Get started</Button>
       </div>
 
       {/* Right */}

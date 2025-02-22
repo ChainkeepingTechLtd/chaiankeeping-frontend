@@ -1,3 +1,4 @@
+import { Environment, getEnvironment } from "@/lib/helpers/get-environment"
 import { z } from "zod"
 
 export const loginInfoSchema = z.object({
@@ -142,3 +143,39 @@ export const businessCategory = [
         value: "LIMITED LIABILITY PARTNERSHIP"
     },
 ]
+export const contactFormSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    source: z.enum(["Social Media", "Friend", "Search Engine", "Other"], {
+        errorMap: () => ({ message: "Please select a valid option" }),
+    }),
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+    inquiry: z.string().min(10, "Inquiry/feedback must be at least 10 characters long"),
+})
+
+export const joinWaitlistFormSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    source: z.enum(["Social Media", "Friend", "Search Engine", "Other"], {
+        errorMap: () => ({ message: "Please select a valid option" }),
+    }),
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+    inquiry: z.string().min(0, "Inquiry/feedback must be at least 10 characters long").optional(),
+})
+
+// Infer types from schemas
+export type ContactFormData = z.infer<typeof contactFormSchema>
+export type JoinWaitlistFormData = z.infer<typeof joinWaitlistFormSchema>
+
+export type ReachUsFormData<T extends Environment> = T extends "STAGING" ? JoinWaitlistFormData : ContactFormData
+
+// Utility function to get the correct schema based on environment
+export const getReachUsFormSchema = (environment: Environment) => {
+    return environment === "STAGING" ? joinWaitlistFormSchema : contactFormSchema
+}
+
+// Export the current environment's schema and type
+export const currentEnvironment = getEnvironment()
+export const ReachUsFormSchema = getReachUsFormSchema(currentEnvironment)
+export type CurrentReachUsFormData = ReachUsFormData<typeof currentEnvironment>
+

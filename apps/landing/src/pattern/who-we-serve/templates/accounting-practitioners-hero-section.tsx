@@ -3,6 +3,9 @@ import { Button } from '@chainkeeping/ui'
 import ListItemIcon from '../atoms/list-item-icon'
 import { APP_ROUTES } from '@/lib/routes'
 import { useRouter } from 'next/navigation'
+import { getEnvironment } from '@/lib/helpers/get-environment'
+
+export const currentEnvironment = getEnvironment()
 
 const featuresAtGlance = [
     "Unified Client Dashboard",
@@ -12,6 +15,10 @@ const featuresAtGlance = [
 
 const AccountingPractitionersHeroSection = () => {
     const { push } = useRouter();
+
+    const handleGetStarted = () => {
+        currentEnvironment === "STAGING" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
+    }
 
     return (
         <section className="bg-primary bg-pattern-bg-img bg-cover bg-center w-full h-fit lg:h-[345px]">
@@ -33,7 +40,7 @@ const AccountingPractitionersHeroSection = () => {
                         </ul>
                     </div>
                 </div>
-                <Button size='lg' variant="secondary" onClick={() => push(APP_ROUTES.signup)} >Get started</Button>
+                <Button size='lg' variant="secondary" onClick={handleGetStarted} >Get started</Button>
             </div>
         </section>
     )
