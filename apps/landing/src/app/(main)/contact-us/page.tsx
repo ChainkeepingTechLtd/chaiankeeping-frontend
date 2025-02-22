@@ -2,7 +2,6 @@
 
 import React from 'react'
 import ContactUsHeroSection from '@/pattern/contact-us/templates/contact-us-hero-section';
-import JoinUsWidget from '@/pattern/home/templates/join-us-widget';
 import ContactForm from '@/pattern/contact-us/templates/contact-us-form';
 
 const ContactUsPage = () => {

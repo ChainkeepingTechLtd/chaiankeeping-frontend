@@ -103,7 +103,7 @@ export const PractitionersSignupTemp = () => {
                     // display error message
                     toast.error('Unexpected error', {
                         description: `${error?.data?.responseMessage ??
-                            'We encountered an error while trying to Register your company'
+                            'We encountered an error while trying to Register you'
                             }`,
                         duration: 8000,
                         cancel: {

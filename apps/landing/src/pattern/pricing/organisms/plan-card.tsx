@@ -2,6 +2,9 @@ import { FC, ReactNode } from 'react'
 import { Button, Card, CardContent, CardHeader, Hidden } from '@chainkeeping/ui';
 import { APP_ROUTES } from '@/lib/routes';
 import { useRouter } from 'next/navigation';
+import { getEnvironment } from '@/lib/helpers/get-environment';
+
+export const currentEnvironment = getEnvironment()
 
 interface IPlanCardProps {
     title: string;
@@ -13,6 +16,10 @@ interface IPlanCardProps {
 
 const PlanCard: FC<IPlanCardProps> = ({ amount, pack, pecks, title, customized = false }) => {
     const { push } = useRouter()
+
+    const handleGetStarted = () => {
+        currentEnvironment === "STAGING" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
+    }
     
     return (
         <Card className='w-full max-w-[368px] lg:min-w-[368px] lg:max-w-full h-fit lg:h-[395px] flex flex-col items-center gap-y-2 p-6 rounded-[8px] card-shadow'>
@@ -36,7 +43,7 @@ const PlanCard: FC<IPlanCardProps> = ({ amount, pack, pecks, title, customized =
                     </div>
                     <p className="text-sm text-[hsla(215,20%,65%,1)] font-dmsans">Per Assessment Year</p>
                 </div>
-                <Button variant={customized ? "default" : "secondary"} size="lg" onClick={() => push(APP_ROUTES.signup)} className='w-full text-base font-medium'>
+                <Button variant={customized ? "default" : "secondary"} size="lg" onClick={handleGetStarted} className='w-full text-base font-medium'>
                     Get started
                 </Button>
                 {pecks}

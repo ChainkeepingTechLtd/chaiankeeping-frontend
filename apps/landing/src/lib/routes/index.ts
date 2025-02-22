@@ -3,6 +3,7 @@ export const APP_ROUTES = {
     solutions: "/#features",
     about: "/about",
     contact: "/contact-us",
+    joinWaitlist: "/join-waitlist",
     careers: "/careers",
     partnership: "/about/#partnership",
     pricing: "/pricing",
