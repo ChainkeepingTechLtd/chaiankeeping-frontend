@@ -7,6 +7,7 @@ export const APP_ROUTES = {
 	pricing: "/pricing",
 	dashboard: "/dashboard",
 	reset_password: "/reset-password",
+	login: "/login",
 };
 
 export const SOLUTIONS_ROUTES = {

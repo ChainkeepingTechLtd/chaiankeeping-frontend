@@ -1,5 +1,4 @@
-"use client";
-
+import { useEffect } from "react"; // Import useEffect
 import { usePathname, useRouter } from "next/navigation";
 import { APP_ROUTES } from "@/lib/routes";
 import {
@@ -108,6 +107,13 @@ const LoginBody = () => {
 			});
 		}
 	};
+
+	// Log user information when the user is logged in
+	useEffect(() => {
+		if (loginState.user) {
+			console.log("User Information:", loginState.user);
+		}
+	}, [loginState.user]);
 
 	return (
 		<div className='sm:mt-10 w-full flex flex-col sm:items-center'>

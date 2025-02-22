@@ -10,7 +10,7 @@ export interface IResponse {
 	responseCode: string;
 	responseMessage: string;
 	data: {
-		accessTokent: string;
+		accessToken: string;
 		refreshToken: string;
 		_id: string;
 		firstname: string;

@@ -20,6 +20,9 @@ import SupportMenuIcon from "../atoms/support-menu-icon";
 import ExternalLinkIcon from "../atoms/external-link-icon";
 import LogoutIcon from "../atoms/logout-icon";
 import { INavigation } from "@/pattern/types";
+import { useDispatch } from "react-redux"; // Import useDispatch
+import { logout } from "@/redux/slices/auth-slice"; // Import the logout action
+import { APP_ROUTES } from "@/lib/routes";
 
 interface ProfileMenuProps {
 	username: string;
@@ -51,6 +54,14 @@ const MenuLinks: IMenuLinks[] = [
 
 export const ProfileMenuDropdown = ({ username, email }: ProfileMenuProps) => {
 	const { push } = useRouter();
+	const dispatch = useDispatch(); // Initialize useDispatch
+
+	// Handle logout
+	const handleLogout = () => {
+		dispatch(logout()); // Dispatch the logout action
+		push(APP_ROUTES.login); // Redirect to the login page
+	};
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -93,7 +104,10 @@ export const ProfileMenuDropdown = ({ username, email }: ProfileMenuProps) => {
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 
-				<DropdownMenuItem className='bg-accent w-full h-[58px] flex items-center justify-between gap-[10px] cursor-pointer text-foreground text-base font-dmsans py-0 px-4 border-t rounded-none'>
+				<DropdownMenuItem
+					className='bg-accent w-full h-[58px] flex items-center justify-between gap-[10px] cursor-pointer text-foreground text-base font-dmsans py-0 px-4 border-t rounded-none'
+					onClick={handleLogout} // Add onClick handler for logout
+				>
 					<span>Log out</span>
 					<LogoutIcon />
 				</DropdownMenuItem>

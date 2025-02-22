@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useState, useEffect } from "react";
 import {
 	BrandLogo,
 	Hidden,
@@ -9,11 +9,8 @@ import {
 	NavigationMenuTrigger,
 } from "@chainkeeping/ui";
 import CustomNavLink from "../molecules/custom-nav-link";
-
 import Link from "next/link";
 import { APP_ROUTES } from "@/lib/routes";
-import QuickActionIcon from "../atoms/quick-action-icon";
-import UserProfileIcon from "../atoms/user-profile-icon";
 import { QuickActionPopover } from "../organisms/quick-action-popover";
 import { ProfileMenuDropdown } from "../organisms/profile-menu-dropdown";
 import { X } from "lucide-react";
@@ -59,7 +56,19 @@ const navigation: INavigation[] = [
 
 const Topbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const pathname = usePathname(); // Get the current pathname
+	const [userEmail, setUserEmail] = useState<string>("");
+	const [username, setUsername] = useState<string>("");
+	const pathname = usePathname();
+
+	// Fetch user data from localStorage on component mount
+	useEffect(() => {
+		const userData = localStorage.getItem("user");
+		if (userData) {
+			const user = JSON.parse(userData);
+			setUserEmail(user.email); // Set email
+			setUsername(`${user.firstname} ${user.lastname}`); // Set username
+		}
+	}, []);
 
 	const toggleMobileMenu = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -128,10 +137,7 @@ const Topbar = () => {
 				<div className='h-full flex items-center gap-[27px]'>
 					<div className='flex items-center md:gap-4 gap-1'>
 						<QuickActionPopover />
-						<ProfileMenuDropdown
-							email='example@gmail.com'
-							username='Convexity'
-						/>
+						<ProfileMenuDropdown email={userEmail} username={username} />
 					</div>
 				</div>
 

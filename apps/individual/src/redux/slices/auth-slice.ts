@@ -1,4 +1,3 @@
-// login-slice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IResponse } from "../services/auth/login.api-slice";
 
@@ -41,7 +40,7 @@ export const loginStateSlice = createSlice({
 		},
 		loginSuccess: (state, action: PayloadAction<IResponse>) => {
 			state.isLoading = false;
-			state.accessToken = action.payload.data.accessTokent;
+			state.accessToken = action.payload.data.accessToken;
 			state.refreshToken = action.payload.data.refreshToken;
 			state.user = {
 				_id: action.payload.data._id,
@@ -58,6 +57,11 @@ export const loginStateSlice = createSlice({
 				updatedAt: action.payload.data.updatedAt,
 			};
 			state.error = null;
+
+			// Save tokens and user data to localStorage
+			localStorage.setItem("accessToken", action.payload.data.accessToken);
+			localStorage.setItem("refreshToken", action.payload.data.refreshToken);
+			localStorage.setItem("user", JSON.stringify(state.user)); // Store the entire user object
 		},
 		loginFailure: (state, action: PayloadAction<string>) => {
 			state.isLoading = false;
@@ -69,6 +73,11 @@ export const loginStateSlice = createSlice({
 			state.user = null;
 			state.isLoading = false;
 			state.error = null;
+
+			// Remove tokens and user data from localStorage
+			localStorage.removeItem("accessToken");
+			localStorage.removeItem("refreshToken");
+			localStorage.removeItem("user");
 		},
 	},
 });
