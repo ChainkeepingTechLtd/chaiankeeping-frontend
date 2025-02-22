@@ -167,11 +167,11 @@ export const joinWaitlistFormSchema = z.object({
 export type ContactFormData = z.infer<typeof contactFormSchema>
 export type JoinWaitlistFormData = z.infer<typeof joinWaitlistFormSchema>
 
-export type ReachUsFormData<T extends Environment> = T extends "STAGING" ? JoinWaitlistFormData : ContactFormData
+export type ReachUsFormData<T extends Environment> = T extends "PRODUCTION" ? JoinWaitlistFormData : ContactFormData
 
 // Utility function to get the correct schema based on environment
 export const getReachUsFormSchema = (environment: Environment) => {
-    return environment === "STAGING" ? joinWaitlistFormSchema : contactFormSchema
+    return environment === "PRODUCTION" ? joinWaitlistFormSchema : contactFormSchema
 }
 
 // Export the current environment's schema and type

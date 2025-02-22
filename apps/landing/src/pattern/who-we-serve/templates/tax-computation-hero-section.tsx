@@ -17,7 +17,7 @@ const TaxComputationHeroSection = () => {
     const { push } = useRouter()
 
     const handleGetStarted = () => {
-        currentEnvironment === "STAGING" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
+        currentEnvironment === "PRODUCTION" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
     }
     return (
         <section className="bg-primary bg-pattern-bg-img bg-cover bg-center w-full h-fit lg:h-[345px]">
