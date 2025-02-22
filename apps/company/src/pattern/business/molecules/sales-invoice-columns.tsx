@@ -19,23 +19,25 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
     {
         id: "select",
         header: ({ table }) => (
-            <div className="h-full flex items-center">
-                <Checkbox
-                    checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
-                    onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                    aria-label="Select all"
-                    className="fixed"
-                />
+            <div className="h-full flex items-center ml-[-16px]">
+                <div className="fixed bg-accent py-3 pl-3 pr-5">
+                    <Checkbox
+                        checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
+                        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                        aria-label="Select all"
+                    />
+                </div>
             </div>
         ),
         cell: ({ row }) => (
-            <div className="h-full flex items-center">
-                <Checkbox
-                    checked={row.getIsSelected()}
-                    onCheckedChange={(value) => row.toggleSelected(!!value)}
-                    aria-label="Select row"
-                    className="fixed"
-                />
+            <div className="h-full flex items-center ml-[-16px]">
+                <div className={cn("fixed py-3 pl-3 pr-5", row.getIsSelected() ? "bg-accent" : "bg-white")}>
+                    <Checkbox
+                        checked={row.getIsSelected()}
+                        onCheckedChange={(value) => row.toggleSelected(!!value)}
+                        aria-label="Select row"
+                    />
+                </div>
             </div>
         ),
         enableSorting: false,
@@ -44,13 +46,13 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
     {
         accessorKey: "id",
         header: () => (
-            <div className="bg-accent h-full flex items-center ml-[32px]">
-                <CustomThead title="Invoices" className="fixed w-[337px]" />
+            <div className="bg-accent h-full w-[180px] md:w-[327px] flex items-center">
+                <CustomThead title="Invoices" className="fixed bg-accent py-3 pl-4 pr-10 md:pl-8 md:pr-16" />
             </div>
         ),
         cell: ({ row }) => (
-            <div className="!bg-red-500 w-[337px] h-full flex items-center ml-[32px]">
-                <div className="fixed w-full font-normal">
+            <div className="w-[180px] md:w-[327px] h-full flex items-center">
+                <div className={cn("fixed font-normal text-xs md:text-sm py-4 px-4 md:px-8", row.getIsSelected() ? "bg-accent" : "bg-white")}>
                     {row.getValue("id") ?? "-"}
                 </div>
             </div>
@@ -136,7 +138,7 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
         cell: () => {
             return (
                 <DropdownMenu>
-                    <DropdownMenuTrigger>
+                    <DropdownMenuTrigger className="relative cursor-pointer">
                         <ViewMoreTableTrigger />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">

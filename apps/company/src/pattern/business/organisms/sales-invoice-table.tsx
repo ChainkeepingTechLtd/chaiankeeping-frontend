@@ -63,6 +63,8 @@ const data: SalesInvoice[] = [
     },
 ]
 
+const columns = SalesInvoiceColumns
+
 const SalesInvoiceTable = () => {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -71,7 +73,6 @@ const SalesInvoiceTable = () => {
 
     const [search, setSearch] = useState<string>("")
 
-    const columns = SalesInvoiceColumns
 
     const table = useReactTable({
         data,
