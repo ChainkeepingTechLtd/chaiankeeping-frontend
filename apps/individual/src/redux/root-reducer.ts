@@ -2,23 +2,28 @@ import { combineReducers } from "@reduxjs/toolkit";
 // slices
 import { baseAPI } from "./api/base-api";
 import hardSet from "redux-persist/lib/stateReconciler/hardSet";
-import howItWorksReducer from './slices/how-it-works.slice';
-import featuresReducer from './slices/features.slice';
+import howItWorksReducer from "./slices/how-it-works.slice";
+import featuresReducer from "./slices/features.slice";
+import loginStateReducer from "./slices/auth-slice";
 
 import storage from "redux-persist/lib/storage";
 
 export const rootPersistConfig = {
-    key: "root",
-    storage,
-    keyPrefix: "Chainkeeping-",
-    // whitelist: [],
-    stateReconciler: hardSet,
+	key: "root",
+	storage,
+	keyPrefix: "Chainkeeping-",
+	// whitelist: [],
+	stateReconciler: hardSet,
 };
 
 const rootReducer = combineReducers({
-    [baseAPI.reducerPath]: baseAPI.reducer,
-    howItWorks: howItWorksReducer,
-    features: featuresReducer,
+	[baseAPI.reducerPath]: baseAPI.reducer,
+	howItWorks: howItWorksReducer,
+	features: featuresReducer,
+	loginState: loginStateReducer,
 });
+
+// Export the RootState type
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;
