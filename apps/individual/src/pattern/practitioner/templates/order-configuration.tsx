@@ -142,9 +142,9 @@ const OrderConfiguration = () => {
 							key={practitioner.id}
 							className='bg-white  shadow-lg rounded-lg p-6'
 						>
-							<h3 className='font-bold text-lg'>{practitioner.name}</h3>
+							<h3 className='font-bold text-base'>{practitioner.name}</h3>
 							<p className='text-sm'>{practitioner.description}</p>
-							<div className='flex gap-3 my-5'>
+							<div className='flex flex-wrap gap-3 my-5'>
 								<div className='flex bg-[#F5F8FA]  rounded-md items-center gap-1 py-1 px-2'>
 									<StarRatingIcon />
 									<p className='text-grey-600'>Rating</p>
@@ -170,7 +170,7 @@ const OrderConfiguration = () => {
 									return (
 										<div
 											key={service.id}
-											className='flex justify-between items-center border-b pb-3 mt-2'
+											className='flex  max-sm:flex-col justify-between md:items-center border-b pb-3 mt-2'
 										>
 											<div>
 												<p className='font-medium mb-1'>{service.name}</p>
@@ -184,14 +184,16 @@ const OrderConfiguration = () => {
 																: `(Price not available)`}
 												</p>
 											</div>
-											<Button
-												variant={isSelected ? "secondaryOutline" : "default"}
-												size='sm'
-												className='text-base transition-all ease-in-out duration-300'
-												onClick={() => handleAddOrRemoveService(service)}
-											>
-												{isSelected ? "Remove Service" : "Add Service"}
-											</Button>
+											<div className='max-sm:flex max-sm:w-full max-sm:justify-end'>
+												<Button
+													variant={isSelected ? "secondaryOutline" : "default"}
+													size='sm'
+													className='text-base transition-all ease-in-out duration-300'
+													onClick={() => handleAddOrRemoveService(service)}
+												>
+													{isSelected ? "Remove Service" : "Add Service"}
+												</Button>
+											</div>
 										</div>
 									);
 								})}
@@ -200,7 +202,7 @@ const OrderConfiguration = () => {
 					))}
 
 					{/* Order Configuration */}
-					<div className='bg-[#EBEFF3] flex lg:w-[60%] flex-col rounded-lg p-6 transition-all ease-in-out duration-300'>
+					<div className='bg-[#EBEFF3] flex max-sm:w-full lg:w-[60%] flex-col rounded-lg p-6 transition-all ease-in-out duration-300'>
 						<div className='flex w-full p-2 bg-[#DDE2E9]'>
 							<p className='text-grey-600 text-sm'>ORDER CONFIGURATION</p>
 						</div>

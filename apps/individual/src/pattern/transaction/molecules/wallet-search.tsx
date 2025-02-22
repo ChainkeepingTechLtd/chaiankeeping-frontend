@@ -22,7 +22,10 @@ const WalletSearch: FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
 				onFocus={() => setIsFocus(true)}
 				onBlur={() => setIsFocus(false)}
 				placeholder={placeholder ?? "Search"}
-				className={cn("pl-[56px] flex w-[400px] h-[44px]", className)}
+				className={cn(
+					"pl-[56px] max-sm:w-full flex w-[400px] h-[44px]",
+					className
+				)}
 				{...props}
 			/>
 			{/* prefix Icon */}

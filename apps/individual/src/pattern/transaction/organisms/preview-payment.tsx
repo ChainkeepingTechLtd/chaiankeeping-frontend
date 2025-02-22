@@ -50,9 +50,7 @@ interface UnresolvedTransactionsTableProps {
 	data: Transaction[];
 }
 
-const PreviewPayment: FC<UnresolvedTransactionsTableProps> = ({
-	data,
-}) => {
+const PreviewPayment: FC<UnresolvedTransactionsTableProps> = ({ data }) => {
 	const [selectedRows, setSelectedRows] = useState<
 		Record<string | number, boolean>
 	>({});
@@ -262,9 +260,9 @@ const PreviewPayment: FC<UnresolvedTransactionsTableProps> = ({
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
+			<div className='flex max-sm:flex-col max-sm:gap-3 justify-between mb-10'>
 				<div className='flex gap-3 '>
-					<div className='flex bg-[#E5EBEF] py-[10px] px-5 rounded-md'>
+					<div className='flex bg-[#E5EBEF] py-[10px] md:px-5 rounded-md max-sm:px-2 max-sm:text-sm'>
 						<p className='font-medium text-black'>Binance Mainnet</p>
 					</div>
 					<div className='flex bg-[#E5EBEF] items-center gap-2 py-[10px] px-5 rounded-md'>

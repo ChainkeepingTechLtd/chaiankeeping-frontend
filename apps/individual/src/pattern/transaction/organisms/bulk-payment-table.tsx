@@ -217,7 +217,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
+			<div className='flex max-sm:flex-col-reverse max-sm:gap-3 justify-between mb-10'>
 				<div className='flex gap-3 '>
 					<SearchInput
 						value={search}
@@ -229,7 +229,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 					<Button
 						onClick={toggleFilter}
 						variant='secondaryOutline'
-						size='md'
+						size='sm'
 						className='text-base gap-2'
 					>
 						<Downloadicon />
@@ -238,7 +238,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 
 					<Button
 						variant='secondary'
-						size='md'
+						size='sm'
 						className='text-base gap-2'
 						onClick={handlePayment}
 					>

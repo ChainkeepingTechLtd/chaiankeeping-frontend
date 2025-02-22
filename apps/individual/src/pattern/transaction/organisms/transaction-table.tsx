@@ -274,7 +274,7 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 	return (
 		<div>
 			<div className='flex justify-between my-10'>
-				<div className='flex gap-3 '>
+				<div className='flex gap-3 max-sm:hidden'>
 					<div>
 						<Select
 							value={selectedYear}
@@ -318,27 +318,29 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 						</Select>
 					</div>
 				</div>
-				<div className='flex gap-3'>
-					<SearchInput
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-						placeholder='Search...'
-					/>
+				<div className='flex gap-3 max-sm:flex-col-reverse'>
+					<div className='flex w-full gap-3'>
+						<SearchInput
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							placeholder='Search...'
+						/>
 
-					<Button
-						onClick={toggleFilter}
-						variant='default'
-						size='sm'
-						className='text-base h-[36px] px-2 gap-2 bg-[#E5EBEF] text-grey-500'
-					>
-						<FilterIcon />
-						Filter
-					</Button>
+						<Button
+							onClick={toggleFilter}
+							variant='default'
+							size='sm'
+							className='text-base  h-[36px] px-2 gap-2 bg-[#E5EBEF] text-grey-500'
+						>
+							<FilterIcon />
+							Filter
+						</Button>
+					</div>
 
 					<Button
 						variant='secondary'
 						size='sm'
-						className='text-base px-2 gap-2'
+						className='text-base max-sm:w-full px-2 gap-2'
 					>
 						Add transaction
 					</Button>
