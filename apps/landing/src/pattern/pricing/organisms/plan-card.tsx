@@ -18,7 +18,7 @@ const PlanCard: FC<IPlanCardProps> = ({ amount, pack, pecks, title, customized =
     const { push } = useRouter()
 
     const handleGetStarted = () => {
-        currentEnvironment === "STAGING" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
+        currentEnvironment === "PRODUCTION" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
     }
     
     return (
