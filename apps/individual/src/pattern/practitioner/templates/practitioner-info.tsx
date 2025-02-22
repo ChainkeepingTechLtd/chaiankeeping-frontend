@@ -51,7 +51,7 @@ const SinglePractitioner = () => {
 			{/* Main Content */}
 			<div className='flex flex-col  w-full '>
 				<div className='flex justify-between items-center mb-5'>
-					<div className='gap-2 flex items-center text-sm'>
+					<div className='gap-2 flex items-center text-sm max-sm:text-xs'>
 						<p className='text-grey-300'>Practitioner</p>
 						<ArrowIcon />
 						<p className='text-grey-300'>P2B</p>
@@ -66,8 +66,8 @@ const SinglePractitioner = () => {
 							className='bg-white shadow-lg rounded-lg  p-4'
 						>
 							<div className='flex gap-4 '>
-								<div className='h-[52px] w-[52px] relative'>
-									<div className=' w-[48px] h-[48px] rounded-md bg-[#F5F8FA] flex items-center justify-center font-medium text-grey-600'>
+								<div className='h-[46px] w-[46px] relative'>
+									<div className=' w-[44px] h-[44px] rounded-md bg-[#F5F8FA] flex items-center justify-center font-medium text-grey-600'>
 										{practitioner.avatar}
 									</div>
 									<div
@@ -160,11 +160,11 @@ const SinglePractitioner = () => {
 					{practitionersData.map((practitioner) => (
 						<div
 							key={practitioner.id}
-							className='bg-[#EBEFF3]  flex w-full flex-col rounded-lg gap-4 p-8'
+							className='bg-[#EBEFF3]  flex w-full flex-col rounded-lg gap-4 p-8 max-sm:p-4'
 						>
 							<div className='flex w-full justify-between md:gap-4 max-sm:flex-col'>
 								<div className='flex-1'>
-									<h3 className='font-bold text-lg '>{practitioner.name}</h3>
+									<h3 className='font-bold text-base '>{practitioner.name}</h3>
 									<p className=' lg:w-[454px] text-grey-600'>
 										Lorem ipsum dolor sit amet consectetur. Lorem ornare nullam
 										integer porttitor nibh in elementum at libero. Gravida at
@@ -180,7 +180,7 @@ const SinglePractitioner = () => {
 									Hire Practitioner
 								</Button>
 							</div>
-							<div className='flex gap-2  text-sm text-grey-600'>
+							<div className='flex flex-wrap gap-2  text-sm text-grey-600'>
 								<div className='rounded-md bg-[#CBD5E1]  px-2 py-1'>
 									<p>Financial reporting</p>
 								</div>
