@@ -1,8 +1,7 @@
 import { APP_ROUTES } from "@/lib/routes";
-import { BrandLogo, Button, Checkbox, Input } from "@chainkeeping/ui";
+import { BrandLogo, Button, Input } from "@chainkeeping/ui";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FiUser } from "react-icons/fi";
 
 const ForgotPassword = () => {
 	const router = useRouter(); // Initialize useRouter
@@ -35,7 +34,7 @@ const ForgotPassword = () => {
 					<label htmlFor='email' className='text-sm'>
 						Email Address
 					</label>
-					<Input type='text' placeholder='Enter your username' />
+					<Input type='text' placeholder='enter your username' />
 				</div>
 
 				<Button

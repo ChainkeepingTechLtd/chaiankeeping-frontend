@@ -36,17 +36,14 @@ const PaymentSection = () => {
 	const handleGoBack = () => router.back();
 
 	const handleConnect = async () => {
-		if (
-			selectedWallet === "Metamask" &&
-			typeof window.ethereum !== "undefined"
-		) {
+		if (selectedWallet === "Metamask" && (window as any).ethereum) {
 			try {
-				const accounts = await window.ethereum.request({
+				const accounts = await (window as any).ethereum.request({
 					method: "eth_requestAccounts",
 				});
 				setConnectedWalletAddress(accounts[0]);
 				setIsConnected(true);
-				setActiveStep(2); // Move to upload file step
+				setActiveStep(2);
 			} catch (error) {
 				console.error("Error connecting to Metamask:", error);
 			}
@@ -68,7 +65,7 @@ const PaymentSection = () => {
 	const getStepTextClass = (step: number) => {
 		if (step < activeStep) return "text-[#202B3C] "; // Finished state
 		if (step === activeStep) return "text-[#202B3C] font-medium"; // Active state
-		return "text-[#94A3B8]"; // Inactive state
+		return "text-grey-300"; // Inactive state
 	};
 
 	const renderUploadFile = () => (

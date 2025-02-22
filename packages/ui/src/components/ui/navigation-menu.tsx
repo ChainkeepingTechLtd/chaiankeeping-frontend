@@ -65,7 +65,7 @@ const NavigationMenuTrigger = forwardRef<
 		className={cn(navigationMenuTriggerStyle(), "group", className)}
 		{...props}
 	>
-		{children}{" "}
+		{children}
 		<ChevronDown
 			className='relative top-[1px] ml-1 h-3 w-3 text-gray-500 transition duration-200 group-data-[state=open]:rotate-180 group-data-[state=open]:text-secondary'
 			aria-hidden='true'

@@ -37,9 +37,9 @@ const FinanceReportSummary: React.FC = () => {
 								>
 									<span className='text-sm text-[#4F627D]'>{item.label}</span>
 									<span className='font-bold text-sm'>
-										<span className='text-[#94A3B8] pr-1 font-normal'>NGN</span>
+										<span className='text-grey-300 pr-1 font-normal'>NGN</span>
 										<span>{integerPart}.</span>
-										<span className='text-[#94A3B8] text-[10px] font-normal'>
+										<span className='text-grey-300 text-[10px] font-normal'>
 											{decimalPart}
 										</span>
 									</span>
@@ -71,9 +71,9 @@ const FinanceReportSummary: React.FC = () => {
 								>
 									<span className='text-sm text-[#4F627D]'>{item.label}</span>
 									<span className='font-bold text-sm'>
-										<span className='text-[#94A3B8] pr-1 font-normal'>NGN</span>
+										<span className='text-grey-300 pr-1 font-normal'>NGN</span>
 										<span>{integerPart}</span>
-										<span className='text-[#94A3B8] text-[10px] font-normal'>
+										<span className='text-grey-300 text-[10px] font-normal'>
 											{decimalPart}
 										</span>
 									</span>

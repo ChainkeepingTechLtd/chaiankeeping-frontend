@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import React, { forwardRef, ReactNode } from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "../../lib/utils"
@@ -14,16 +14,16 @@ const Drawer = ({
 )
 Drawer.displayName = "Drawer"
 
-const DrawerTrigger = DrawerPrimitive.Trigger
+const DrawerTrigger: typeof DrawerPrimitive.Trigger = DrawerPrimitive.Trigger
 
 const DrawerPortal = DrawerPrimitive.Portal
 
-const DrawerClose = DrawerPrimitive.Close
+const DrawerClose: typeof DrawerPrimitive.Close = DrawerPrimitive.Close
 
 const DrawerOverlay = forwardRef<
     React.ElementRef<typeof DrawerPrimitive.Overlay>,
     React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
->(({ className, ...props }, ref) => (
+    >(({ className, ...props }, ref): ReactNode => (
     <DrawerPrimitive.Overlay
         ref={ref}
         className={cn("fixed inset-0 z-50 bg-black/80", className)}
@@ -35,7 +35,7 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 const DrawerContent = forwardRef<
     React.ElementRef<typeof DrawerPrimitive.Content>,
     React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+    >(({ className, children, ...props }, ref): ReactNode => (
     <DrawerPortal>
         <DrawerOverlay />
         <DrawerPrimitive.Content

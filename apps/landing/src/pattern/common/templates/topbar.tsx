@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react"
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, BrandLogo, Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Hidden, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@chainkeeping/ui";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, BrandLogo, Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, Hidden, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, TopbarMenuIcon, TopbarMenuCloseIcon } from "@chainkeeping/ui";
 // import SolutionsNavContent from "../organisms/solutions-nav-content";
 // import IntegrationsNavContent from "../organisms/integrations-nav-content";
 import CustomNavLink from "../molecules/custom-nav-link";
@@ -9,8 +9,9 @@ import { CountrySelect } from "../organisms/country-selector";
 import Link from "next/link";
 import { APP_ROUTES, AUTH_ROUTES, RESOURCES_ROUTES } from "@/lib/routes";
 import { useRouter } from "next/navigation";
-import MenuIcon from "../atoms/menu-icon";
-import { MenuCloseIcon } from "../atoms/menu-close-icon";
+import { getEnvironment } from "@/lib/helpers/get-environment";
+
+export const currentEnvironment = getEnvironment()
 
 export interface INavigation {
     title: string;
@@ -115,8 +116,18 @@ const Topbar = () => {
                     </NavigationMenu>
 
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" onClick={() => push(AUTH_ROUTES.login)} className="w-fit font-semibold" >Log In</Button>
-                        <Button variant="secondary" size="sm" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                        {/* Get Early Access */}
+                        <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
+                            <Button variant="secondary" size="sm" className="w-full font-medium text-base" onClick={()=>push(APP_ROUTES.joinWaitlist)} >Get early access</Button>
+                        </Hidden>
+                        <Hidden isVisible={currentEnvironment !== "STAGING" ? true : false}>
+                            {/* Log In */}
+                            <Button variant="ghost" size="sm" onClick={() => push(AUTH_ROUTES.login)} className="w-fit font-semibold" >Log In</Button>
+                            {/* Sign up */}
+                            <Button variant="secondary" size="sm" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                        </Hidden>
+
+                        {/* Select Country */}
                         <CountrySelect />
                     </div>
                 </div>
@@ -126,11 +137,11 @@ const Topbar = () => {
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger asChild>
                             <Button variant="icon" size="icon">
-                                <MenuIcon />
+                                <TopbarMenuIcon />
                                 <span className="sr-only">Toggle menu</span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="bottom" closeIcon={<MenuCloseIcon />} closeIconClassName="absolute top-[48px] right-[36px] rounded-full" className="bg-primary h-full w-screen text-white pt-12 pl-8 pr-9">
+                        <SheetContent side="bottom" closeIcon={<TopbarMenuCloseIcon />} closeIconClassName="absolute top-[48px] right-[36px] rounded-full" className="bg-primary h-full w-screen text-white pt-12 pl-8 pr-9">
                             <SheetHeader>
                                 <SheetTitle aria-hidden='true' className="hidden">Mobile navigation</SheetTitle>
                                 <SheetDescription aria-hidden='true' className="hidden">
@@ -164,8 +175,16 @@ const Topbar = () => {
                                         </Hidden>
                                     </div>
                                 ))}
-                                <Button size="lg" onClick={() => push(AUTH_ROUTES.login)} className="w-full font-medium text-base" >Log In</Button>
-                                <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                                <Hidden isVisible={currentEnvironment !== "STAGING" ? true : false}>
+                                    {/* Log In */}
+                                    <Button size="lg" onClick={() => push(AUTH_ROUTES.login)} className="w-full font-medium text-base" >Log In</Button>
+                                    {/* Sign Up */}
+                                    <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={() => push(APP_ROUTES.signup)} >Sign up</Button>
+                                </Hidden>
+                                {/* Get Early Access */}
+                                <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
+                                    <Button variant="secondary" size="lg" className="w-full font-medium text-base" onClick={()=>push(APP_ROUTES.joinWaitlist)} >Get early access</Button>
+                                </Hidden>
                             </nav>
                         </SheetContent>
                     </Sheet>

@@ -55,7 +55,7 @@ const AssetsCard = () => {
 						: "#94A3B8";
 
 				return (
-					<div key={idx} className='space-y-2 bg-[#FFFFFF] rounded-lg p-4' key={asset.id}>
+					<div key={idx} className='space-y-2 bg-[#FFFFFF] rounded-lg p-4'>
 						<div className='flex items-center gap-2 w-full mb-3'>
 							{asset.icon}
 							<p className='text-grey-400 text-sm'>{asset.title}</p>
@@ -64,7 +64,7 @@ const AssetsCard = () => {
 						<div className='border-b border-[#E6E9EE]'></div>
 						<div className='flex justify-between pt-7'>
 							<div className='flex items-center gap-1'>
-								<p className='text-[#94A3B8] text-base'>NGN</p>
+								<p className='text-grey-300 text-base'>NGN</p>
 								<p className='font-bold' style={{ color: totalColor }}>
 									{whole}
 									{decimal && (

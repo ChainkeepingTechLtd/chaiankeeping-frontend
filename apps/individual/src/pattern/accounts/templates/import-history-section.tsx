@@ -31,7 +31,7 @@ const ImportHistorySection = () => {
 							<GoBack />
 							<h6 className='font-bold'>Holdings</h6>
 						</div>
-						<ImportHistoryTable data={ImportHistoryData} />
+						<ImportHistoryTable data={ImportHistoryData as any} />
 					</div>
 				</div>
 			) : (

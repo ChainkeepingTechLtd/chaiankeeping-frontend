@@ -3,6 +3,9 @@ import { Button } from '@chainkeeping/ui'
 import ListItemIcon from '../atoms/list-item-icon'
 import { APP_ROUTES } from '@/lib/routes'
 import { useRouter } from 'next/navigation'
+import { getEnvironment } from '@/lib/helpers/get-environment'
+
+export const currentEnvironment = getEnvironment()
 
 const featuresAtGlance = [
     "All crypto platforms supported",
@@ -12,6 +15,10 @@ const featuresAtGlance = [
 
 const TaxComputationHeroSection = () => {
     const { push } = useRouter()
+
+    const handleGetStarted = () => {
+        currentEnvironment === "STAGING" ? push(APP_ROUTES.joinWaitlist) : push(APP_ROUTES.signup)
+    }
     return (
         <section className="bg-primary bg-pattern-bg-img bg-cover bg-center w-full h-fit lg:h-[345px]">
             <div className='w-full h-full flex flex-col items-start justify-center gap-y-3 py-[66px] px-[18px] lg:container'>
@@ -32,7 +39,7 @@ const TaxComputationHeroSection = () => {
                         </ul>
                     </div>
                 </div>
-                <Button size='lg' variant="secondary" onClick={() => push(APP_ROUTES.signup)} >Get started</Button>
+                <Button size='lg' variant="secondary" onClick={handleGetStarted} >Get started</Button>
             </div>
         </section>
     )

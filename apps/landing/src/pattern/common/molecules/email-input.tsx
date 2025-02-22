@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 import { ICustomInputProps } from "@/pattern/types";
-import { cn, Input } from "@chainkeeping/ui";
-import EmailInputIcon from "../atoms/email-input-icon";
+import { cn, EmailInputIcon, Input } from "@chainkeeping/ui";
 import { Controller, useFormContext } from "react-hook-form";
 
 const EmailInput: FC<ICustomInputProps> = ({

@@ -1,3 +1,4 @@
+import { DEFAULT_RUNTIME_WEBPACK } from "next/dist/shared/lib/constants";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
@@ -183,6 +184,10 @@ export const shadcnPlugin = plugin(
 					label: {
 						DEFAULT: "hsl(var(--label))",
 					},
+					warning: {
+						DEFAULT: "hsl(var(--warning))",
+					},
+
 					grey: {
 						DEFAULT: "hsl(var(--grey-400))",
 						"100": "hsl(var(--grey-100))",

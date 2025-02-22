@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Button } from "@chainkeeping/ui";
-import TransactionCard from "../organisms/transaction-card";
 import NoAccountIcon from "@/pattern/individual/atoms/no-account-icon";
-import TransactionTable from "../organisms/transaction-table";
 
-import { transactionData } from "../molecules/transaction-data";
 import UnresolvedTransactionsTable from "../organisms/unresolved-transactions-table";
 import { UnresolvedTransactionData } from "../molecules/unresolved-transactions-data";
 import GoBack from "../atoms/go-back";
@@ -29,15 +25,15 @@ const UnresolvedTransactionsSection = () => {
 			{hasAccount ? (
 				<div className='md:px-8 flex h-full gap-4 justify-between pt-10 max-sm:px-4 max-sm:flex-col'>
 					<div className='flex-col flex gap-4 w-full'>
-						<div
-							className='flex items-center gap-2 mb-6'
-						>
-							<Button variant="icon" size="icon" onClick={handleGoBack}>
+						<div className='flex items-center gap-2 mb-6'>
+							<Button variant='icon' size='icon' onClick={handleGoBack}>
 								<GoBack />
 							</Button>
 							<h6 className='font-bold'>Unresolved transactions</h6>
 						</div>
-						<UnresolvedTransactionsTable data={UnresolvedTransactionData} />
+						<UnresolvedTransactionsTable
+							data={UnresolvedTransactionData as any}
+						/>
 					</div>
 				</div>
 			) : (

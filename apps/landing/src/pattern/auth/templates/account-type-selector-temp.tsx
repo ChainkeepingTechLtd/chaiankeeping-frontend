@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { BrandLogo, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@chainkeeping/ui'
 import AccountTypeToggleGroup from '../organisms/account-type-toggle-group'
 import Link from 'next/link'
-import { APP_ROUTES, COMPANY_DASHBOARD_URL, PERSONAL_DASHBOARD_URL, PRACTITIONERS_DASHBOARD_URL } from '@/lib/routes'
+import { APP_ROUTES} from '@/lib/routes'
 import { useRouter } from 'next/navigation'
 import { handleLoginRouting } from '@/lib/utils/handle-login-routing'
 
@@ -24,12 +24,12 @@ const AccountTypeSelectorTemp: FC<IProps> = ({ pathname }) => {
     }
 
     return (
-        <div className='w-fit flex flex-col items-center gap-y-8 px-[18px] pb-[144px]'>
+        <div className='w-fit flex flex-col items-start md:items-center gap-y-8 px-[18px] pb-[144px]'>
             <Link href={APP_ROUTES.index}>
                 <BrandLogo />
             </Link>
 
-            <Card className="bg-white w-full lg:w-[438px] h-fit lg:h-[542px] flex flex-col gap-y-6 p-6 rounded-[8px] card-shadow border-none shadow-none">
+            <Card className="bg-white w-full lg:w-[438px] h-fit lg:h-[542px] flex flex-col gap-y-6 p-6 rounded-[8px] card-shadow border-none">
                 <CardHeader className="h-[86px] border-b space-y-1 pb-4">
                     <CardTitle className="text-base font-bold font-sen">Account Type</CardTitle>
                     <CardDescription className="text-sm text-[hsla(215,16%,47%,1)]">Select an account type that best describes you and how you intend to use Chainkeeping.</CardDescription>

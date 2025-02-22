@@ -1,5 +1,8 @@
 "use client";
+
 import AssetsSection from "@/pattern/individual/templates/assets-section";
+
+
 
 const HomePage = () => {
     return (

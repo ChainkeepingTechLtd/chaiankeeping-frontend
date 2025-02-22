@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState, ReactNode, FC } from "react";
 import {
 	useReactTable,
 	getCoreRowModel,
 	getPaginationRowModel,
 	flexRender,
 	Table,
+	ColumnDef,
 } from "@tanstack/react-table";
-
 import SortIcon from "../atoms/sort-icon";
 import PrevIcon from "../atoms/prev-icon";
 import NextIcon from "../atoms/next-icon";
@@ -15,12 +15,11 @@ import { useRouter } from "next/navigation";
 import TetherIcon from "@/pattern/individual/atoms/tether-icon";
 import EditIcon from "../atoms/edit-icon";
 import DeleteIcon from "../atoms/delete-icon";
-import Modal from "@/pattern/taxes/molecules/modal-compoent";
-import SuccesIcon from "@/pattern/taxes/atoms/success-icon";
 import PaymentSuccessModal from "../molecules/payment-success-modal";
 import ApprovePaymentModal from "../molecules/approve-payment-modal";
 import DeletePaymentModal from "../molecules/delete-payment-modal";
 import EditPaymentModal from "../molecules/edit-payment-modal";
+import Image from "next/image";
 
 interface Transaction {
 	id: string | number;
@@ -30,19 +29,19 @@ interface Transaction {
 	};
 	label: {
 		title: string;
-		icon?: React.ReactNode;
+		icon?: ReactNode;
 	};
 	account: string;
-	accountIcon?: React.ReactNode;
+	accountIcon?: ReactNode;
 	outFrom: {
 		amount: string;
 		details: string;
-		icon?: React.ReactNode;
+		icon?: ReactNode;
 	};
 	inTo: {
 		amount: string;
 		details: string;
-		icon?: React.ReactNode;
+		icon?: ReactNode;
 	};
 	profitLoss: string;
 }
@@ -51,20 +50,19 @@ interface UnresolvedTransactionsTableProps {
 	data: Transaction[];
 }
 
-const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
+const PreviewPayment: FC<UnresolvedTransactionsTableProps> = ({
 	data,
 }) => {
 	const [selectedRows, setSelectedRows] = useState<
 		Record<string | number, boolean>
 	>({});
 
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const [search, setSearch] = useState("");
 
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleAddAccount = () => {
-		router.push("bulk-payments/transaction");
+		push("bulk-payments/transaction");
 	};
 
 	// Handle individual checkbox change
@@ -109,6 +107,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		console.log("Filtered Data:", filtered);
 		return filtered;
 	}, [data, search]);
+
 	const [loading, setLoading] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -133,7 +132,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 		}, 2000);
 	};
 
-	const columns = React.useMemo(
+	const columns = useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -145,7 +144,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
@@ -234,14 +233,14 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						<div className='flex gap-4 w-full items-center justify-start'>
 							<button
 								onClick={openEditModal}
-								className=' flex items-center gap-1 text-[#94A3B8]'
+								className=' flex items-center gap-1 text-grey-300'
 							>
 								<EditIcon />
 								Edit
 							</button>
 							<button
 								onClick={openDeleteModal}
-								className='flex items-center gap-1 text-[#94A3B8]'
+								className='flex items-center gap-1 text-grey-300'
 							>
 								<DeleteIcon />
 								Delete
@@ -269,7 +268,7 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						<p className='font-medium text-black'>Binance Mainnet</p>
 					</div>
 					<div className='flex bg-[#E5EBEF] items-center gap-2 py-[10px] px-5 rounded-md'>
-						<img src='/Base.svg' alt='' />
+						<Image src='/Base.svg' width={20} height={20} alt='Base SVG Icon' />
 						<p className='font-medium'>0x2c9b...fa23bc093ae3b282c0</p>
 					</div>
 				</div>
@@ -286,23 +285,24 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 			</div>
 
 			<div className='overflow-x-auto'>
-				<table className='min-w-full table-fixed border border-[red] shadow-md rounded-lg overflow-hidden'>
+				<table className='min-w-full table-fixed border border-destructive shadow-md rounded-lg overflow-hidden'>
 					<thead className='bg-[#F5F8FA]'>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
+											header.column.columnDef || ""
+										}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												)}
+														header.column.columnDef.header,
+														header.getContext()
+													)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -351,10 +351,11 @@ const PreviewPayment: React.FC<UnresolvedTransactionsTableProps> = ({
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${
+									pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-									}`}
+								}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

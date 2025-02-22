@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 const BCWIcon = () => {
-	return <img src='/bcw.svg' />;
+	return <Image src='/bcw.svg' alt="BCW icon" />;
 };
 
 export default BCWIcon;

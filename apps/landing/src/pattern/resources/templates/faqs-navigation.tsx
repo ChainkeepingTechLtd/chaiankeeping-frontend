@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from '@chainkeeping/ui'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@chainkeeping/ui'
 import { INavigation } from '@/pattern/common/templates/topbar'
 import FAQsCustomNavLink from '../molecules/faqs-nav-link'
 

@@ -114,7 +114,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 		return filtered;
 	}, [data, search]);
 
-	const columns = React.useMemo(
+	const columns = React.useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -126,7 +126,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
@@ -198,7 +198,7 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 				id: "actions",
 				cell: () => (
 					<div className='flex w-full items-center justify-start'>
-						<button onClick={handleAddAccount} className='p-2 text-[#94A3B8]'>
+						<button onClick={handleAddAccount} className='p-2 text-grey-300'>
 							View details
 						</button>
 					</div>
@@ -256,16 +256,17 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 								{headerGroup.headers.map((header) => (
 									<th
 										key={header.id}
-										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${header.column.columnDef.headerClassName || ""
-											}`}
+										className={`text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold ${
+											header.column.columnDef || ""
+										}`}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder
 												? null
 												: flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												)}
+														header.column.columnDef.header,
+														header.getContext()
+													)}
 											{header.column.id !== "actions" &&
 												header.column.id !== "select" && <SortIcon />}
 										</div>
@@ -314,10 +315,11 @@ const BulkPaymentTable: React.FC<UnresolvedTransactionsTableProps> = ({
 						{table.getPageOptions().map((pageIndex) => (
 							<button
 								key={pageIndex}
-								className={`h-6 text-sm w-6 rounded-full ${pageIndex === table.getState().pagination.pageIndex
+								className={`h-6 text-sm w-6 rounded-full ${
+									pageIndex === table.getState().pagination.pageIndex
 										? "bg-[#D82E2E] text-white"
 										: "bg-transparent text-gray-800"
-									}`}
+								}`}
 								onClick={() => table.setPageIndex(pageIndex)}
 							>
 								{pageIndex + 1}

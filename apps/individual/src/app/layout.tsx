@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { dmsans, inter, rubik, sen, space_Grotesk } from "./assets/fonts";
 import { Providers } from "../redux/provider";
 
-import { clientConfig } from "@/lib/utils/rollbar";
+// import { clientConfig } from "@/lib/utils/rollbar";
 
 export const metadata: Metadata = {
 	title: "Chainkeeping | Individual Dashboard",

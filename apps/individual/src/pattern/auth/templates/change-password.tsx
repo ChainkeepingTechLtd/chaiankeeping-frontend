@@ -1,5 +1,5 @@
 import { APP_ROUTES } from "@/lib/routes";
-import { BrandLogo, Button, Checkbox, Input } from "@chainkeeping/ui";
+import { BrandLogo, Button, Input } from "@chainkeeping/ui";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -37,7 +37,7 @@ const ChangePassword = () => {
 					<Input
 						id='password'
 						type='password'
-						placeholder='Enter your new password'
+						placeholder='enter your new password'
 					/>
 				</div>
 				<div className='space-y-2 my-2'>
@@ -47,7 +47,7 @@ const ChangePassword = () => {
 					<Input
 						id='password'
 						type='password'
-						placeholder='Enter your new password'
+						placeholder='enter your new password'
 					/>
 				</div>
 

@@ -30,7 +30,7 @@ const AccountsAndTaxes = () => {
 		<div className='grid grid-cols-2 gap-4 w-full max-sm:grid-cols-1 font-dmsans'>
 			{assetStats.map((asset, idx) => {
 				return (
-					<div key={idx} className='space-y-2 bg-[#FFFFFF] rounded-lg p-4'>
+					<div key={idx} className='space-y-2 bg-white rounded-lg p-4'>
 						<div className='flex items-center gap-2 w-full mb-3'>
 							{asset.icon}
 							<p className='text-[#202B3C] font-medium'>{asset.title}</p>

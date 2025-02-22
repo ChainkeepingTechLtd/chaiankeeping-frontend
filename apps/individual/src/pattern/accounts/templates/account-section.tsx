@@ -21,7 +21,7 @@ const AccountTransactionSection = () => {
 				<div className='md:pr-8 flex w-full h-full gap-4 pt-24 max-sm:px-4 max-sm:flex-col'>
 					<div className='flex-col flex gap-4 w-full'>
 						<AccountTransactionCard />
-						<TransactionTable data={transactionData} />
+						<TransactionTable data={transactionData as any} />
 					</div>
 				</div>
 			) : (

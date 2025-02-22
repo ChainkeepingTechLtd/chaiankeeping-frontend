@@ -5,6 +5,7 @@ import {
 	getPaginationRowModel,
 	flexRender,
 	Table,
+	ColumnDef,
 } from "@tanstack/react-table";
 
 import {
@@ -133,7 +134,7 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 	}, [data, selectedYear, selectedType, search]);
 
 	// Define columns
-	const columns = React.useMemo(
+	const columns = React.useMemo<ColumnDef<Transaction>[]>(
 		() => [
 			{
 				id: "select",
@@ -145,7 +146,7 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 								(row: { id: string | number }) => selectedRows[row.id]
 							)}
 						onCheckedChange={(checked) => {
-							handleSelectAll(checked, table.getRowModel().rows);
+							handleSelectAll(checked as boolean, table.getRowModel().rows);
 						}}
 					/>
 				),
@@ -362,7 +363,9 @@ const TransactionTable: React.FC<TransactionsTableProps> = ({ data }) => {
 								{headerGroup.headers.map((header, idx) => (
 									<th
 										key={idx}
-										className={cn("text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold")}
+										className={cn(
+											"text-left whitespace-nowrap px-6 py-3 border-b border-gray-300 text-sm font-semibold"
+										)}
 									>
 										<div className='flex w-full items-center gap-1'>
 											{header.isPlaceholder

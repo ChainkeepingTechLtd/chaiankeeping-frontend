@@ -1,3 +1,4 @@
+import React from 'react';
 import { IIconProps } from "./types"
 
 const BrandLogo = ({ className, width, height }: IIconProps) => {

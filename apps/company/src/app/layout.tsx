@@ -1,6 +1,7 @@
 import "@chainkeeping/ui/dist/index.css";
 import "./assets/styles/globals.css";
 
+import React, { ReactNode } from "react";
 import type { Metadata } from "next";
 import { dmsans, inter, rubik, sen, space_Grotesk } from "./assets/fonts";
 import { Providers } from "../redux/provider";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode;
+	children: ReactNode;
 }>) {
 	return (
 		// <RollbarProvider config={clientConfig}>

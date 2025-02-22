@@ -3,6 +3,7 @@ export const APP_ROUTES = {
     solutions: "/#features",
     about: "/about",
     contact: "/contact-us",
+    joinWaitlist: "/join-waitlist",
     careers: "/careers",
     partnership: "/about/#partnership",
     pricing: "/pricing",
@@ -61,6 +62,6 @@ export const SOCIALS = {
     email: "info@withconvexity.com ",
 };
 
-export const PERSONAL_DASHBOARD_URL = "https://chainkeeping-271m.vercel.app/"
-export const COMPANY_DASHBOARD_URL = "https://chainkeeping-271m.vercel.app/"
-export const PRACTITIONERS_DASHBOARD_URL = "https://chainkeeping-271m.vercel.app/"
+export const PERSONAL_DASHBOARD_URL = "https://chainkeeping-ind.vercel.app/"
+export const COMPANY_DASHBOARD_URL = "https://chaiankeeping-company.vercel.app/"
+export const PRACTITIONERS_DASHBOARD_URL = "https://chainkeeping-practitioner.vercel.app/"

@@ -34,7 +34,7 @@ const AssetsHoldingsSection = () => {
 							<GoBack />
 							<h6 className='font-bold'>Holdings</h6>
 						</div>
-						<AssetsHoldingsTable data={AssetsHoldingData} />
+						<AssetsHoldingsTable data={AssetsHoldingData as any} />
 					</div>
 				</div>
 			) : (

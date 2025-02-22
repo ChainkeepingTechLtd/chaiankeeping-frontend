@@ -7,3 +7,7 @@ export interface IIconProps extends React.SVGAttributes<SVGElement> {
     width?: string;
     className?: string;
 }
+export interface IInputIconProps extends IIconProps {
+    focus?: boolean; // input focus state
+    toggle?: boolean; // toggle password input visible state
+}

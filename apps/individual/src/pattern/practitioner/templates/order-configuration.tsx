@@ -32,7 +32,7 @@ type Service = {
 	name: string;
 	pricePerYear?: number;
 	pricePerSession?: number;
-	pricePerReport?: number;
+	pricePerReport: number;
 };
 
 type Practitioner = {
@@ -123,10 +123,9 @@ const OrderConfiguration = () => {
 							reports: s.reports.includes(reportType)
 								? s.reports.filter((r: any) => r !== reportType)
 								: [...s.reports, reportType],
-							totalCost:
-								(s.reports.includes(reportType)
-									? s.reports.length - 1
-									: s.reports.length + 1) * s.pricePerReport,
+							totalCost: s.reports.includes(reportType)
+								? (s.reports.length - 1) * (s.pricePerReport ?? 0)
+								: (s.reports.length + 1) * (s.pricePerReport ?? 0),
 						}
 					: s
 			)
@@ -180,7 +179,9 @@ const OrderConfiguration = () => {
 														? `(NGN ${service.pricePerYear.toLocaleString()} /year)`
 														: service.pricePerSession
 															? `(NGN ${service.pricePerSession.toLocaleString()} /session)`
-															: `(NGN ${service.pricePerReport.toLocaleString()} /report)`}
+															: service.pricePerReport
+																? `(NGN ${service.pricePerReport.toLocaleString()} /report)`
+																: `(Price not available)`}
 												</p>
 											</div>
 											<Button
