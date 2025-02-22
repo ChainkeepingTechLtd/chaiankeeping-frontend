@@ -197,7 +197,7 @@ export default function ContactForm() {
                                 />
                             </div>
 
-                            <Hidden isVisible={currentEnvironment === "PRODUCTION" ? true : false}>
+                            <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
                                 {/* Your inquiry / Feedback */}
                                 <FormField
                                     control={form.control}
