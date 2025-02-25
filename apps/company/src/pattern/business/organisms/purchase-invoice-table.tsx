@@ -1,71 +1,17 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table"
-import { SalesInvoice, SalesInvoiceColumns } from "../molecules/sales-invoice-columns";
 import { Button, Pagination, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@chainkeeping/ui";
 import SearchInput from "@/pattern/transaction/molecules/search-input";
+import { PurchaseInvoice, PurchaseInvoiceColumns } from "../molecules/purchase-invoice-columns";
+import { InvoiceTypes } from "@/lib/data";
 
-const Invoices = [
-    {
-        title: "All invoices",
-        value: "all"
-    },
-    {
-        title: "Crypto Invoice",
-        value: "crypto"
-    },
-    {
-        title: "Tax Invoice",
-        value: "tax"
-    },
-]
+interface IProps {
+    data: PurchaseInvoice[]
+}
 
-// Sample data
-const data: SalesInvoice[] = [
-    {
-        id: "SINV#00000078",
-        amount: 32000.0,
-        customer: "Nick Hunterman",
-        requestDate: "Dec 02, 2022",
-        paidDate: null,
-        paymentMethod: null,
-        revenueStream: null,
-        status: "draft",
-    },
-    {
-        id: "SINV#00000085",
-        amount: 150000.0,
-        customer: "Alexis Thorpe",
-        requestDate: "Nov 01, 2021",
-        paidDate: null,
-        paymentMethod: null,
-        revenueStream: null,
-        status: "unpaid",
-    },
-    {
-        id: "SINV#00000085",
-        amount: 150000.0,
-        customer: "Janet Doe",
-        requestDate: "Nov 01, 2021",
-        paidDate: "Nov 07, 2021",
-        paymentMethod: "Card",
-        revenueStream: null,
-        status: "partially paid",
-    },
-    {
-        id: "SINV#00000085",
-        amount: 150000.0,
-        customer: "Janet Doe",
-        requestDate: "Nov 01, 2021",
-        paidDate: "Nov 07, 2021",
-        paymentMethod: "Crypto",
-        revenueStream: null,
-        status: "paid",
-    },
-]
+const columns = PurchaseInvoiceColumns
 
-const columns = SalesInvoiceColumns
-
-const SalesInvoiceTable = () => {
+const PurchaseInvoiceTable: FC<IProps> = ({ data }) => {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -75,8 +21,8 @@ const SalesInvoiceTable = () => {
 
 
     const table = useReactTable({
-        data,
-        columns,
+        data: data,
+        columns: columns,
         onSortingChange: setSorting,
         onColumnFiltersChange: setColumnFilters,
         getCoreRowModel: getCoreRowModel(),
@@ -106,12 +52,12 @@ const SalesInvoiceTable = () => {
                 </div>
 
                 {/* Select Invoice */}
-                <Select onValueChange={setSearch} value={search} defaultValue={Invoices?.[0]?.value}>
+                <Select onValueChange={setSearch} value={search} defaultValue={InvoiceTypes?.[0]?.value}>
                     <SelectTrigger className="w-[200px] h-[48px]">
                         <SelectValue placeholder="— Select —" />
                     </SelectTrigger>
                     <SelectContent>
-                        {Invoices?.map(({ title, value }) => (
+                        {InvoiceTypes?.map(({ title, value }) => (
                             <SelectItem key={value} value={value}>
                                 {title}
                             </SelectItem>
@@ -119,9 +65,9 @@ const SalesInvoiceTable = () => {
                     </SelectContent>
                 </Select>
             </div>
-            <div className="bg-white w-full pt-[1px] px-[1px] pb-2 rounded-[8px] border">
-                <Table className="relative">
-                    <TableHeader className="relative bg-accent w-full">
+            <div className="bg-white w-full pt-[1px] px-[1px] pb-2 rounded-[8px] border overflow-x-hidden">
+                <Table>
+                    <TableHeader className="bg-accent w-full">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id} className="w-full">
                                 {headerGroup.headers.map((header) => {
@@ -163,4 +109,4 @@ const SalesInvoiceTable = () => {
     )
 }
 
-export default SalesInvoiceTable
+export default PurchaseInvoiceTable
