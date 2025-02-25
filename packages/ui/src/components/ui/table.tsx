@@ -73,7 +73,7 @@ const TableHead = forwardRef<
     <th
         ref={ref}
         className={cn(
-            "h-12 px-4 text-left align-middle font-medium text-foreground  [&:has([role=checkbox])]:pX-0 [&:first-child]:rounded-tl-[8px] [&:last-child]:rounded-tr-[8px]",
+            "h-12 px-4 text-left align-middle font-medium text-[hsla(216,30%,18%,1)]  [&:has([role=checkbox])]:pX-0 [&:first-child]:rounded-tl-[8px] [&:last-child]:rounded-tr-[8px]",
             className
         )}
         {...props}
@@ -87,7 +87,8 @@ const TableCell = forwardRef<
 >(({ className, ...props }, ref) => (
     <td
         ref={ref}
-        className={cn("p-4 align-middle [&:has([role=checkbox])]:pX-0", className)}
+        className={cn("text-[hsla(0,0%,13%,1)] p-4 align-middle", className)}
+        // className={cn("text-[hsla(0,0%,13%,1)] p-4 align-middle [&:has([role=checkbox])]:pX-0", className)}
         {...props}
     />
 ))
@@ -99,7 +100,7 @@ const TableCaption = forwardRef<
 >(({ className, ...props }, ref) => (
     <caption
         ref={ref}
-        className={cn("mt-4 text-sm text-foreground", className)}
+        className={cn("mt-4 text-sm text-[hsla(0,0%,13%,1)]", className)}
         {...props}
     />
 ))

@@ -197,7 +197,6 @@ export default function ContactForm() {
                                 />
                             </div>
 
-                            <Hidden isVisible={currentEnvironment === "STAGING" ? true : false}>
                                 {/* Your inquiry / Feedback */}
                                 <FormField
                                     control={form.control}
@@ -212,7 +211,6 @@ export default function ContactForm() {
                                         </FormItem>
                                     )}
                                 />
-                            </Hidden>
 
                             <div className="w-full lg:flex lg:justify-end">
                                 <SubmitButton type="submit" loading={isLoading} className="w-full lg:w-fit">

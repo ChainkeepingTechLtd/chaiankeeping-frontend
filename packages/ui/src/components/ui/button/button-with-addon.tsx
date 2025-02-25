@@ -15,7 +15,7 @@ export const ButtonWithAddon = React.forwardRef<HTMLButtonElement, ButtonWithAdd
             <Button
                 ref={ref}
                 className={cn(
-                    "flex items-center",
+                    "w-fit h-fit flex items-center whitespace-nowrap",
                     addonPosition === 'start' ? "pl-3" : "pr-3",
                     className
                 )}
