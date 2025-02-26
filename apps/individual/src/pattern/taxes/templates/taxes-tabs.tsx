@@ -11,7 +11,7 @@ const TaxesTabs = () => {
 			case "Taxes Due":
 				return (
 					<div className=' gap-4 w-full items-start mt-4'>
-						<p className='font-sen font-bold mb-6 text-[#202B3C]'>
+						<p className='font-sen max-sm:px-4 font-bold mb-6 text-[#202B3C]'>
 							Taxes - Due
 						</p>
 						<TaxesDueTable />
@@ -20,7 +20,7 @@ const TaxesTabs = () => {
 			case "Unfilled Taxes":
 				return (
 					<div className=' gap-4 w-full items-start mt-4'>
-						<p className='font-sen font-bold mb-6 text-[#202B3C]'>
+						<p className='font-sen max-sm:px-4 font-bold mb-6 text-[#202B3C]'>
 							Taxes - Unfilled
 						</p>
 						<UnifiedTaxes />
@@ -29,7 +29,7 @@ const TaxesTabs = () => {
 			case "Concluded Taxes":
 				return (
 					<div className=' gap-4 w-full items-start mt-4'>
-						<p className='font-sen font-bold mb-6 text-[#202B3C]'>
+						<p className='font-sen max-sm:px-4 font-bold mb-6 text-[#202B3C]'>
 							Taxes - Concluded
 						</p>
 						<TaxesConcluded />
@@ -43,9 +43,9 @@ const TaxesTabs = () => {
 	return (
 		<div className='h-full w-full flex flex-col'>
 			{/* Fixed Tabs */}
-			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3'>
+			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3 max-sm:pt-16 whitespace-nowrap'>
 				<div className='flex justify-between md:px-8 mx-auto px-4'>
-					<div className='flex'>
+					<div className='flex max-sm:text-sm'>
 						<button
 							className={`px-4 py-4 font-medium ${
 								activeTab === "Taxes Due"
@@ -81,7 +81,7 @@ const TaxesTabs = () => {
 			</div>
 
 			{/* Tab Content */}
-			<div className='pt-24 md:px-8 w-full'>{renderContent()}</div>
+			<div className='pt-24 max-sm:pt-32 md:px-8 w-full'>{renderContent()}</div>
 		</div>
 	);
 };

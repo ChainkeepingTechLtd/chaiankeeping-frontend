@@ -262,7 +262,7 @@ const BulkPaymentTransactionTable: React.FC<
 
 	return (
 		<div>
-			<div className='flex justify-between mb-10'>
+			<div className='flex gap-3 justify-between max-sm:pt-24 mb-10'>
 				<div className='flex gap-3 '>
 					<SearchInput
 						value={search}
@@ -275,10 +275,10 @@ const BulkPaymentTransactionTable: React.FC<
 						onClick={toggleFilter}
 						variant='default'
 						size='md'
-						className='text-base gap-2'
+						className='text-base max-sm:px-2 max-sm:h-10 gap-2'
 					>
 						<ExportIcon />
-						Export
+						<p className='max-sm:hidden'>Export</p>
 					</Button>
 				</div>
 			</div>

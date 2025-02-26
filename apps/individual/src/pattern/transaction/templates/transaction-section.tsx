@@ -20,7 +20,7 @@ const TransactionSection = () => {
 	return (
 		<div className='h-full'>
 			{hasAccount ? (
-				<div className='md:px-8 flex h-full gap-4 justify-between pt-10 max-sm:px-4 max-sm:flex-col'>
+				<div className='md:px-8 flex h-full gap-4 justify-between max-sm:pt-24 pt-10 max-sm:px-4 max-sm:flex-col'>
 					<div className='flex-col flex gap-4 w-full'>
 						<TransactionCard />
 						<TransactionTable data={transactionData as any} />
