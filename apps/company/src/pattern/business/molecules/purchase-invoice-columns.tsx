@@ -2,20 +2,21 @@ import CustomThead from "@/pattern/common/molecules/custom-thead"
 import { ViewMoreTableTrigger } from "@/pattern/common/molecules/view-more-table-trigger"
 import { Badge, Button, Checkbox, cn, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, ThSortIcon } from "@chainkeeping/ui"
 import { ColumnDef } from "@tanstack/react-table"
+import PurchaseInvoiceTableAction from "./purchase-invoice-table-actions"
 
-export type SalesInvoice = {
+export type PurchaseInvoice = {
     id: string
     amount: number
-    customer: string
+    vendor: string
     requestDate: string
     paidDate: string | null
     paymentMethod: string | null
-    revenueStream: string | null
-    status: "draft" | "unpaid" | "paid" | "partially paid"
+    expenseType: string | null
+    status: "draft" | "unpaid" | "paid" | "pending approval"
 }
 
 
-export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
+export const PurchaseInvoiceColumns: ColumnDef<PurchaseInvoice>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -51,8 +52,8 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
             </div>
         ),
         cell: ({ row }) => (
-            <div className="w-[180px] md:w-[327px] h-full flex items-center">
-                <div className={cn("fixed font-normal text-xs md:text-sm py-4 px-4 md:px-8", row.getIsSelected() ? "bg-accent" : "bg-white")}>
+            <div className="w-[100px] md:w-[327px] h-full flex items-center">
+                <div className={cn("fixed w-[180px] md:w-[327px] font-normal text-xs md:text-sm py-2 px-1 md:px-8", row.getIsSelected() ? "bg-accent" : "bg-white")}>
                     {row.getValue("id") ?? "-"}
                 </div>
             </div>
@@ -73,10 +74,10 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
         },
     },
     {
-        accessorKey: "customer",
-        header: () => <CustomThead title="Customer" className="w-[150px]" />,
+        accessorKey: "vendor",
+        header: () => <CustomThead title="Vendor" className="w-[150px]" />,
         cell: ({ row }) => {
-            return <div className='w-[150px]'>{row.getValue('customer') ?? "-"}</div>
+            return <div className='w-[150px]'>{row.getValue('vendor') ?? "-"}</div>
         }
     },
     {
@@ -101,10 +102,10 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
         }
     },
     {
-        accessorKey: "revenueStream",
-        header: () => <CustomThead title="Revenue Stream" className="w-[149px]" />,
+        accessorKey: "expenseType",
+        header: () => <CustomThead title="Expense Type" className="w-[149px]" />,
         cell: ({ row }) => {
-            return <div className='w-[149px]'>{row.getValue('revenueStream') ?? "-"}</div>
+            return <div className='w-[149px]'>{row.getValue('expenseType') ?? "-"}</div>
         }
     },
     {
@@ -135,18 +136,22 @@ export const SalesInvoiceColumns: ColumnDef<SalesInvoice>[] = [
     },
     {
         id: "actions",
-        cell: () => {
+        header: () => <CustomThead title="Actions" className="w-[143px]" />,
+        cell: ({ row }) => {
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger className="relative cursor-pointer">
-                        <ViewMoreTableTrigger />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View Invoice</DropdownMenuItem>
-                        <DropdownMenuItem>Download PDF</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <div className="w-[143px] flex items-center justify-between">
+                    <PurchaseInvoiceTableAction paymentStatus={row.getValue("status")} invoice={row.getValue("id")} />
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className="relative cursor-pointer">
+                            <ViewMoreTableTrigger />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem>View Invoice</DropdownMenuItem>
+                            <DropdownMenuItem>Download PDF</DropdownMenuItem>
+                            <DropdownMenuItem>Delete</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             )
         },
     },
