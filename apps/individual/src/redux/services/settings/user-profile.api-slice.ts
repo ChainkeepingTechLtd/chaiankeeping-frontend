@@ -1,7 +1,6 @@
 // user-profile.api-slice.ts
 import { baseAPI } from "@/redux/api/base-api";
 
-// Define the response interface based on the provided response body
 export interface IUserProfileResponse {
 	error: boolean;
 	responseCode: string;
@@ -51,19 +50,11 @@ export interface IUserProfileResponse {
 		};
 		profile: {
 			_id: string;
-			corporateEmail: string;
-			businessName: string;
-			businessCategory: string;
-			licenseNumber: string;
-			clients: {
-				user: string;
-				status: string;
-				_id: string;
-			}[];
+			practitioners: [];
 			__v: number;
 		};
 		counts: {
-			clients: number;
+			practitioners: number;
 		};
 	};
 }
@@ -75,6 +66,7 @@ const userProfileApiSlice = baseAPI.injectEndpoints({
 				url: `settings/profile`,
 				method: "GET",
 			}),
+			providesTags: [{ type: "UserProfile", id: "CURRENT" }], // Use the tag type here
 		}),
 	}),
 });

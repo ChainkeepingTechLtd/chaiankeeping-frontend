@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IResponse } from "../services/auth/login.api-slice";
 
+// Define the structure for authentication state
 export interface ILoginState {
 	accessToken: string | null;
 	refreshToken: string | null;
@@ -22,16 +23,37 @@ export interface ILoginState {
 	error: string | null;
 }
 
-const initialState: ILoginState = {
-	accessToken: null,
-	refreshToken: null,
-	user: null,
-	isLoading: false,
-	error: null,
+// Load authentication data from localStorage if available
+const loadAuthState = (): ILoginState => {
+	try {
+		const accessToken = localStorage.getItem("accessToken");
+		const refreshToken = localStorage.getItem("refreshToken");
+		const user = localStorage.getItem("user");
+
+		return {
+			accessToken: accessToken ? accessToken : null,
+			refreshToken: refreshToken ? refreshToken : null,
+			user: user ? JSON.parse(user) : null,
+			isLoading: false,
+			error: null,
+		};
+	} catch (error) {
+		console.error("Failed to load auth state from localStorage:", error);
+		return {
+			accessToken: null,
+			refreshToken: null,
+			user: null,
+			isLoading: false,
+			error: null,
+		};
+	}
 };
 
-export const loginStateSlice = createSlice({
-	name: "loginState",
+// Initial state
+const initialState: ILoginState = loadAuthState();
+
+export const authSlice = createSlice({
+	name: "auth",
 	initialState,
 	reducers: {
 		loginStart: (state) => {
@@ -59,9 +81,9 @@ export const loginStateSlice = createSlice({
 			state.error = null;
 
 			// Save tokens and user data to localStorage
-			localStorage.setItem("accessToken", action.payload.data.accessToken);
-			localStorage.setItem("refreshToken", action.payload.data.refreshToken);
-			localStorage.setItem("user", JSON.stringify(state.user)); // Store the entire user object
+			localStorage.setItem("accessToken", state.accessToken);
+			localStorage.setItem("refreshToken", state.refreshToken);
+			localStorage.setItem("user", JSON.stringify(state.user));
 		},
 		loginFailure: (state, action: PayloadAction<string>) => {
 			state.isLoading = false;
@@ -83,6 +105,6 @@ export const loginStateSlice = createSlice({
 });
 
 export const { loginStart, loginSuccess, loginFailure, logout } =
-	loginStateSlice.actions;
+	authSlice.actions;
 
-export default loginStateSlice.reducer;
+export default authSlice.reducer;

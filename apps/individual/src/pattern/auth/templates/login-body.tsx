@@ -1,4 +1,4 @@
-import { useEffect } from "react"; // Import useEffect
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { APP_ROUTES } from "@/lib/routes";
 import {
@@ -18,22 +18,20 @@ import {
 	SubmitButton,
 } from "@chainkeeping/ui";
 import Link from "next/link";
-import { LoginFormData, loginInfoSchema } from "@/pattern/schema/auth-schema";
-import EmailInput from "@/pattern/accounts/molecules/email-input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import EmailInput from "@/pattern/accounts/molecules/email-input";
 import PasswordInput from "@/pattern/accounts/molecules/password-input";
 import { useLoginMutation } from "@/redux/services/auth/login.api-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	loginStart,
 	loginSuccess,
 	loginFailure,
 } from "@/redux/slices/auth-slice";
 import { RootState } from "@/redux/root-reducer";
-import { useSelector } from "react-redux";
-import { toast } from "sonner"; // Import toast from sonner
+import { toast } from "sonner";
 
 const CreateAccountFormSchema = z.object({
 	email: z.string().email("Invalid email address").min(1, "Email is required"),
@@ -51,24 +49,20 @@ const CreateAccountFormSchema = z.object({
 });
 
 const LoginBody = () => {
-	const pathname = usePathname();
 	const { push } = useRouter();
 	const dispatch = useDispatch();
 	const [login, { isLoading }] = useLoginMutation();
-	const loginState = useSelector((state: RootState) => state.loginState) || {
-		error: null,
-	};
-
-	const defaultValues = {
-		email: "",
-		password: "",
-	};
+	const loginState = useSelector((state: RootState) => state.loginState);
+	const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
 	const form = useForm<z.infer<typeof CreateAccountFormSchema>>({
 		resolver: zodResolver(CreateAccountFormSchema),
 		mode: "onChange",
 		reValidateMode: "onChange",
-		defaultValues: defaultValues,
+		defaultValues: {
+			email: "",
+			password: "",
+		},
 	});
 
 	const {
@@ -82,7 +76,14 @@ const LoginBody = () => {
 			const response = await login(data).unwrap();
 			dispatch(loginSuccess(response));
 
-			// Show success toast
+			if (keepLoggedIn) {
+				localStorage.setItem("accessToken", response.data.accessToken);
+				localStorage.setItem("refreshToken", response.data.refreshToken);
+			} else {
+				sessionStorage.setItem("accessToken", response.data.accessToken);
+				sessionStorage.setItem("refreshToken", response.data.refreshToken);
+			}
+
 			toast.success("Login Successful", {
 				description: "You have successfully logged in.",
 				duration: 5000,
@@ -93,12 +94,15 @@ const LoginBody = () => {
 			});
 
 			push(APP_ROUTES.dashboard);
-		} catch (error) {
-			dispatch(loginFailure("Login failed"));
+		} catch (error: any) {
+			let errorMessage = "Invalid email or password. Please try again.";
+			if (error.data?.responseMessage) {
+				errorMessage = error.data.responseMessage;
+			}
+			dispatch(loginFailure(errorMessage));
 
-			// Show error toast
 			toast.error("Login Failed", {
-				description: "Invalid email or password. Please try again.",
+				description: errorMessage,
 				duration: 8000,
 				cancel: {
 					label: "Close",
@@ -108,29 +112,27 @@ const LoginBody = () => {
 		}
 	};
 
-	// Log user information when the user is logged in
 	useEffect(() => {
 		if (loginState.user) {
-			console.log("User Information:", loginState.user);
+			push(APP_ROUTES.dashboard);
 		}
-	}, [loginState.user]);
+	}, [loginState.user, push]);
 
 	return (
 		<div className='sm:mt-10 w-full flex flex-col sm:items-center'>
 			<Link href={APP_ROUTES.index} className='max-sm:hidden'>
 				<BrandLogo />
 			</Link>
-			<Card className='bg-white mt-10 w-fit max-w-[438px] lg:w-[438px] h-fit  flex flex-col p-6 rounded-[8px] sahdow-md border-none'>
+			<Card className='bg-white mt-10 w-fit max-w-[438px] lg:w-[438px] h-fit flex flex-col p-6 rounded-[8px] shadow-md border-none'>
 				<CardHeader className='h-fit lg:h-[30px] flex items-start justify-start pb-2 border-b'>
 					<CardTitle className='text-base font-bold font-sen'>
 						Log in to your account
 					</CardTitle>
 				</CardHeader>
-				<CardContent className='w-full h-full flex flex-col  !mt-0'>
+				<CardContent className='w-full h-full flex flex-col !mt-0'>
 					<Form {...form}>
 						<form onSubmit={handleSubmit(onSubmit)}>
-							<div className='grid  gap-4 my-5 '>
-								{/* Email */}
+							<div className='grid gap-4 my-5'>
 								<FormField
 									control={form.control}
 									name='email'
@@ -143,12 +145,16 @@ const LoginBody = () => {
 												autoComplete='email'
 												name='email'
 												error={errors["email"]}
+												aria-describedby='email-error'
 											/>
-											<FormMessage />
+											{errors.email && (
+												<FormMessage id='email-error'>
+													{errors.email.message}
+												</FormMessage>
+											)}
 										</FormItem>
 									)}
 								/>
-								{/* Password */}
 								<FormField
 									control={form.control}
 									name='password'
@@ -161,15 +167,23 @@ const LoginBody = () => {
 												autoComplete='current-password'
 												name='password'
 												error={form.formState.errors["password"]}
+												aria-describedby='password-error'
 											/>
-											<FormMessage />
+											{errors.password && (
+												<FormMessage id='password-error'>
+													{errors.password.message}
+												</FormMessage>
+											)}
 										</FormItem>
 									)}
 								/>
 							</div>
 							<div className='flex justify-between items-center mb-4'>
 								<div className='flex items-center gap-1'>
-									<Checkbox />
+									<Checkbox
+										checked={keepLoggedIn}
+										onCheckedChange={(checked) => setKeepLoggedIn(!!checked)}
+									/>
 									<p className='text-sm text-[#202B3C]'>Keep me logged in</p>
 								</div>
 								<Link
@@ -179,7 +193,6 @@ const LoginBody = () => {
 									Forgot Password?
 								</Link>
 							</div>
-
 							<SubmitButton
 								size='md'
 								type='submit'
@@ -188,7 +201,6 @@ const LoginBody = () => {
 							>
 								{isLoading ? "Logging in..." : "Log in"}
 							</SubmitButton>
-
 							<div className='flex text-[#202B3C] items-center w-full justify-center gap-3 mt-6'>
 								<p>Don’t have an account?</p>{" "}
 								<Link
