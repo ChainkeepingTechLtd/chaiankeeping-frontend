@@ -25,9 +25,9 @@ export const SOLUTIONS_ROUTES = {
     computation: "/solutions/tax-computation",
     accountingPractitioners: "/who-we-serve/accounting-practitioners",
     payroll: "/solutions/payroll",
-    invoicing: "/solutions/invoicing",
-    payments: "/solutions/payments",
-    financialReporting: "/solutions/financial-reporting",
+    invoicing: "/#features/",
+    payments: "/#features/",
+    financialReporting: "/#features",
 };
 export const WHO_WE_SERVE_ROUTES = {
     individuals: "/who-we-serve/individuals",
