@@ -15,7 +15,7 @@ interface IProps {
 const FeaturesImage: FC<IProps> = ({ feature }) => {
     const renderImage = () => {
         switch (feature) {
-            case "tax-computation":
+            case "1":
                 return <>
                     <Image
                         src={TaxComputationImage} alt="Tax Computation"
@@ -28,7 +28,7 @@ const FeaturesImage: FC<IProps> = ({ feature }) => {
                     />
                 </>
 
-            case "practioners":
+            case "2":
                 return <>
                     <Image
                         src={PractitionersImage} alt="Account Practitioners"
@@ -41,7 +41,7 @@ const FeaturesImage: FC<IProps> = ({ feature }) => {
                     />
                 </>
 
-            case "payroll":
+            case "3":
                 return <>
                     <Image
                         src={PayrollImage} alt="Crypto Payroll"
@@ -54,7 +54,7 @@ const FeaturesImage: FC<IProps> = ({ feature }) => {
                     />
                 </>
 
-            case "payments":
+            case "4":
                 return <>
                     <Image
                         src={PaymentImage} alt="Crypto Payment"
@@ -67,7 +67,7 @@ const FeaturesImage: FC<IProps> = ({ feature }) => {
                     />
                 </>
 
-            case "invoicing":
+            case "5":
                 return <>
                     <Image
                         src={InvoicingImage} alt="Crypto Invoicing"
@@ -80,7 +80,7 @@ const FeaturesImage: FC<IProps> = ({ feature }) => {
                     />
                 </>
 
-            case "reporting":
+            case "6":
                 return <>
                     <Image src={OtherIcomeImage} alt="Other Income" fill
                         style={{
