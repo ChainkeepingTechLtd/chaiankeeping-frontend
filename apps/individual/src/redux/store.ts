@@ -19,14 +19,17 @@ const reducer = persistReducer<ReturnType<typeof rootReducer>>(
 );
 
 export const store = configureStore({
-	reducer: reducer,
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: {
-				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-			},
-		}).concat(baseAPI.middleware),
-	devTools: process.env.NODE_ENV !== "production",
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+            // immutableCheck: false,
+        }).concat(baseAPI.middleware),
+
+    devTools: process.env.NODE_ENV !== "production",
+
 });
 
 setupListeners(store.dispatch);

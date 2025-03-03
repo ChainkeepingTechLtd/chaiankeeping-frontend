@@ -14,11 +14,11 @@ export const Providers = ({ children }: { children: ReactNode}) => {
             <Provider store={store}>
                 <Toaster position='top-center' richColors />
                 <NiceModal.Provider>
-                    <PersistGate persistor={persistor}>
+                    {/* <PersistGate persistor={persistor}> */}
                         <TooltipProvider>
                             {children}
                         </TooltipProvider>
-                    </PersistGate>
+                    {/* </PersistGate> */}
                 </NiceModal.Provider>
             </Provider>
         </>

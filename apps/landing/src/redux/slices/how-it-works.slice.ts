@@ -6,7 +6,7 @@ interface HowItWorksState {
 }
 
 const initialState: HowItWorksState = {
-    toggleGroupValue: "import", // default value
+    toggleGroupValue: "1", // default value
 };
 
 const howItWorksSlice = createSlice({

@@ -5,7 +5,7 @@ interface FeaturesState {
 }
 
 const initialState: FeaturesState = {
-    feature: "tax-computation", // default value
+    feature: "1", // default value
 };
 
 const featuresSlice = createSlice({
