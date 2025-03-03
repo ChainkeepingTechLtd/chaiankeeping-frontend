@@ -13,7 +13,7 @@ export const QuickActionPopover = () => {
 		<Popover>
 			<PopoverTrigger asChild>
 				<Button variant='icon' size='icon'>
-					<QuickActionIcon />
+					<QuickActionIcon className='max-sm:h-7 max-sm:w-7' />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className='w-80'>

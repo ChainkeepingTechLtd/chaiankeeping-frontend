@@ -3,10 +3,28 @@ import { APP_ROUTES } from "@/lib/routes";
 import { BrandLogo } from "@chainkeeping/ui";
 import Link from "next/link";
 import InfoIcon from "../atoms/info-icon";
+import { useSearchParams } from "next/navigation";
 
 const ResetPassword = () => {
 	const [seconds, setSeconds] = useState(119); // Starting countdown from 119 seconds
 	const [isCountdownFinished, setIsCountdownFinished] = useState(false);
+	const searchParams = useSearchParams(); // Get query parameters
+	const email = searchParams.get("email"); // Extract the email from the query parameters
+
+	// Function to mask the email
+	const maskEmail = (email: string | null) => {
+		if (!email) return ""; // Return empty string if email is null
+
+		const [localPart, domain] = email.split("@");
+
+		if (localPart.length <= 3) {
+			// If the local part is too short, return only the first letter + ***
+			return `${localPart[0]}****@${domain}`;
+		}
+
+		// Show first 2 letters, hide the middle, and show last letter
+		return `${localPart.slice(0, 2)}****${localPart.slice(-1)}@${domain}`;
+	};
 
 	useEffect(() => {
 		if (seconds === 0) {
@@ -32,7 +50,7 @@ const ResetPassword = () => {
 				</Link>
 
 				<p className='max-sm:mt-14 font-bold'>Forgot password</p>
-				<p className='mt-4  text-sm text-grey-500'>
+				<p className='mt-4 text-sm text-grey-500'>
 					Click on the password reset link from your email to change your
 					password.
 				</p>
@@ -43,7 +61,7 @@ const ResetPassword = () => {
 						<InfoIcon />
 						<p className='text-sm text-[#131319]'>
 							Password reset link has been sent to your email address{" "}
-							<b>ex*****@gmail.com</b>
+							<b>{maskEmail(email)}</b>
 						</p>
 					</div>
 				</div>
@@ -55,7 +73,7 @@ const ResetPassword = () => {
 				</p>
 				<p className='text-[#202B3C] pt-3'>
 					{isCountdownFinished ? (
-						<span className='text-[#D82E2E] font-medium'>
+						<span className='text-[#D82E2E] font-semibold'>
 							Resend password reset link
 						</span>
 					) : (

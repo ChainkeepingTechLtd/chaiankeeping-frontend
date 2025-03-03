@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { APP_ROUTES } from "@/lib/routes";
@@ -22,33 +22,27 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
+import { useGetUserProfileQuery } from "@/redux/services/settings/user-profile.api-slice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { toast } from "sonner"; // Import sonner toast
+import { useUpdateProfileMutation } from "@/redux/services/settings/update-profile.api-slice";
 import EmailInput from "@/pattern/accounts/molecules/email-input";
 import PhoneNumberInput from "../molecules/phone-number-input";
 import LocationSelector from "../organisms/locator-selector";
 
 const CreateAccountFormSchema = z.object({
-	email: z
-		.string()
-		.email("Invalid email address") // Ensures it's a valid email format
-		.min(1, "Email is required"), // Ensures it's not empty
-	password: z
-		.string()
-		.min(8, "Password must be at least 8 characters long") // Minimum length
-		.max(64, "Password must not exceed 64 characters") // Maximum length
-		.regex(/[a-z]/, "Password must contain at least one lowercase letter") // At least one lowercase
-		.regex(/[A-Z]/, "Password must contain at least one uppercase letter") // At least one uppercase
-		.regex(/\d/, "Password must contain at least one number") // At least one number
-		.regex(
-			/[@$!%*?&#]/,
-			"Password must contain at least one special character"
-		), // At least one special character
+	firstName: z.string().min(1, "First name is required"),
+	lastName: z.string().min(1, "Last name is required"),
+	email: z.string().email("Invalid email address").min(1, "Email is required"),
 	phoneNumber: z
 		.string()
 		.regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format")
 		.min(1, "Phone Number is required"),
 	country: z.string().min(1, "Country is required"),
 	state: z.string().min(1, "State of residence is required"),
+	nin: z.string().min(1, "National Identity Number is required"),
+	id: z.string().min(1, "Registration ID is required"),
 });
 
 const Socials: Array<"Apple" | "Google"> = ["Apple", "Google"];
@@ -62,27 +56,80 @@ const ProfileSettings = () => {
 		slug: "" | "personal" | "company" | "practitioners";
 	}>();
 
-	const defaultValues = {
-		email: "",
-		password: "",
-	};
+	const { data: userProfile, error, isLoading } = useGetUserProfileQuery();
+	const [updateProfile, { isLoading: isUpdating }] = useUpdateProfileMutation();
+	const accessToken = useSelector(
+		(state: RootState) => state.loginState.accessToken
+	);
 
 	const form = useForm<z.infer<typeof CreateAccountFormSchema>>({
 		resolver: zodResolver(CreateAccountFormSchema),
 		mode: "onChange",
 		reValidateMode: "onChange",
-		defaultValues: defaultValues,
+		defaultValues: {
+			firstName: "",
+			lastName: "",
+			email: "",
+			phoneNumber: "",
+			country: "",
+			state: "",
+			nin: "",
+			id: "",
+		},
 	});
 
 	const {
 		handleSubmit,
 		formState: { errors, isDirty },
+		reset,
 	} = form;
 
-	const onSubmit = (data: z.infer<typeof CreateAccountFormSchema>) => {
-		console.log("Submitted: ", data);
-		push(`${pathname}?additional-info=true`);
+	useEffect(() => {
+		if (userProfile) {
+			reset({
+				firstName: userProfile.data.user.firstname,
+				lastName: userProfile.data.user.lastname,
+				email: userProfile.data.user.email,
+				phoneNumber: userProfile.data.user.phonenumber,
+				country: userProfile.data.user.country,
+				state: userProfile.data.user.state,
+				nin: userProfile.data.user.kyc.tin || "",
+				id: userProfile.data.user.ckId || "",
+			});
+		}
+	}, [userProfile, reset]);
+
+	useEffect(() => {
+		if (error) {
+			console.error("Failed to fetch user profile:", error);
+		}
+	}, [error]);
+
+	const onSubmit = async (data: z.infer<typeof CreateAccountFormSchema>) => {
+		try {
+			const response = await updateProfile({
+				firstname: data.firstName,
+				lastname: data.lastName,
+			}).unwrap();
+
+			if (!response.error) {
+				toast.success("Profile updated successfully!");
+			} else {
+				toast.error("Failed to update profile.");
+			}
+		} catch (err) {
+			toast.error("An error occurred while updating the profile.");
+		}
 	};
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return <div>Error loading user profile</div>;
+	}
+
 	return (
 		<div className='w-fit flex  pt-24 flex-col items-center  px-[18px] pb-[144px]'>
 			<Card className='bg-white w-fit max-w-[850px] lg:w-[850px] h-fit  flex flex-col p-6 rounded-[8px] sahdow-md border-none'>
@@ -95,8 +142,6 @@ const ProfileSettings = () => {
 					<Form {...form}>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='grid grid-cols-2 gap-4 my-5 '>
-								{/* Email */}
-
 								<FormField
 									name='firstName'
 									render={({ field }) => (
@@ -116,13 +161,13 @@ const ProfileSettings = () => {
 									)}
 								/>
 								<FormField
-									name='lastname'
+									name='lastName'
 									render={({ field }) => (
 										<FormItem className='w-full grid gap-2'>
-											<FormLabel htmlFor='firstName'>Last Name</FormLabel>
+											<FormLabel htmlFor='lastName'>Last Name</FormLabel>
 											<FormControl>
 												<Input
-													id='firstName'
+													id='lastName'
 													placeholder='Last name'
 													type='text'
 													autoComplete='lastName'
@@ -167,8 +212,6 @@ const ProfileSettings = () => {
 										</FormItem>
 									)}
 								/>
-
-								{/* Country */}
 							</div>
 
 							<FormField
@@ -199,8 +242,6 @@ const ProfileSettings = () => {
 							</CardHeader>
 
 							<div className='grid grid-cols-2 gap-4 mb-5 '>
-								{/* Email */}
-
 								<FormField
 									name='nin'
 									render={({ field }) => (
@@ -244,10 +285,10 @@ const ProfileSettings = () => {
 							<SubmitButton
 								size='sm'
 								type='submit'
-								disabled={!isDirty}
+								disabled={!isDirty || isUpdating}
 								className='bg-destructive text-base font-medium mt-[8px]'
 							>
-								Save
+								{isUpdating ? "Saving..." : "Save"}
 							</SubmitButton>
 						</form>
 					</Form>

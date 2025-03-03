@@ -4,23 +4,23 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface IAuthState {
-    registeredEmailAddress?: string;
+	registeredEmailAddress?: string;
 }
 
 const initialState: IAuthState = {
-    registeredEmailAddress: '',
+	registeredEmailAddress: "",
 };
 
 export const authStateSlice = createSlice({
-    name: "authState",
-    initialState,
-    reducers: {
-        storeRegisteredEmailAddress: (state, action: PayloadAction<string>) => {
-            state.registeredEmailAddress = action.payload;
-            localStorage.setItem(REGISTERED_EMAIL_ADDRESS, action.payload)
-            return state;
-        },
-    },
+	name: "authState",
+	initialState,
+	reducers: {
+		storeRegisteredEmailAddress: (state, action: PayloadAction<string>) => {
+			state.registeredEmailAddress = action.payload;
+			localStorage.setItem(REGISTERED_EMAIL_ADDRESS, action.payload);
+			return state;
+		},
+	},
 });
 
 export const { storeRegisteredEmailAddress } = authStateSlice.actions;
