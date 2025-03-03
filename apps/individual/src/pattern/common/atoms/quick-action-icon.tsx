@@ -1,6 +1,9 @@
 import React from "react";
+interface QuickActionIconProps {
+	className?: string; // `className` is optional and of type string
+}
 
-const QuickActionIcon = () => {
+const QuickActionIcon: React.FC<QuickActionIconProps> = ({ className }) => {
 	return (
 		<svg
 			width='44'
@@ -8,6 +11,7 @@ const QuickActionIcon = () => {
 			viewBox='0 0 44 44'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
+			className={className}
 		>
 			<rect width='44' height='44' rx='22' fill='#F5F8FA' />
 			<path
