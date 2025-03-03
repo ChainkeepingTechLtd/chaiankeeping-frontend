@@ -35,11 +35,11 @@ const TaxReports = () => {
 
 	return (
 		<div className='h-full w-full flex flex-col'>
-			<div className='fixed left-0 w-full bg-white shadow-md z-10 pt-3'>
-				<div className='flex justify-between md:px-8 mx-auto px-4'>
-					<div className='flex'>
+			<div className='fixed left-0 w-full bg-white shadow-md z-10 max-sm:pt-16 pt-3'>
+				<div className='flex max-sm:flex-col justify-between md:px-8 mx-auto px-4'>
+					<div className='flex max-sm:text-sm'>
 						<button
-							className={`px-4 py-5 font-medium ${
+							className={`px-4 max-sm:pb-3 py-5 font-medium ${
 								activeTab === "Tax Reports"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
 									: "text-grey-300"
@@ -49,7 +49,7 @@ const TaxReports = () => {
 							Tax Reports
 						</button>
 						<button
-							className={`px-4 py-5 font-medium ${
+							className={`px-4 py-5 max-sm:pb-3 font-medium ${
 								activeTab === "Financial Reports"
 									? "border-b-2 border-[#D82E2E] text-[#202B3C] font-medium"
 									: "text-grey-300"
@@ -59,9 +59,9 @@ const TaxReports = () => {
 							Financial Reports
 						</button>
 					</div>
-					<div className='flex gap-2 '>
+					<div className='flex gap-2 max-sm:justify-center max-sm:my-4'>
 						<div>
-							<h1 className='font-bold text-2xl'>
+							<h1 className='font-bold text-2xl max-sm:text-base'>
 								{selectedDate} Assessment Year
 							</h1>
 							<p className='text-grey-300 text-sm'>
@@ -74,7 +74,7 @@ const TaxReports = () => {
 			</div>
 
 			{/* Tab Content */}
-			<div className='pt-24 md:px-8 w-full'>{renderContent()}</div>
+			<div className='pt-24 md:px-8 max-sm:pt-56 w-full'>{renderContent()}</div>
 		</div>
 	);
 };
